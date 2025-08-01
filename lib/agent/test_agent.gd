@@ -10,5 +10,5 @@ func _physics_process(delta: float) -> void:
 	_dir = _dir.normalized()
 	
 	velocity = lerp(velocity, _dir, delta * 10.0)
-	velocity.y += Global.GRAVITY
+	#velocity.y += Global.GRAVITY
 	move_and_slide()

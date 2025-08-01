@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ban0go6y3b25c"]
+[gd_scene load_steps=6 format=3 uid="uid://ban0go6y3b25c"]
 
 [ext_resource type="Script" uid="uid://ckhdif2cde65" path="res://lib/player/player.gd" id="1_al4t3"]
 [ext_resource type="Script" uid="uid://dkdr61ecc8g6k" path="res://lib/player/camera.gd" id="1_odf55"]
@@ -10,6 +10,9 @@ height = 0.5
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_odf55"]
 radius = 0.125
 height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_al4t3"]
+radius = 0.45
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_al4t3")
@@ -28,3 +31,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 v_offset = 0.5
 current = true
 script = ExtResource("1_odf55")
+
+[node name="SpringAxis" type="SpringArm3D" parent="Orbit"]
+collision_mask = 4
+shape = SubResource("SphereShape3D_al4t3")
+spring_length = 2.0
+
+[node name="Spring" type="Marker3D" parent="Orbit/SpringAxis"]

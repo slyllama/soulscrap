@@ -16,3 +16,5 @@ func _ready() -> void:
 		if OS.get_name() != "macos":
 			DisplayServer.cursor_set_custom_image(
 				load("res://generic/textures/cursor_2x.png"))
+	
+	get_window().position = DisplayServer.screen_get_position() + Vector2i(32, 64)

@@ -2,34 +2,23 @@ extends Camera3D
 
 @export var orbit_sensitivity = 0.5
 @export var orbit_smoothing = 20.0
-@export var zoom_increment = 0.3
-@export var zoom_minimum = 0.4
-@export var zoom_maximum = 4.0
 
 var _mouse_delta = Vector2.ZERO
 @onready var _last_mouse_delta = _mouse_delta
 @onready var _target_pivot_x = get_parent().rotation_degrees.x
 @onready var _target_pivot_y = get_parent().rotation_degrees.y
-@onready var _target_zoom = position.z
 
 func _input(event: InputEvent) -> void:
 	# Handle orbiting
 	if (event is InputEventMouseMotion
 		and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
 		_mouse_delta = event.relative
-	else: _mouse_delta = Vector2.ZERO
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif Input.is_action_just_pressed("left_click"):
 		if !Global.mouse_in_ui:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	# Handle zoom
-	if Input.is_action_just_pressed("zoom_in"):
-		_target_zoom -= zoom_increment
-	elif Input.is_action_just_pressed("zoom_out"):
-		_target_zoom += zoom_increment
 
 func _ready() -> void:
 	Global.camera = self
@@ -46,9 +35,5 @@ func _physics_process(_delta: float) -> void:
 	_target_pivot_x = clamp(_target_pivot_x, -80.0, 20.0)
 	get_parent().rotation_degrees.x = lerp(
 		get_parent().rotation_degrees.x, _target_pivot_x, Utils.clerp(orbit_smoothing))
-	
-	# Handle zoom
-	_target_zoom = clamp(_target_zoom, zoom_minimum, zoom_maximum)
-	position.z = lerp(position.z, _target_zoom, Utils.clerp(orbit_smoothing / 2.0))
 	
 	_last_mouse_delta = _mouse_delta

@@ -82,6 +82,7 @@ vertical_alignment = 1
 use_parent_material = true
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("3_twvld")
 texture_hover = ExtResource("4_cxotv")
 ignore_texture_size = true

@@ -30,10 +30,6 @@ shape = SubResource("CapsuleShape3D_odf55")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="."]
 navigation_layers = 3
-simplify_path = true
-avoidance_enabled = true
-avoidance_layers = 2
-avoidance_mask = 2
 debug_enabled = true
 debug_path_custom_color = Color(1, 1, 0, 1)
 
