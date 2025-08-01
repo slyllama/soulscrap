@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://eoe6rexn06fv"]
+
+[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/simple_nospec.gdshader" id="1_am71l"]
+[ext_resource type="Script" uid="uid://cb6avdfqm1j3y" path="res://lib/agent/test_agent.gd" id="1_otbm1"]
+[ext_resource type="PackedScene" uid="uid://b0vqktx3q2d2r" path="res://lib/ui/node_spatial/node_spatial.tscn" id="3_81wq3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otbm1"]
+render_priority = 0
+shader = ExtResource("1_am71l")
+shader_parameter/albedo_color = Color(1, 1, 0, 1)
+shader_parameter/uv_scale = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iochv"]
+material = SubResource("ShaderMaterial_otbm1")
+radius = 0.125
+height = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_odf55"]
+radius = 0.125
+height = 0.5
+
+[node name="TestAgent" type="CharacterBody3D"]
+script = ExtResource("1_otbm1")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_iochv")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_odf55")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
+navigation_layers = 3
+simplify_path = true
+avoidance_enabled = true
+avoidance_layers = 2
+avoidance_mask = 2
+debug_enabled = true
+debug_path_custom_color = Color(1, 1, 0, 1)
+
+[node name="NodeSpatial" parent="." instance=ExtResource("3_81wq3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+text = "TestAgent"
+text_color = Color(1, 1, 0, 1)

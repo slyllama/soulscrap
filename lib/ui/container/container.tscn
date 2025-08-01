@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://dss8jsi1q5yco"]
+
+[ext_resource type="Texture2D" uid="uid://bw2ra7yhv6bvi" path="res://lib/ui/textures/ui_bg.jpg" id="1_gbke4"]
+[ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="1_pd6sc"]
+[ext_resource type="Script" uid="uid://dvgniumrol0vg" path="res://lib/ui/container/container.gd" id="2_4cwwj"]
+[ext_resource type="Texture2D" uid="uid://dtjfje26his8y" path="res://lib/ui/textures/ui_corner.png" id="2_j7h81"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="2_rs40i"]
+[ext_resource type="Texture2D" uid="uid://bp0j0s1omf4xs" path="res://lib/ui/textures/close_button.png" id="3_twvld"]
+[ext_resource type="Texture2D" uid="uid://dpoapotaw4aqk" path="res://lib/ui/textures/close_button_hover.png" id="4_cxotv"]
+[ext_resource type="Texture2D" uid="uid://cdbdelgj23c0p" path="res://lib/ui/textures/separator.png" id="5_0wxwo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rs40i"]
+resource_local_to_scene = true
+shader = ExtResource("1_pd6sc")
+shader_parameter/dissolve_texture = ExtResource("2_rs40i")
+shader_parameter/dissolve_state = 0.0
+shader_parameter/uv_scale = 2.5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7h81"]
+texture = ExtResource("1_gbke4")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Container" type="Panel"]
+material = SubResource("ShaderMaterial_rs40i")
+custom_minimum_size = Vector2(300, 400)
+offset_right = 300.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_j7h81")
+script = ExtResource("2_4cwwj")
+
+[node name="Corner" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.784314)
+z_index = -1
+use_parent_material = true
+custom_minimum_size = Vector2(193, 204)
+layout_mode = 1
+offset_left = -35.0
+offset_top = -31.0
+offset_right = 158.0
+offset_bottom = 173.0
+mouse_filter = 2
+texture = ExtResource("2_j7h81")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="VBox" type="VBoxContainer" parent="."]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="VBox"]
+use_parent_material = true
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="RichTextLabel" parent="VBox/Header"]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 18
+text = "((Window))"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="Close" type="TextureButton" parent="VBox/Header"]
+use_parent_material = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture_normal = ExtResource("3_twvld")
+texture_hover = ExtResource("4_cxotv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Sep" type="TextureRect" parent="VBox"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+texture = ExtResource("5_0wxwo")
+expand_mode = 1
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

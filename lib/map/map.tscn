@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0j3ryssexkcj"]
+
+[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/simple_nospec.gdshader" id="1_4t4lj"]
+[ext_resource type="Texture2D" uid="uid://brx1lj0t583kn" path="res://generic/materials/textures/tile_diff.jpg" id="2_xunhb"]
+
+[sub_resource type="Environment" id="Environment_uw02r"]
+background_mode = 1
+tonemap_mode = 2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_uw02r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vt6hs"]
+render_priority = 0
+shader = ExtResource("1_4t4lj")
+shader_parameter/albedo_texture = ExtResource("2_xunhb")
+shader_parameter/albedo_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/uv_scale = 64.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_c370e"]
+material = SubResource("ShaderMaterial_vt6hs")
+size = Vector2(100, 100)
+orientation = 1
+
+[node name="Map" type="Node3D"]
+
+[node name="Sky" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uw02r")
+
+[node name="Sun" type="DirectionalLight3D" parent="Sky"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 4, 0)
+shadow_enabled = true
+directional_shadow_blend_splits = true
+
+[node name="NavRegion" type="NavigationRegion3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="NavRegion"]
+
+[node name="Collision" type="CollisionShape3D" parent="NavRegion/Floor"]
+shape = SubResource("WorldBoundaryShape3D_uw02r")
+debug_fill = false
+
+[node name="Mesh" type="MeshInstance3D" parent="NavRegion/Floor"]
+mesh = SubResource("QuadMesh_c370e")

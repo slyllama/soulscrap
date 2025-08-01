@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://c22mmoiy3jofj"]
+
+[ext_resource type="PackedScene" uid="uid://by0uvskvsqnmj" path="res://lib/ui/fps_counter/fps_counter.tscn" id="1_6ca3a"]
+[ext_resource type="Texture2D" uid="uid://dku4jv7giju6q" path="res://lib/ui/hud/textures/reticule.png" id="2_2gk58"]
+[ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="3_tga37"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="FPSCounter" parent="." instance=ExtResource("1_6ca3a")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 38.0
+grow_horizontal = 0
+text = "[color=green]136fps[/color]"
+
+[node name="Reticule" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(30, 30)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2gk58")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Container" parent="." instance=ExtResource("3_tga37")]
+offset_left = 128.0
+offset_top = 97.0
+offset_right = 428.0
+offset_bottom = 497.0

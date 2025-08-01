@@ -1,0 +1,97 @@
+[gd_scene load_steps=16 format=3 uid="uid://d4i4jjh5re868"]
+
+[ext_resource type="PackedScene" uid="uid://d0j3ryssexkcj" path="res://lib/map/map.tscn" id="1_8bryw"]
+[ext_resource type="PackedScene" uid="uid://ban0go6y3b25c" path="res://lib/player/player.tscn" id="2_hxxcf"]
+[ext_resource type="PackedScene" uid="uid://c22mmoiy3jofj" path="res://lib/ui/hud/hud.tscn" id="2_ix24m"]
+[ext_resource type="Script" uid="uid://b6pgdjxymisrs" path="res://maps/sandbox/sandbox.gd" id="2_oa8wj"]
+[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/simple_nospec.gdshader" id="4_lc3d0"]
+[ext_resource type="Texture2D" uid="uid://rxiyen87ib0n" path="res://generic/textures/nasa_stars.jpg" id="4_pxktp"]
+[ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/test_agent.tscn" id="5_lc3d0"]
+[ext_resource type="PackedScene" uid="uid://c3a6m02noqd4y" path="res://maps/sandbox/meshes/branch_thing.glb" id="7_6heex"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_17ttx"]
+panorama = ExtResource("4_pxktp")
+
+[sub_resource type="Sky" id="Sky_j25ev"]
+sky_material = SubResource("PanoramaSkyMaterial_17ttx")
+
+[sub_resource type="Environment" id="Environment_v3xsa"]
+background_mode = 2
+sky = SubResource("Sky_j25ev")
+tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_sky_affect = 0.0
+fog_depth_begin = 6.0
+fog_depth_end = 20.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_htsly"]
+vertices = PackedVector3Array(-9.2, 0.393125, -2, -3.3, 0.393125, -2, -3, 0.393125, -2.7, -2, 0.393125, -2.9, -2.1, 0.393125, -9.2, -9.2, 0.393125, -9.2, 2.1, 0.393125, -2.9, 2.2, 0.393125, -9.2, 3.1, 0.393125, -2.7, 3.4, 0.393125, -2, 9.2, 0.393125, -2, 9.2, 0.393125, -9.2, -1.2, 0.393125, 0.3, -0.3, 0.393125, -0.2, -0.3, 0.393125, -1.1, -2.6, 0.393125, -1.1, -1.8, 0.393125, 2, -1.9, 0.393125, 1.5, -3.1, 0.393125, -1.4, -9.2, 0.393125, 2, -1.2, 1.39313, 3, -1.1, 1.64313, 3.3, -0.7, 1.64313, 3.5, 0.8, 0.893125, 1.2, 0.5, 0.643125, 0.7, 0.3, 0.643125, 0, 2, 0.393125, 1.2, 2.7, 0.393125, -1.1, 1.2, 0.643125, 1, 3.2, 0.393125, -1.4, 2.2, 0.393125, 1.8, 9.2, 0.393125, 1.8, 1.5, 0.393125, 3.1, 0.6, 0.393125, 3.6, 0.6, 0.393125, 9.2, 9.2, 0.393125, 9.2, -0.2, 0.393125, 3.3, -9.2, 0.393125, 9.2)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(3, 2, 4), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 0), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(6, 7, 8), PackedInt32Array(8, 7, 11), PackedInt32Array(8, 11, 10), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(18, 19, 0), PackedInt32Array(15, 12, 18), PackedInt32Array(18, 12, 17), PackedInt32Array(0, 1, 18), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(23, 20, 24), PackedInt32Array(25, 13, 14), PackedInt32Array(28, 25, 26), PackedInt32Array(26, 25, 14), PackedInt32Array(26, 14, 27), PackedInt32Array(27, 29, 26), PackedInt32Array(26, 29, 30), PackedInt32Array(29, 9, 30), PackedInt32Array(30, 9, 10), PackedInt32Array(30, 10, 31), PackedInt32Array(23, 24, 28), PackedInt32Array(28, 24, 25), PackedInt32Array(32, 34, 33), PackedInt32Array(32, 30, 34), PackedInt32Array(34, 30, 31), PackedInt32Array(34, 31, 35), PackedInt32Array(36, 33, 34), PackedInt32Array(36, 34, 16), PackedInt32Array(16, 34, 19), PackedInt32Array(19, 34, 37)]
+cell_size = 0.1
+agent_height = 0.5
+agent_radius = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6heex"]
+render_priority = 0
+shader = ExtResource("4_lc3d0")
+shader_parameter/albedo_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/uv_scale = 24.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_pxktp"]
+material = SubResource("ShaderMaterial_6heex")
+size = Vector3(5, 2, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_htsly"]
+size = Vector3(5, 2, 0.1)
+
+[node name="Sandbox" instance=ExtResource("1_8bryw")]
+script = ExtResource("2_oa8wj")
+
+[node name="HUD" parent="." index="0" instance=ExtResource("2_ix24m")]
+
+[node name="Sky" parent="." index="1"]
+environment = SubResource("Environment_v3xsa")
+
+[node name="NavRegion" parent="." index="2"]
+navigation_mesh = SubResource("NavigationMesh_htsly")
+
+[node name="Wall" type="StaticBody3D" parent="NavRegion" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
+
+[node name="Mesh" type="MeshInstance3D" parent="NavRegion/Wall" index="0"]
+mesh = SubResource("BoxMesh_pxktp")
+
+[node name="Collision" type="CollisionShape3D" parent="NavRegion/Wall" index="1"]
+shape = SubResource("BoxShape3D_htsly")
+
+[node name="Ramp" type="StaticBody3D" parent="NavRegion" index="1"]
+transform = Transform3D(0.549164, 0.815845, -0.181151, -0.313263, -5.58794e-08, -0.949666, -0.774781, 0.578271, 0.255574, -0.00850252, 0.608483, 1.9317)
+
+[node name="Mesh" type="MeshInstance3D" parent="NavRegion/Ramp" index="0"]
+mesh = SubResource("BoxMesh_pxktp")
+
+[node name="Collision" type="CollisionShape3D" parent="NavRegion/Ramp" index="1"]
+shape = SubResource("BoxShape3D_htsly")
+
+[node name="Player" parent="." index="3" instance=ExtResource("2_hxxcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 2.8)
+
+[node name="TestAgent" parent="." index="4" node_paths=PackedStringArray("nav_target") instance=ExtResource("5_lc3d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -5)
+nav_target = NodePath("../Player")
+
+[node name="TestAgent2" parent="." index="5" node_paths=PackedStringArray("nav_target") instance=ExtResource("5_lc3d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88782, 0.25, -2.04482)
+nav_target = NodePath("../Player")
+
+[node name="branch_thing" parent="." index="6" instance=ExtResource("7_6heex")]
+transform = Transform3D(0.965948, 0, -0.258735, 0, 1, 0, 0.258735, 0, 0.965948, 3.31159, 0, -0.579526)
+
+[node name="branch_thing2" parent="." index="7" instance=ExtResource("7_6heex")]
+transform = Transform3D(0.850346, 0.17582, -0.871148, -0.156771, 1.21646, 0.092485, 0.874777, 0.0470943, 0.863393, 3.63818, -0.183657, 0.375075)
+
+[node name="branch_thing3" parent="." index="8" instance=ExtResource("7_6heex")]
+transform = Transform3D(1.8138, 0.104296, 1.70275, -0.317366, 2.46259, 0.187226, -1.67616, -0.353408, 1.80712, 4.61236, -0.183657, -0.0465392)
