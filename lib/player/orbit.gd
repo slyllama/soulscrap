@@ -1,8 +1,8 @@
 extends Node3D
 
 @export var zoom_increment = 0.2
-@export var zoom_minimum = 0.9
-@export var zoom_maximum = 2.2
+@export var zoom_minimum = 0.8
+@export var zoom_maximum = 1.5
 @export var orbit_sensitivity = 0.5
 @export var orbit_smoothing = 20.0
 @export var camera_smoothing = 10.0

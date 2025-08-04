@@ -1,8 +1,79 @@
-[gd_scene load_steps=6 format=3 uid="uid://ban0go6y3b25c"]
+[gd_scene load_steps=17 format=4 uid="uid://ban0go6y3b25c"]
 
 [ext_resource type="Script" uid="uid://ckhdif2cde65" path="res://lib/player/player.gd" id="1_al4t3"]
 [ext_resource type="PackedScene" uid="uid://m0o8woonsvva" path="res://lib/player/meshes/player.glb" id="2_2ocui"]
+[ext_resource type="Script" uid="uid://d4mgvogtplgaw" path="res://lib/player/trail_3d/trail_3d.gd" id="3_0y160"]
 [ext_resource type="Script" uid="uid://crum3vn58g61o" path="res://lib/player/orbit.gd" id="3_5lbbh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lbbh"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_5lbbh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.13515, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0y160"]
+curve = SubResource("Curve_5lbbh")
+
+[sub_resource type="Gradient" id="Gradient_5lbbh"]
+colors = PackedColorArray(0, 0.326667, 0.7, 1, 0.826597, 0.439202, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0y160"]
+gradient = SubResource("Gradient_5lbbh")
+
+[sub_resource type="Curve" id="Curve_4ok3w"]
+_data = [Vector2(0, 0), 0.0, 2.64149, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ospss"]
+curve = SubResource("Curve_4ok3w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ok3w"]
+emission_shape = 2
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.02
+initial_velocity_max = 0.05
+gravity = Vector3(0, 0, 0)
+scale_min = 0.4
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ospss")
+color_ramp = SubResource("GradientTexture1D_0y160")
+alpha_curve = SubResource("CurveTexture_0y160")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0y160"]
+transparency = 1
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5lbbh"]
+_surfaces = [{
+"aabb": AABB(-0.1, -0.130814, 0, 0.2, 0.261628, 1e-05),
+"attribute_data": PackedByteArray("RbkQP5p84z7h0RI/AAAAPwAAAD8AAAAAv9UaP9MT5j4AAIA/AAAAP2whRD9XCkE+AAAAPwAAAADh0RI/AAAAP0W5ED+afOM+v9UaP9MT5j4AAIA/AAAAP2whRD9XCkE+AAAAPwAAAADh0RI/AAAAP0W5ED+afOM+v9UaP9MT5j4AAIA/AAAAP2whRD9XCkE+RbkQP5p84z7h0RI/AAAAPwAAAD8AAAAAv9UaP9MT5j4AAIA/AAAAP2whRD9XCkE+"),
+"format": 34359742487,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAwABAAAAAwAEAAEAAAAFAAMABgAHAAgACAAHAAkABwAKAAkACQALAAgADAANAA4ADgANAA8ADQAQAA8ADwARAA4AEgATABQAFQATABIAFQAWABMAEgAXABUA"),
+"material": SubResource("StandardMaterial3D_0y160"),
+"name": "Plane",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("48cYPGzpUTwAAAAAAAAAAAAAAAAAAAAAAAAAABv0BT4AAAAAhJx3PMsvAzwAAAAAzczMPQAAAAAAAAAAeLcyPVgeJD0AAAAAAAAAABv0BT4AAAAAAAAAAAAAAAAAAAAA48cYvGzpUTwAAAAAhJx3vMsvAzwAAAAAzczMvQAAAAAAAAAAeLcyvVgeJD0AAAAAAAAAABv0Bb4AAAAAAAAAAAAAAAAAAAAA48cYPGzpUbwAAAAAhJx3PMsvA7wAAAAAzczMPQAAAAAAAAAAeLcyPVgeJL0AAAAA48cYvGzpUbwAAAAAAAAAAAAAAAAAAAAAAAAAABv0Bb4AAAAAhJx3vMsvA7wAAAAAzczMvQAAAAAAAAAAeLcyvVgeJL0AAAAA/3//f5vbza3/f/9/q+hVtP9//3+x69i1/3//f+fic7H/f/9/////v/9//38ezY+m/3//f00UJkr/f/9/UxepS/9//39jJDFS/3//fxcdi07/f/9/AAD/P/9//3/gMm9Z/3//f7Hr2DX/f/9/q+hVNP9//3+b284t/3//f+fidDH/f/9/////P/9//38ezY8m/3//f2MkMNL/f/9/Uxepy/9//39NFCbK/3//fxcdis7/f/9/AAD/v/9//3/gMm/Z")
+}]
+blend_shape_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_odf55"]
 radius = 0.125
@@ -16,6 +87,27 @@ floor_constant_speed = true
 script = ExtResource("1_al4t3")
 
 [node name="PlayerMesh" parent="." instance=ExtResource("2_2ocui")]
+
+[node name="Trail3D_L" type="MeshInstance3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.15)
+material_override = SubResource("StandardMaterial3D_5lbbh")
+script = ExtResource("3_0y160")
+start_alpha = 0.25
+diffuse_color = Color(0.207365, 0.703746, 1, 1)
+metadata/_custom_type_script = "uid://d4mgvogtplgaw"
+
+[node name="Trail3D_R" type="MeshInstance3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0.15)
+material_override = SubResource("StandardMaterial3D_5lbbh")
+script = ExtResource("3_0y160")
+start_alpha = 0.25
+diffuse_color = Color(0.207365, 0.703746, 1, 1)
+metadata/_custom_type_script = "uid://d4mgvogtplgaw"
+
+[node name="Stars" type="GPUParticles3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.116318)
+process_material = SubResource("ParticleProcessMaterial_4ok3w")
+draw_pass_1 = SubResource("ArrayMesh_5lbbh")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)

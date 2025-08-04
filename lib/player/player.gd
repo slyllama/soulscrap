@@ -1,10 +1,30 @@
 extends CharacterBody3D
 
 @export var speed = 1.9
+@export var nitro_speed = 4.0
 @export var acceleration = 9.0
+
+var target_speed = speed
+var _actual_speed = target_speed
 var _target_velocity = 0.0
 
+var nitro_active = false
+
+func _ready() -> void:
+	Utils.tick.connect(func():
+		if nitro_active: PlayerData.change_tempo()
+		else: PlayerData.change_tempo(1))
+
 func _physics_process(_delta: float) -> void:
+	if Input.is_action_pressed("nitro"):
+		nitro_active = true
+		if PlayerData.tempo > 0: target_speed = nitro_speed
+		else: target_speed = speed
+	else:
+		nitro_active = false
+		target_speed = speed
+	_actual_speed = lerp(_actual_speed, target_speed, Utils.clerp(10.0))
+	
 	var _direction = Vector3.ZERO
 	if Input.is_action_pressed("move_forward"): _direction.z = 1.0
 	if Input.is_action_pressed("move_back"): _direction.z = -1.0
@@ -14,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 	_direction = _direction.normalized()
 	_target_velocity = $Orbit.basis * Vector3.FORWARD * _direction.z
 	_target_velocity += $Orbit.basis * Vector3.RIGHT * _direction.x
-	_target_velocity *= speed
+	_target_velocity *= _actual_speed
 	velocity = lerp(velocity, _target_velocity, Utils.clerp(acceleration))
 	
 	var _y_diff = $YCast.global_position.y - $YCast.get_collision_point().y
@@ -25,6 +45,6 @@ func _physics_process(_delta: float) -> void:
 	# Handle player mesh operations (facing rotation)
 	if velocity.length() > 0.1:
 		$PlayerMesh.rotation_degrees.y = lerp(
-			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(20.0))
+			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(7.0))
 	$PlayerMesh.rotation_degrees.z = lerp(
-		$PlayerMesh.rotation_degrees.z, velocity.x * -9.0, Utils.clerp(20.0))
+		$PlayerMesh.rotation_degrees.z, _direction.x * -10.0, Utils.clerp(6.0))
