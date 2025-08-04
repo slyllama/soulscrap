@@ -1,15 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://ban0go6y3b25c"]
 
 [ext_resource type="Script" uid="uid://ckhdif2cde65" path="res://lib/player/player.gd" id="1_al4t3"]
-[ext_resource type="Script" uid="uid://dkdr61ecc8g6k" path="res://lib/player/camera.gd" id="1_odf55"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_iochv"]
-radius = 0.125
-height = 0.5
+[ext_resource type="PackedScene" uid="uid://m0o8woonsvva" path="res://lib/player/meshes/player.glb" id="2_2ocui"]
+[ext_resource type="Script" uid="uid://crum3vn58g61o" path="res://lib/player/orbit.gd" id="3_5lbbh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_odf55"]
 radius = 0.125
-height = 0.5
+height = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_al4t3"]
 radius = 0.45
@@ -18,27 +15,33 @@ radius = 0.45
 floor_constant_speed = true
 script = ExtResource("1_al4t3")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_iochv")
+[node name="PlayerMesh" parent="." instance=ExtResource("2_2ocui")]
 
 [node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("CapsuleShape3D_odf55")
 
 [node name="Orbit" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.965925, 0.258819, 0, -0.258819, 0.965925, 0, 0, 0)
+script = ExtResource("3_5lbbh")
 
-[node name="Camera" type="Camera3D" parent="Orbit"]
+[node name="Track" type="Marker3D" parent="Orbit"]
+transform = Transform3D(1, 0, 0, 0, 0.965925, 0.258819, 0, -0.258819, 0.965925, 0, 0, 0)
+top_level = true
+
+[node name="Camera" type="Camera3D" parent="Orbit/Track"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-v_offset = 0.5
+h_offset = 0.2
+v_offset = 0.25
 current = true
-script = ExtResource("1_odf55")
+fov = 80.0
 
-[node name="SpringAxis" type="SpringArm3D" parent="Orbit"]
+[node name="SpringAxis" type="SpringArm3D" parent="Orbit/Track"]
 collision_mask = 4
 shape = SubResource("SphereShape3D_al4t3")
 spring_length = 2.0
 
-[node name="Spring" type="Marker3D" parent="Orbit/SpringAxis"]
+[node name="Spring" type="Marker3D" parent="Orbit/Track/SpringAxis"]
 
 [node name="YCast" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
