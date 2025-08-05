@@ -128,6 +128,7 @@ radius = 0.45
 [node name="Player" type="CharacterBody3D"]
 floor_constant_speed = true
 script = ExtResource("1_al4t3")
+nitro_speed = 3.8
 
 [node name="PlayerMesh" parent="." instance=ExtResource("2_2ocui")]
 

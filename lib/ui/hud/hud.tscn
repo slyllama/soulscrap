@@ -1,19 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://c22mmoiy3jofj"]
+[gd_scene load_steps=10 format=3 uid="uid://c22mmoiy3jofj"]
 
 [ext_resource type="PackedScene" uid="uid://by0uvskvsqnmj" path="res://lib/ui/fps_counter/fps_counter.tscn" id="1_6ca3a"]
 [ext_resource type="Script" uid="uid://cb0y3yvxw8uqh" path="res://lib/ui/hud/hud.gd" id="1_dntma"]
 [ext_resource type="Texture2D" uid="uid://dku4jv7giju6q" path="res://lib/ui/hud/textures/reticule.png" id="2_2gk58"]
-[ext_resource type="Shader" uid="uid://dciihhmkwe77u" path="res://generic/materials/shaders/screen.gdshader" id="2_f8u0o"]
+[ext_resource type="PackedScene" uid="uid://b7kkp37wp3ndo" path="res://lib/overlays/overlay.tscn" id="2_wq6ye"]
 [ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="3_tga37"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="4_n0ge7"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="5_dntma"]
 [ext_resource type="Script" uid="uid://dvgw5ic8anf1c" path="res://lib/ui/hud/reticule.gd" id="5_wq6ye"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wq6ye"]
-shader = ExtResource("2_f8u0o")
-shader_parameter/vignette_feather = 0.25
-shader_parameter/vignette_midpoint = 0.5
-shader_parameter/vignette_alpha = 0.9
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f8u0o"]
 resource_local_to_scene = true
@@ -25,15 +19,7 @@ shader_parameter/uv_scale = 2.5
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_dntma")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_wq6ye")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
+[node name="Overlay" parent="." instance=ExtResource("2_wq6ye")]
 
 [node name="FPSCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -44,6 +30,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
+text = "[color=green]140fps[/color]"
 
 [node name="Reticule" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(55, 17)
