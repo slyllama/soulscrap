@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://eoe6rexn06fv"]
 
-[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/simple_nospec.gdshader" id="1_am71l"]
+[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="1_am71l"]
 [ext_resource type="Script" uid="uid://cb6avdfqm1j3y" path="res://lib/agent/test_agent.gd" id="1_otbm1"]
 [ext_resource type="PackedScene" uid="uid://b0vqktx3q2d2r" path="res://lib/ui/node_spatial/node_spatial.tscn" id="3_81wq3"]
 
@@ -9,6 +9,7 @@ render_priority = 0
 shader = ExtResource("1_am71l")
 shader_parameter/albedo_color = Color(1, 1, 0, 1)
 shader_parameter/uv_scale = 1.0
+shader_parameter/near_fade = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iochv"]
 material = SubResource("ShaderMaterial_otbm1")

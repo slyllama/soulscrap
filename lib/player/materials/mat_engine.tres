@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://hc7cxjpqr7o5"]
+
+[ext_resource type="Shader" uid="uid://cxyfcd4g2tmvl" path="res://lib/player/materials/shaders/engine.gdshader" id="1_tvv10"]
+
+[sub_resource type="Gradient" id="Gradient_8frsl"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xeweo"]
+gradient = SubResource("Gradient_8frsl")
+fill_from = Vector2(0.905405, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_tvv10"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8frsl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xeweo"]
+color_ramp = SubResource("Gradient_tvv10")
+noise = SubResource("FastNoiseLite_8frsl")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tvv10")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_xeweo")
+shader_parameter/gradient_mask = SubResource("GradientTexture2D_xeweo")

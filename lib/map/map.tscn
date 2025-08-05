@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d0j3ryssexkcj"]
 
-[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/simple_nospec.gdshader" id="1_4t4lj"]
+[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="1_4t4lj"]
 [ext_resource type="Texture2D" uid="uid://brx1lj0t583kn" path="res://generic/materials/textures/tile_diff.jpg" id="2_xunhb"]
 
 [sub_resource type="Environment" id="Environment_uw02r"]

@@ -27,9 +27,9 @@ axis_stretch_vertical = 1
 
 [node name="Container" type="Panel"]
 material = SubResource("ShaderMaterial_rs40i")
-custom_minimum_size = Vector2(300, 400)
+custom_minimum_size = Vector2(300, 160)
 offset_right = 300.0
-offset_bottom = 400.0
+offset_bottom = 155.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_j7h81")
 script = ExtResource("2_4cwwj")
 

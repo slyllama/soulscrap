@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+const P_STRAFE = "parameters/strafe/add_amount"
+const P_FORWARD = "parameters/forward/add_amount"
+
 @export var speed = 1.9
 @export var nitro_speed = 7.0
 @export var acceleration = 9.0
@@ -35,17 +38,15 @@ func _physics_process(_delta: float) -> void:
 		target_speed = speed
 	_actual_speed = lerp(_actual_speed, target_speed, Utils.clerp(10.0))
 	
-	var _direction = Vector3.ZERO
-	if Input.is_action_pressed("move_forward"):
-		_direction.z = 1.0
-	if Input.is_action_pressed("move_back"):
-		_direction.z = -1.0
-	if Input.is_action_pressed("strafe_left"): _direction.x = -1.0
-	if Input.is_action_pressed("strafe_right"): _direction.x = 1.0
+	var _dir = Vector3.ZERO
+	if Input.is_action_pressed("move_forward"): _dir.z = 1.0
+	if Input.is_action_pressed("move_back"): _dir.z = -1.0
+	if Input.is_action_pressed("strafe_left"): _dir.x = -1.0
+	if Input.is_action_pressed("strafe_right"): _dir.x = 1.0
 	
-	_direction = _direction.normalized()
-	_target_velocity = $Orbit.basis * Vector3.FORWARD * _direction.z * Vector3(1, 0, 1)
-	_target_velocity += $Orbit.basis * Vector3.RIGHT * _direction.x * Vector3(1, 0, 1)
+	_dir = _dir.normalized()
+	_target_velocity = $Orbit.basis * Vector3.FORWARD * _dir.z * Vector3(1, 0, 1)
+	_target_velocity += $Orbit.basis * Vector3.RIGHT * _dir.x * Vector3(1, 0, 1)
 	_target_velocity *= _actual_speed
 	velocity = lerp(velocity, _target_velocity, Utils.clerp(acceleration))
 	
@@ -58,22 +59,17 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 	# Handle player mesh operations (facing rotation)
-	if _direction.length() > 0:
+	if _dir.length() > 0:
 		$PlayerMesh/Stars.amount_ratio = 1.0
 	else: $PlayerMesh/Stars.amount_ratio = 0.2
-	
 	if velocity.length() > 0.1:
 		$PlayerMesh.rotation_degrees.y = lerp(
 			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(7.0))
 	
 	# Handle animations
 	var _calc_forward = lerp(
-		$PlayerMesh/Tree.get("parameters/forward/add_amount"),
-		_direction.z, Utils.clerp(5.0))
-	$PlayerMesh/Tree.set("parameters/forward/add_amount", _calc_forward)
+		$PlayerMesh/Tree.get(P_FORWARD), _dir.z, Utils.clerp(5.0))
+	$PlayerMesh/Tree.set(P_FORWARD, _calc_forward)
 	var _calc_strafe = lerp(
-		$PlayerMesh/Tree.get("parameters/strafe/add_amount"),
-		_direction.x * 2.0, Utils.clerp(5.0))
-	$PlayerMesh/Tree.set("parameters/strafe/add_amount", _calc_strafe)
-	
-	print(velocity.y)
+		$PlayerMesh/Tree.get(P_STRAFE), _dir.x * 1.2, Utils.clerp(5.0))
+	$PlayerMesh/Tree.set(P_STRAFE, _calc_strafe)

@@ -5431,6 +5431,20 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"materials": {
+"mat_bot": {
+"use_external/enabled": true,
+"use_external/path": "uid://hwrn6txiqw0q"
+},
+"mat_engine": {
+"use_external/enabled": true,
+"use_external/path": "uid://hc7cxjpqr7o5"
+},
+"mat_stars": {
+"use_external/enabled": true,
+"use_external/path": "uid://bd57nxq7ep1lo"
+}
 }
 }
 gltf/naming_version=1
