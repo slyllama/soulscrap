@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var speed = 1.9
-@export var nitro_speed = 4.0
+@export var nitro_speed = 7.0
 @export var acceleration = 9.0
 @export var gravity_damping = 10.0
 
@@ -13,7 +13,7 @@ var nitro_active = false
 
 func _ready() -> void:
 	Utils.tick.connect(func():
-		if nitro_active: PlayerData.change_tempo()
+		if nitro_active: PlayerData.change_tempo(-3)
 		else: PlayerData.change_tempo(1))
 	
 	get_window().focus_exited.connect(func():
@@ -42,8 +42,8 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("strafe_right"): _direction.x = 1.0
 	
 	_direction = _direction.normalized()
-	_target_velocity = $Orbit.basis * Vector3.FORWARD * _direction.z
-	_target_velocity += $Orbit.basis * Vector3.RIGHT * _direction.x
+	_target_velocity = $Orbit.basis * Vector3.FORWARD * _direction.z * Vector3(1, 0, 1)
+	_target_velocity += $Orbit.basis * Vector3.RIGHT * _direction.x * Vector3(1, 0, 1)
 	_target_velocity *= _actual_speed
 	velocity = lerp(velocity, _target_velocity, Utils.clerp(acceleration))
 	
@@ -56,6 +56,10 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 	# Handle player mesh operations (facing rotation)
+	if _direction.length() > 0:
+		$PlayerMesh/Stars.amount_ratio = 1.0
+	else: $PlayerMesh/Stars.amount_ratio = 0.2
+	
 	if velocity.length() > 0.1:
 		$PlayerMesh.rotation_degrees.y = lerp(
 			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(7.0))

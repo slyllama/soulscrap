@@ -2,6 +2,10 @@ extends Node
 
 const GRAVITY = -9.8
 
+# Bus signals
+signal mouse_capture_lost
+signal mouse_capture_gained
+
 # Global references
 var camera: Camera3D
 

@@ -15,6 +15,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Text" type="RichTextLabel" parent="Canvas/Root2D"]
+layout_mode = 0
 offset_top = -44.0
 offset_right = 54.0
 offset_bottom = -21.0
@@ -30,7 +31,8 @@ vertical_alignment = 1
 
 [node name="TestBar" type="TextureRect" parent="Canvas/Root2D"]
 modulate = Color(0.505882, 0.764706, 1, 1)
-custom_minimum_size = Vector2(85, 20)
+custom_minimum_size = Vector2(98, 16)
+layout_mode = 0
 offset_top = -22.0
 offset_right = 85.0
 offset_bottom = -2.0

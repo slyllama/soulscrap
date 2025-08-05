@@ -23,9 +23,11 @@ func _input(event: InputEvent) -> void:
 		_mouse_delta = event.relative
 	
 	if Input.is_action_just_pressed("ui_cancel"):
+		Global.mouse_capture_lost.emit()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif Input.is_action_just_pressed("left_click"):
 		if !Global.mouse_in_ui:
+			Global.mouse_capture_gained.emit()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	# Handle zoom inputs
@@ -34,7 +36,12 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	Global.camera = $Track/Camera
+	Global.mouse_capture_gained.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	get_window().focus_exited.connect(func():
+		Global.mouse_capture_lost.emit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE)
 
 func _process(_delta: float) -> void:
 	if _mouse_delta == _last_mouse_delta: _mouse_delta = Vector2.ZERO
