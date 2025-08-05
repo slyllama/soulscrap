@@ -36,8 +36,10 @@ func _physics_process(_delta: float) -> void:
 	_actual_speed = lerp(_actual_speed, target_speed, Utils.clerp(10.0))
 	
 	var _direction = Vector3.ZERO
-	if Input.is_action_pressed("move_forward"): _direction.z = 1.0
-	if Input.is_action_pressed("move_back"): _direction.z = -1.0
+	if Input.is_action_pressed("move_forward"):
+		_direction.z = 1.0
+	if Input.is_action_pressed("move_back"):
+		_direction.z = -1.0
 	if Input.is_action_pressed("strafe_left"): _direction.x = -1.0
 	if Input.is_action_pressed("strafe_right"): _direction.x = 1.0
 	
@@ -63,5 +65,15 @@ func _physics_process(_delta: float) -> void:
 	if velocity.length() > 0.1:
 		$PlayerMesh.rotation_degrees.y = lerp(
 			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(7.0))
-	$PlayerMesh.rotation_degrees.z = lerp(
-		$PlayerMesh.rotation_degrees.z, _direction.x * -10.0, Utils.clerp(6.0))
+	
+	# Handle animations
+	var _calc_forward = lerp(
+		$PlayerMesh/Tree.get("parameters/forward/add_amount"),
+		_direction.z, Utils.clerp(5.0))
+	$PlayerMesh/Tree.set("parameters/forward/add_amount", _calc_forward)
+	var _calc_strafe = lerp(
+		$PlayerMesh/Tree.get("parameters/strafe/add_amount"),
+		_direction.x * 2.0, Utils.clerp(5.0))
+	$PlayerMesh/Tree.set("parameters/strafe/add_amount", _calc_strafe)
+	
+	print(velocity.y)

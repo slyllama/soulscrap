@@ -1,9 +1,12 @@
-[gd_scene load_steps=17 format=4 uid="uid://ban0go6y3b25c"]
+[gd_scene load_steps=27 format=4 uid="uid://ban0go6y3b25c"]
 
 [ext_resource type="Script" uid="uid://ckhdif2cde65" path="res://lib/player/player.gd" id="1_al4t3"]
 [ext_resource type="PackedScene" uid="uid://m0o8woonsvva" path="res://lib/player/meshes/player.glb" id="2_2ocui"]
 [ext_resource type="Script" uid="uid://d4mgvogtplgaw" path="res://lib/player/trail_3d/trail_3d.gd" id="3_0y160"]
 [ext_resource type="Script" uid="uid://crum3vn58g61o" path="res://lib/player/orbit.gd" id="3_5lbbh"]
+[ext_resource type="Animation" uid="uid://dj1mnn5mi73y3" path="res://lib/player/meshes/anims/forward.res" id="4_4ok3w"]
+[ext_resource type="Animation" uid="uid://btg6ppm4vedo" path="res://lib/player/meshes/anims/idle.res" id="5_ospss"]
+[ext_resource type="Animation" uid="uid://dui8fru0h66t5" path="res://lib/player/meshes/anims/strafe.res" id="6_ospss"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lbbh"]
 transparency = 1
@@ -75,6 +78,46 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyt5v"]
+_data = {
+&"forward": ExtResource("4_4ok3w"),
+&"idle": ExtResource("5_ospss"),
+&"strafe": ExtResource("6_ospss")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ok3w"]
+animation = &"player/forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jyhpi"]
+animation = &"player/idle"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dyt5v"]
+animation = &"player/strafe"
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ospss"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_jyhpi"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_up78s"]
+graph_offset = Vector2(-385.93, 57.0243)
+nodes/anim_forward/node = SubResource("AnimationNodeAnimation_4ok3w")
+nodes/anim_forward/position = Vector2(40, 300)
+nodes/anim_idle/node = SubResource("AnimationNodeAnimation_jyhpi")
+nodes/anim_idle/position = Vector2(40, 140)
+nodes/anim_strafe/node = SubResource("AnimationNodeAnimation_dyt5v")
+nodes/anim_strafe/position = Vector2(40, 460)
+nodes/forward/node = SubResource("AnimationNodeAdd2_ospss")
+nodes/forward/position = Vector2(300, 140)
+nodes/output/position = Vector2(660, 140)
+nodes/strafe/node = SubResource("AnimationNodeAdd2_jyhpi")
+nodes/strafe/position = Vector2(480, 140)
+node_connections = [&"forward", 0, &"anim_idle", &"forward", 1, &"anim_forward", &"output", 0, &"strafe", &"strafe", 0, &"forward", &"strafe", 1, &"anim_strafe"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_odf55"]
 radius = 0.11
 height = 0.36
@@ -109,6 +152,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.116318)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_4ok3w")
 draw_pass_1 = SubResource("ArrayMesh_5lbbh")
+
+[node name="Tree" type="AnimationTree" parent="PlayerMesh"]
+libraries = {
+&"player": SubResource("AnimationLibrary_dyt5v")
+}
+tree_root = SubResource("AnimationNodeBlendTree_up78s")
+parameters/forward/add_amount = 0.0
+parameters/strafe/add_amount = 0.0
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0664809, 0)
