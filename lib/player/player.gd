@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var speed = 1.9
 @export var nitro_speed = 4.0
 @export var acceleration = 9.0
+@export var gravity_damping = 10.0
 
 var target_speed = speed
 var _actual_speed = target_speed
@@ -14,13 +15,22 @@ func _ready() -> void:
 	Utils.tick.connect(func():
 		if nitro_active: PlayerData.change_tempo()
 		else: PlayerData.change_tempo(1))
+	
+	get_window().focus_exited.connect(func():
+		velocity = Vector3.ZERO)
 
 func _physics_process(_delta: float) -> void:
+	# Nitro (sprinting) - handles FOV changes too
 	if Input.is_action_pressed("nitro"):
 		nitro_active = true
-		if PlayerData.tempo > 0: target_speed = nitro_speed
-		else: target_speed = speed
+		if PlayerData.tempo > 0:
+			$Orbit._target_fov = $Orbit.fov + 5.0
+			target_speed = nitro_speed
+		else:
+			$Orbit._target_fov = $Orbit.fov
+			target_speed = speed
 	else:
+		$Orbit._target_fov = $Orbit.fov
 		nitro_active = false
 		target_speed = speed
 	_actual_speed = lerp(_actual_speed, target_speed, Utils.clerp(10.0))
@@ -37,8 +47,11 @@ func _physics_process(_delta: float) -> void:
 	_target_velocity *= _actual_speed
 	velocity = lerp(velocity, _target_velocity, Utils.clerp(acceleration))
 	
+	# Apply gravity and hover
 	var _y_diff = $YCast.global_position.y - $YCast.get_collision_point().y
-	velocity.y += clamp(Global.GRAVITY * _y_diff, Global.GRAVITY, 0.0)
+	var _y_target = abs($YCast.target_position.y)
+	velocity.y += Global.GRAVITY / gravity_damping
+	if _y_diff < _y_target: velocity.y += _y_target - _y_diff
 	
 	move_and_slide()
 	

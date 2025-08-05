@@ -6,11 +6,13 @@ extends Node3D
 @export var orbit_sensitivity = 0.5
 @export var orbit_smoothing = 20.0
 @export var camera_smoothing = 10.0
+@export var fov = 80.0
 
 @onready var _last_mouse_delta = _mouse_delta
 @onready var _target_pivot_x = rotation_degrees.x
 @onready var _target_pivot_y = rotation_degrees.y
 @onready var _target_zoom = zoom_minimum
+@onready var _target_fov = fov
 
 var _mouse_delta = Vector2.ZERO
 
@@ -53,9 +55,10 @@ func _process(_delta: float) -> void:
 	$Track/Camera.position.z = lerp($Track/Camera.position.z,
 		$Track/SpringAxis/Spring.position.z, Utils.clerp(camera_smoothing))
 	
-	# Smooth camera motion
+	# Smooth camera motion (and FOV)
 	$Track.global_rotation = global_rotation
 	$Track.global_position = lerp(
 		$Track.global_position, global_position, Utils.clerp(camera_smoothing))
+	$Track/Camera.fov = lerp($Track/Camera.fov, _target_fov, Utils.clerp(7.0))
 	
 	_last_mouse_delta = _mouse_delta
