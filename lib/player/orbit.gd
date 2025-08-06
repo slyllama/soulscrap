@@ -23,8 +23,12 @@ func _input(event: InputEvent) -> void:
 		_mouse_delta = event.relative
 	
 	if Input.is_action_just_pressed("ui_cancel"):
-		Global.mouse_capture_lost.emit()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Global.mouse_capture_lost.emit()
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Global.mouse_capture_gained.emit()
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif Input.is_action_just_pressed("left_click"):
 		if !Global.mouse_in_ui:
 			Global.mouse_capture_gained.emit()

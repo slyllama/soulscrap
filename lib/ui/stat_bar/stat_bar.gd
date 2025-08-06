@@ -11,6 +11,12 @@ extends TextureRect
 
 @export var variable = ""
 
+@export var bar_modulation = Color.WHITE:
+	get: return(bar_modulation)
+	set(_val):
+		bar_modulation = _val
+		$Mask/Progress.self_modulate = bar_modulation
+
 var _valid = false
 
 func _ready() -> void:

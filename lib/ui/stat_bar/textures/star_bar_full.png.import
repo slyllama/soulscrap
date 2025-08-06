@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddqg7xuy2lcf0"
-path="res://.godot/imported/dark_blur.png-1fc0f83d05f3b794430bdc2f02e5d05e.ctex"
+uid="uid://ddunckadgjohn"
+path="res://.godot/imported/star_bar_full.png-5e92693baa3cce2e57961509adf87e58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://generic/materials/textures/dark_blur.png"
-dest_files=["res://.godot/imported/dark_blur.png-1fc0f83d05f3b794430bdc2f02e5d05e.ctex"]
+source_file="res://lib/ui/stat_bar/textures/star_bar_full.png"
+dest_files=["res://.godot/imported/star_bar_full.png-5e92693baa3cce2e57961509adf87e58.ctex"]
 
 [params]
 
