@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=4 uid="uid://ban0go6y3b25c"]
+[gd_scene load_steps=34 format=4 uid="uid://ban0go6y3b25c"]
 
 [ext_resource type="Script" uid="uid://ckhdif2cde65" path="res://lib/player/player.gd" id="1_al4t3"]
 [ext_resource type="PackedScene" uid="uid://m0o8woonsvva" path="res://lib/player/meshes/player.glb" id="2_2ocui"]
 [ext_resource type="Script" uid="uid://d4mgvogtplgaw" path="res://lib/player/trail_3d/trail_3d.gd" id="3_0y160"]
 [ext_resource type="Script" uid="uid://crum3vn58g61o" path="res://lib/player/orbit.gd" id="3_5lbbh"]
 [ext_resource type="Animation" uid="uid://dj1mnn5mi73y3" path="res://lib/player/meshes/anims/forward.res" id="4_4ok3w"]
+[ext_resource type="Texture2D" uid="uid://6eu05eym0bcy" path="res://generic/textures/mote.png" id="4_dyt5v"]
 [ext_resource type="Animation" uid="uid://btg6ppm4vedo" path="res://lib/player/meshes/anims/idle.res" id="5_ospss"]
 [ext_resource type="Animation" uid="uid://dui8fru0h66t5" path="res://lib/player/meshes/anims/strafe.res" id="6_ospss"]
 
@@ -122,8 +123,65 @@ node_connections = [&"forward", 0, &"anim_idle", &"forward", 1, &"anim_forward",
 radius = 0.11
 height = 0.36
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jyhpi"]
+emission_shape = 1
+emission_sphere_radius = 7.5
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.35
+scale_curve = SubResource("CurveTexture_ospss")
+alpha_curve = SubResource("CurveTexture_0y160")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_up78s"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_dyt5v")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_5x5nn"]
+material = SubResource("StandardMaterial3D_up78s")
+size = Vector2(0.2, 0.2)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_al4t3"]
 radius = 0.45
+
+[sub_resource type="Animation" id="Animation_dyt5v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Track/Camera:v_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Track/Camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ospss"]
 resource_name = "shake_camera"
@@ -152,33 +210,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.00174533), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_dyt5v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Track/Camera:v_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.25]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Track/Camera:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jyhpi"]
@@ -212,6 +243,7 @@ metadata/_custom_type_script = "uid://d4mgvogtplgaw"
 
 [node name="Stars" type="GPUParticles3D" parent="PlayerMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.116318)
+cast_shadow = 0
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_4ok3w")
 draw_pass_1 = SubResource("ArrayMesh_5lbbh")
@@ -242,6 +274,17 @@ h_offset = 0.2
 v_offset = 0.25
 current = true
 fov = 80.0
+
+[node name="Motes" type="GPUParticles3D" parent="Orbit/Track/Camera"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, -5)
+cast_shadow = 0
+amount = 180
+lifetime = 2.0
+preprocess = 10.0
+speed_scale = 0.5
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_jyhpi")
+draw_pass_1 = SubResource("QuadMesh_5x5nn")
 
 [node name="SpringAxis" type="SpringArm3D" parent="Orbit/Track"]
 collision_mask = 4

@@ -53,6 +53,8 @@ func _physics_process(_delta: float) -> void:
 	# Apply gravity and hover
 	var _y_diff = $YCast.global_position.y - $YCast.get_collision_point().y
 	var _y_target = abs($YCast.target_position.y)
+	if !$YCast.is_colliding(): # apply gravity even if beyond raycast height
+		_y_diff = _y_target
 	velocity.y += Global.GRAVITY / gravity_damping
 	if _y_diff < _y_target: velocity.y += _y_target - _y_diff
 	

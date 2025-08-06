@@ -16,24 +16,27 @@ extends Node3D
 
 var _mouse_delta = Vector2.ZERO
 
+func _is_mouse_captured() -> bool:
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: return(true)
+	else: return(false)
+
 func shake_camera() -> void:
 	$Anim.play("shake_camera")
 
 func _input(event: InputEvent) -> void:
 	# Handle orbiting
-	if (event is InputEventMouseMotion
-		and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
+	if event is InputEventMouseMotion and _is_mouse_captured():
 		_mouse_delta = event.relative
 	
 	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if _is_mouse_captured():
 			Global.mouse_capture_lost.emit()
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Global.mouse_capture_gained.emit()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif Input.is_action_just_pressed("left_click"):
-		if !Global.mouse_in_ui:
+		if !_is_mouse_captured() and !Global.mouse_in_ui:
 			Global.mouse_capture_gained.emit()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
