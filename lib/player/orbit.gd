@@ -16,6 +16,9 @@ extends Node3D
 
 var _mouse_delta = Vector2.ZERO
 
+func shake_camera() -> void:
+	$Anim.play("shake_camera")
+
 func _input(event: InputEvent) -> void:
 	# Handle orbiting
 	if (event is InputEventMouseMotion
@@ -33,6 +36,9 @@ func _input(event: InputEvent) -> void:
 		if !Global.mouse_in_ui:
 			Global.mouse_capture_gained.emit()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if Input.is_action_just_pressed("ui_home"):
+		shake_camera()
 	
 	# Handle zoom inputs
 	if Input.is_action_just_pressed("zoom_in"): _target_zoom -= zoom_increment

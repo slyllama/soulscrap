@@ -1,10 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://c22mmoiy3jofj"]
+[gd_scene load_steps=21 format=3 uid="uid://c22mmoiy3jofj"]
 
 [ext_resource type="PackedScene" uid="uid://by0uvskvsqnmj" path="res://lib/ui/fps_counter/fps_counter.tscn" id="1_6ca3a"]
 [ext_resource type="Script" uid="uid://cb0y3yvxw8uqh" path="res://lib/ui/hud/hud.gd" id="1_dntma"]
 [ext_resource type="Texture2D" uid="uid://dku4jv7giju6q" path="res://lib/ui/hud/textures/reticule.png" id="2_2gk58"]
 [ext_resource type="PackedScene" uid="uid://b7kkp37wp3ndo" path="res://lib/overlays/overlay.tscn" id="2_wq6ye"]
-[ext_resource type="Texture2D" uid="uid://ddqg7xuy2lcf0" path="res://generic/materials/textures/dark_blur.png" id="3_panat"]
+[ext_resource type="Texture2D" uid="uid://b14448p1vsg46" path="res://generic/materials/textures/dark_blur.png" id="3_panat"]
 [ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="3_tga37"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="4_n0ge7"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="5_dntma"]
@@ -22,13 +22,6 @@ resource_local_to_scene = true
 shader = ExtResource("4_n0ge7")
 shader_parameter/dissolve_texture = ExtResource("5_dntma")
 shader_parameter/dissolve_state = 0.0
-shader_parameter/uv_scale = Vector2(4, 4)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8w22"]
-shader = ExtResource("4_n0ge7")
-shader_parameter/dissolve_texture = ExtResource("5_dntma")
-shader_parameter/dissolve_state = 1.0
-shader_parameter/uv_scale = Vector2(7, 0.5)
 
 [sub_resource type="Curve" id="Curve_6rdt5"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253165, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -41,13 +34,13 @@ curve = SubResource("Curve_6rdt5")
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(340, 1, 1)
-direction = Vector3(0, 1, 0)
+direction = Vector3(0, -1, 0)
 spread = 20.0
 initial_velocity_min = 10.0
 initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.2
+scale_min = 0.09
+scale_max = 0.12
 scale_curve = SubResource("CurveTexture_bly2c")
 
 [node name="HUD" type="CanvasLayer"]
@@ -62,9 +55,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -563.0
-offset_top = -182.0
+offset_top = -88.0
 offset_right = 563.0
-offset_bottom = 222.0
+offset_bottom = 265.0
 grow_horizontal = 2
 mouse_filter = 2
 texture = ExtResource("3_panat")
@@ -79,7 +72,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=yellow]10fps[/color]"
+text = "[color=green]136fps[/color]"
 
 [node name="Reticule" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(55, 17)
@@ -127,10 +120,14 @@ flipped = true
 variable = null
 
 [node name="BarTempo" parent="." instance=ExtResource("9_bly2c")]
-offset_left = 698.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 53.0
 offset_top = 103.0
-offset_right = 1048.0
+offset_right = 403.0
 offset_bottom = 121.0
+grow_horizontal = 2
 variable = "tempo"
 bar_modulation = Color(0.41, 0.744333, 1, 1)
 
@@ -149,37 +146,38 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="CombatIndicator" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_l8w22")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -349.0
+offset_top = 53.0
 offset_right = 350.0
-offset_bottom = 36.0
+offset_bottom = 89.0
 grow_horizontal = 2
 texture = ExtResource("9_l8w22")
 expand_mode = 1
+flip_v = true
 script = ExtResource("10_2eonm")
 
 [node name="Motes" type="GPUParticles2D" parent="CombatIndicator"]
-position = Vector2(349.5, 0)
+position = Vector2(349.5, 36)
 emitting = false
-amount = 48
+amount = 32
 texture = ExtResource("11_6rdt5")
 lifetime = 2.0
-preprocess = 5.0
-speed_scale = 0.75
+speed_scale = 0.9
 randomness = 0.1
 process_material = SubResource("ParticleProcessMaterial_bly2c")
 
 [node name="CardBar" parent="." instance=ExtResource("9_tx7oa")]
+z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -174.5
-offset_top = 16.0
+offset_top = 8.0
 offset_right = 174.5
-offset_bottom = 80.0
+offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_constants/separation = -7
 

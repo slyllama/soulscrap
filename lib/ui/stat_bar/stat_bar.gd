@@ -25,7 +25,7 @@ func _ready() -> void:
 		if PlayerData.get(variable):
 			_valid = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !_valid: return
 	var _c = clamp(float(PlayerData.get(variable)), 0, 100)
 	$Mask/Progress.value = lerp(

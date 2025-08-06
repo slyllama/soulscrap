@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7kkp37wp3ndo"]
+[gd_scene load_steps=7 format=3 uid="uid://b7kkp37wp3ndo"]
 
 [ext_resource type="Script" uid="uid://c5efta1qqtkn3" path="res://lib/overlays/overlay.gd" id="1_2m328"]
 [ext_resource type="Shader" uid="uid://dfubs0v03468n" path="res://lib/overlays/shaders/smoke.gdshader" id="1_lw2cd"]
 [ext_resource type="Texture2D" uid="uid://da0xt0w34hnyb" path="res://lib/overlays/textures/smoke_noise.tres" id="3_2m328"]
+[ext_resource type="Texture2D" uid="uid://dvi4vh7lcum0r" path="res://lib/ui/hud/textures/damage_taken.png" id="4_3nxxb"]
+[ext_resource type="Script" uid="uid://bgltvt34r5x0i" path="res://lib/ui/dissolve_control/dissolve_control.gd" id="4_46fvq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3x0gg"]
 shader = ExtResource("1_lw2cd")
@@ -39,5 +41,72 @@ color = Color(0, 0, 0, 0)
 wait_time = 0.25
 one_shot = true
 autostart = true
+
+[node name="DamageTaken" type="Control" parent="."]
+modulate = Color(0.780552, 0.376306, 1, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_46fvq")
+metadata/_custom_type_script = "uid://bgltvt34r5x0i"
+
+[node name="D" type="TextureRect" parent="DamageTaken"]
+custom_minimum_size = Vector2(342, 268)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -342.0
+offset_bottom = 268.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("4_3nxxb")
+expand_mode = 1
+
+[node name="D2" type="TextureRect" parent="DamageTaken"]
+custom_minimum_size = Vector2(342, 268)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -342.0
+offset_top = -268.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("4_3nxxb")
+expand_mode = 1
+flip_v = true
+
+[node name="D3" type="TextureRect" parent="DamageTaken"]
+custom_minimum_size = Vector2(342, 268)
+layout_mode = 1
+offset_right = 342.0
+offset_bottom = 268.0
+mouse_filter = 2
+texture = ExtResource("4_3nxxb")
+expand_mode = 1
+flip_h = true
+
+[node name="D4" type="TextureRect" parent="DamageTaken"]
+custom_minimum_size = Vector2(342, 268)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -268.0
+offset_right = 342.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("4_3nxxb")
+expand_mode = 1
+flip_h = true
+flip_v = true
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

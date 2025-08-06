@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b14448p1vsg46"
-path="res://.godot/imported/dark_blur.png-1fc0f83d05f3b794430bdc2f02e5d05e.ctex"
+uid="uid://dvi4vh7lcum0r"
+path="res://.godot/imported/damage_taken.png-69c18e3b76c399d36aee03f56a4e9ef6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://generic/materials/textures/dark_blur.png"
-dest_files=["res://.godot/imported/dark_blur.png-1fc0f83d05f3b794430bdc2f02e5d05e.ctex"]
+source_file="res://lib/ui/hud/textures/damage_taken.png"
+dest_files=["res://.godot/imported/damage_taken.png-69c18e3b76c399d36aee03f56a4e9ef6.ctex"]
 
 [params]
 

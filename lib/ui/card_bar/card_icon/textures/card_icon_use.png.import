@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b14448p1vsg46"
-path="res://.godot/imported/dark_blur.png-1fc0f83d05f3b794430bdc2f02e5d05e.ctex"
+uid="uid://bt34t41f2eljb"
+path="res://.godot/imported/card_icon_use.png-f634fa6eaffb32b7267edfc37742f335.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://generic/materials/textures/dark_blur.png"
-dest_files=["res://.godot/imported/dark_blur.png-1fc0f83d05f3b794430bdc2f02e5d05e.ctex"]
+source_file="res://lib/ui/card_bar/card_icon/textures/card_icon_use.png"
+dest_files=["res://.godot/imported/card_icon_use.png-f634fa6eaffb32b7267edfc37742f335.ctex"]
 
 [params]
 

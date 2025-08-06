@@ -2,11 +2,10 @@ shader_type canvas_item;
 
 uniform sampler2D dissolve_texture: hint_default_black, repeat_enable;
 uniform float dissolve_state: hint_range(0.0, 1.0) = 0.0;
-uniform vec2 uv_scale = vec2(4.0);
 
 void fragment() {
 	if (dissolve_state > 0.0) {
-		float dissolve = texture(dissolve_texture, UV * uv_scale).r;
+		float dissolve = texture(dissolve_texture, SCREEN_UV * 4.0).r;
 		float texture_state = pow(dissolve_state, 3.0);
 		dissolve = pow(dissolve, texture_state * 10.0);
 		COLOR.a *= dissolve;
