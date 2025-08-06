@@ -14,7 +14,7 @@ func _lose_focus() -> void:
 	$Mask.modulate = Color(1.0, 1.0, 1.0)
 
 func _ready() -> void:
-	get_window().focus_exited.connect(_gain_focus)
+	get_window().focus_exited.connect(_lose_focus)
 	random_color()
 
 func _on_mouse_entered() -> void: _gain_focus()

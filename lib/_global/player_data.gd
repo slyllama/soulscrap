@@ -1,6 +1,7 @@
 extends Node
 
 var tempo = 100
+var resilience = 100
 
 # Returns true is a change was effected
 func change_tempo(amount: int = -1) -> bool:
