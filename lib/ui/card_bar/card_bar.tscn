@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://tk6cm5vqursc"]
+
+[ext_resource type="Script" uid="uid://bhrqdlcb6cajc" path="res://lib/ui/card_bar/card_bar.gd" id="1_6da0o"]
+
+[node name="CardBar" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_6da0o")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

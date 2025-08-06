@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D dissolve_texture: hint_default_black, repeat_enable;
 uniform float dissolve_state: hint_range(0.0, 1.0) = 0.0;
-uniform float uv_scale = 4.0;
+uniform vec2 uv_scale = vec2(4.0);
 
 void fragment() {
 	if (dissolve_state > 0.0) {

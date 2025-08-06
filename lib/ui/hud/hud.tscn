@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c22mmoiy3jofj"]
+[gd_scene load_steps=20 format=3 uid="uid://c22mmoiy3jofj"]
 
 [ext_resource type="PackedScene" uid="uid://by0uvskvsqnmj" path="res://lib/ui/fps_counter/fps_counter.tscn" id="1_6ca3a"]
 [ext_resource type="Script" uid="uid://cb0y3yvxw8uqh" path="res://lib/ui/hud/hud.gd" id="1_dntma"]
@@ -8,18 +8,51 @@
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="4_n0ge7"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="5_dntma"]
 [ext_resource type="Script" uid="uid://dvgw5ic8anf1c" path="res://lib/ui/hud/reticule.gd" id="5_wq6ye"]
+[ext_resource type="Texture2D" uid="uid://b1fff52obo2jc" path="res://lib/ui/hud/textures/combat_indicator.png" id="9_l8w22"]
+[ext_resource type="Texture2D" uid="uid://mqruul86co37" path="res://lib/ui/card_bar/textures/card_bar_separator.png" id="9_pxgdb"]
+[ext_resource type="PackedScene" uid="uid://tk6cm5vqursc" path="res://lib/ui/card_bar/card_bar.tscn" id="9_tx7oa"]
+[ext_resource type="Script" uid="uid://b3rfhh2iki3wa" path="res://lib/ui/hud/combat_indicator.gd" id="10_2eonm"]
+[ext_resource type="PackedScene" uid="uid://bvyop3wo3tmu8" path="res://lib/ui/card_bar/card_icon/card_icon.tscn" id="10_l7ms4"]
+[ext_resource type="Texture2D" uid="uid://c3yhr6rfi1dqh" path="res://lib/ui/hud/textures/diamond_mote.png" id="11_6rdt5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f8u0o"]
 resource_local_to_scene = true
 shader = ExtResource("4_n0ge7")
 shader_parameter/dissolve_texture = ExtResource("5_dntma")
 shader_parameter/dissolve_state = 0.0
-shader_parameter/uv_scale = 2.5
+shader_parameter/uv_scale = Vector2(4, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8w22"]
+shader = ExtResource("4_n0ge7")
+shader_parameter/dissolve_texture = ExtResource("5_dntma")
+shader_parameter/dissolve_state = 1.0
+shader_parameter/uv_scale = Vector2(7, 0.5)
+
+[sub_resource type="Curve" id="Curve_6rdt5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253165, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bly2c"]
+curve = SubResource("Curve_6rdt5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bly2c"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(300, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.07
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_bly2c")
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_dntma")
 
 [node name="Overlay" parent="." instance=ExtResource("2_wq6ye")]
+visible = false
 
 [node name="FPSCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -30,7 +63,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=green]140fps[/color]"
+text = "[color=green]145fps[/color]"
 
 [node name="Reticule" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(55, 17)
@@ -86,3 +119,72 @@ grow_horizontal = 0
 step = 0.0
 value = 100.0
 fill_mode = 3
+
+[node name="CombatIndicator" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_l8w22")
+custom_minimum_size = Vector2(699, 50)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -349.5
+offset_top = 82.0
+offset_right = 349.5
+offset_bottom = 132.0
+grow_horizontal = 2
+texture = ExtResource("9_l8w22")
+expand_mode = 1
+script = ExtResource("10_2eonm")
+
+[node name="Motes" type="GPUParticles2D" parent="CombatIndicator"]
+z_index = 1
+position = Vector2(349.5, 9)
+amount = 32
+texture = ExtResource("11_6rdt5")
+lifetime = 2.0
+preprocess = 5.0
+speed_scale = 0.75
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_bly2c")
+
+[node name="CardBarSeparator" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(839, 62)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -419.5
+offset_top = 41.0
+offset_right = 419.5
+offset_bottom = 103.0
+grow_horizontal = 2
+texture = ExtResource("9_pxgdb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardBar" parent="." instance=ExtResource("9_tx7oa")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_top = 13.0
+offset_right = 89.0
+offset_bottom = 77.0
+grow_horizontal = 2
+theme_override_constants/separation = -7
+
+[node name="CardIcon" parent="CardBar" instance=ExtResource("10_l7ms4")]
+layout_mode = 2
+
+[node name="CardIcon2" parent="CardBar" instance=ExtResource("10_l7ms4")]
+layout_mode = 2
+
+[node name="CardIcon3" parent="CardBar" instance=ExtResource("10_l7ms4")]
+layout_mode = 2
+
+[node name="CardIcon4" parent="CardBar" instance=ExtResource("10_l7ms4")]
+layout_mode = 2
+
+[node name="CardIcon5" parent="CardBar" instance=ExtResource("10_l7ms4")]
+layout_mode = 2
+
+[node name="CardIcon6" parent="CardBar" instance=ExtResource("10_l7ms4")]
+layout_mode = 2
