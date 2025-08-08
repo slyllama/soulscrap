@@ -1,5 +1,7 @@
 extends Node
 
+signal damage_taken
+
 var tempo = 100
 var resilience = 100
 

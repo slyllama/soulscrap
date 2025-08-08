@@ -52,6 +52,8 @@ func _ready() -> void:
 	Global.mouse_capture_gained.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+	PlayerData.damage_taken.connect(shake_camera)
+	
 	get_window().focus_exited.connect(func():
 		Global.mouse_capture_lost.emit()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE)
@@ -78,7 +80,7 @@ func _process(_delta: float) -> void:
 	# Smooth camera motion (and FOV)
 	$Track.global_rotation = global_rotation
 	$Track.global_position = lerp(
-		$Track.global_position, global_position, Utils.clerp(camera_smoothing))
+		$Track.global_position, global_position + Vector3(0, 0.2, 0), Utils.clerp(camera_smoothing))
 	$Track/Camera.fov = lerp($Track/Camera.fov, _target_fov, Utils.clerp(7.0))
 	
 	_last_mouse_delta = _mouse_delta
