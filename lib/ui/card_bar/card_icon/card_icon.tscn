@@ -1,8 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvyop3wo3tmu8"]
+[gd_scene load_steps=9 format=3 uid="uid://bvyop3wo3tmu8"]
 
-[ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="1_84ogj"]
 [ext_resource type="Texture2D" uid="uid://cxjytmrepr521" path="res://lib/ui/card_bar/card_icon/textures/card_icon_base.png" id="1_ol776"]
-[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="2_3oejj"]
 [ext_resource type="Script" uid="uid://ca6gyc0l6bky3" path="res://lib/ui/card_bar/card_icon/card_icon.gd" id="2_ejva6"]
 [ext_resource type="Texture2D" uid="uid://bt34t41f2eljb" path="res://lib/ui/card_bar/card_icon/textures/card_icon_use.png" id="3_1vyve"]
 [ext_resource type="Texture2D" uid="uid://bcnh28pg5stny" path="res://lib/ui/card_bar/card_icon/textures/card_icon_mask.png" id="3_chdha"]
@@ -10,16 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://s7x4w4xtu0sv" path="res://lib/ui/card_bar/card_icon/icons/icon_unknown.png" id="5_s5lkj"]
 [ext_resource type="Script" uid="uid://bgltvt34r5x0i" path="res://lib/ui/dissolve_control/dissolve_control.gd" id="6_84ogj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fpfoe"]
-shader = ExtResource("1_84ogj")
-shader_parameter/dissolve_texture = ExtResource("2_3oejj")
-shader_parameter/dissolve_state = 0.0
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejva6"]
 texture = ExtResource("1_ol776")
 
 [node name="CardIcon" type="Panel"]
-material = SubResource("ShaderMaterial_fpfoe")
 custom_minimum_size = Vector2(64, 64)
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_ejva6")
@@ -52,23 +44,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("3_s5lkj")
 expand_mode = 1
 
 [node name="Mask" type="TextureRect" parent="."]
 clip_children = 2
-use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("3_chdha")
 expand_mode = 1
 
 [node name="Icon" type="TextureRect" parent="Mask"]
-use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,6 +71,7 @@ offset_right = -6.0
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("5_s5lkj")
 expand_mode = 1
 

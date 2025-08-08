@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 func _input(_event: InputEvent) -> void:
+	if Global.dragging_card: return
 	# Handle special keyboard inputs for primary and secondary cards
 	if Input.is_action_just_pressed("card_primary"): $CardBar/CardPrimary._hover()
 	elif Input.is_action_just_released("card_primary"): $CardBar/CardPrimary.use()
@@ -14,11 +15,11 @@ func _ready() -> void:
 	for _n in Utils.get_all_children($CursorCard):
 		if _n is Control: _n.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-	Global.card_drag_started.connect(func():
+	Global.card_drag_started.connect(func(_card_source):
 		$CursorCard.update(Global.dragging_card)
 		$CursorCard.visible = true)
 	
-	Global.card_drag_ended.connect(func():
+	Global.card_drag_ended.connect(func(_card_destination_id):
 		$CursorCard.update("blank")
 		$CursorCard.visible = false)
 

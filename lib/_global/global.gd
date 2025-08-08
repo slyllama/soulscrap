@@ -3,8 +3,8 @@ extends Node
 const GRAVITY = -9.8
 
 # Bus signals
-signal card_drag_started
-signal card_drag_ended
+signal card_drag_started(card_source)
+signal card_drag_ended(card_destination_id)
 signal mouse_capture_lost
 signal mouse_capture_gained
 
@@ -14,6 +14,10 @@ var camera: Camera3D
 # States
 var mouse_in_ui = false
 var dragging_card = null # should be the ID of the card being dragged when active
+
+func clear_dragged_card() -> void:
+	dragging_card = null
+	card_drag_ended.emit()
 
 func _ready() -> void:
 	if DisplayServer.screen_get_size().x > 2000:

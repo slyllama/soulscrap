@@ -1,4 +1,4 @@
-extends Panel
+class_name CardIcon extends Panel
 # CardIcon
 # These cards display Components - weapons, items, resources, etc
 
@@ -11,21 +11,25 @@ var _last_mouse_pos = Vector2.ZERO
 var _mouse_delta = 0.0 # distance (length)
 var _mouse_in = false
 var _mouse_down = false
+# Wait a single frame after updating to prevent any instant input actions
+var _updated = true
 
 func update(new_id = id) -> void:
+	_updated = false
 	id = new_id
 	
 	# Hide the icon if the card is blank
 	if id == "blank": $Mask.visible = false
 	else: $Mask.visible = true
+	$Mask/Icon.texture = Components.get_texture(id)
 	
 	if enabled: mouse_filter = Control.MOUSE_FILTER_PASS
 	else: mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	await get_tree().process_frame
+	_updated = true
 
-func randomize_color() -> void:
-	var _c = randi_range(0, Utils.WEB_COLORS.size() - 1)
-	$Mask/Icon.modulate = Color(Utils.WEB_COLORS[_c])
-
+#region Helper functions
 func _gain_focus() -> void:
 	if enabled:
 		z_index = 2
@@ -38,13 +42,14 @@ func _lose_focus() -> void:
 
 func _hover() -> void: $Mask.modulate = Color(0.5, 0.5, 0.5)
 func _unhover() -> void: $Mask.modulate = Color(1.0, 1.0, 1.0)
+#endregion
 
 func use() -> void:
 	if id == "blank": return # has no use
 	
 	PlayerData.damage_taken.emit()
 	var _t = create_tween()
-	_t.tween_method($Use._set_dissolve, 0.0, 1.0, 0.6)
+	_t.tween_method($Use._set_dissolve, 0.0, 1.0, 0.32)
 	_t.set_trans(Tween.TRANS_SINE)
 	_t.set_ease(Tween.EASE_OUT)
 	_unhover()
@@ -52,13 +57,14 @@ func use() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("left_click"):
 		if Global.dragging_card and _mouse_in:
+			var _old_id = id
+			
 			update(Global.dragging_card)
 			Global.dragging_card = null
-			Global.card_drag_ended.emit()
+			Global.card_drag_ended.emit(_old_id)
 
 func _ready() -> void:
 	get_window().focus_exited.connect(_lose_focus)
-	randomize_color() # TODO: only for placeholders
 	update()
 
 func _process(_delta: float) -> void:
@@ -67,10 +73,12 @@ func _process(_delta: float) -> void:
 			- _last_mouse_pos).length())
 	else: _mouse_delta = 0.0
 	
-	if !Global.dragging_card:
+	if id != "blank" and !Global.dragging_card:
 		if _mouse_in and _mouse_delta > 5.0:
 			Global.dragging_card = id
-			Global.card_drag_started.emit()
+			# Emit self as a source so that CardBar can clear it (or reset it
+			# if window changes focus, etc)
+			Global.card_drag_started.emit(self)
 
 func _on_mouse_entered() -> void:
 	_mouse_in = true
@@ -81,7 +89,7 @@ func _on_mouse_exited() -> void:
 	_lose_focus()
 
 func _on_gui_input(_event: InputEvent) -> void:
-	if !enabled: return
+	if !enabled or !_updated: return
 	
 	if Input.is_action_just_pressed("left_click"):
 		_mouse_down = true
