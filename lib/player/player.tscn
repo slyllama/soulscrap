@@ -302,7 +302,7 @@ libraries = {
 }
 
 [node name="YCast" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.130506, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0770358, 0)
 target_position = Vector3(0, -1.5, 0)
 
 [node name="CombatPivot" type="Node3D" parent="."]

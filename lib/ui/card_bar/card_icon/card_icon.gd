@@ -46,14 +46,19 @@ func _unhover() -> void: $Mask.modulate = Color(1.0, 1.0, 1.0)
 func use() -> void:
 	if id == "blank": return # has no use
 	
-	Global.component_used.emit(id)
-	
-	PlayerData.damage_taken.emit()
 	var _t = create_tween()
 	_t.tween_method($Use._set_dissolve, 0.0, 1.0, 0.32)
 	_t.set_trans(Tween.TRANS_SINE)
 	_t.set_ease(Tween.EASE_OUT)
 	_unhover()
+	
+	if id in Components.component_library:
+		if PlayerData.change_tempo(Components.component_library[id].tempo_cost * -1):
+			pass
+		else: return
+	
+	Global.component_used.emit(id)
+	PlayerData.damage_taken.emit()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("left_click"):

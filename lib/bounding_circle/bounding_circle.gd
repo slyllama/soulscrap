@@ -7,3 +7,8 @@ extends MeshInstance3D
 		radius = _val
 		mesh.top_radius = radius
 		mesh.bottom_radius = radius
+@export var albedo_color = Color.WHITE:
+	get: return(albedo_color)
+	set(_val):
+		albedo_color = _val
+		mesh.surface_get_material(0).set_shader_parameter("albedo_color", albedo_color)

@@ -34,6 +34,12 @@ autowrap_mode = 1
 [node name="TogglePlayerTargeting" type="Button" parent="VBox" index="3"]
 layout_mode = 2
 mouse_filter = 1
-text = "Toggle Player Targeting"
+text = "Target Player"
+
+[node name="Stationary" type="Button" parent="VBox" index="4"]
+layout_mode = 2
+mouse_filter = 1
+text = "Make Stationary"
 
 [connection signal="button_down" from="VBox/TogglePlayerTargeting" to="." method="_on_toggle_player_targeting_button_down"]
+[connection signal="button_down" from="VBox/Stationary" to="." method="_on_stationary_button_down"]

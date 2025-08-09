@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dk2qpqu5e7xoh"]
+
+[ext_resource type="Shader" uid="uid://comaborg6ws60" path="res://lib/agent/materials/shaders/anguished_claw.gdshader" id="1_u2j4w"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="2_i42uy"]
+
+[sub_resource type="Gradient" id="Gradient_i42uy"]
+offsets = PackedFloat32Array(0.328, 1)
+colors = PackedColorArray(0, 0.35, 0.0466667, 1, 0.59583, 0.979567, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ys3m5"]
+gradient = SubResource("Gradient_i42uy")
+
+[sub_resource type="Gradient" id="Gradient_u2j4w"]
+offsets = PackedFloat32Array(0.0732759, 0.336207)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i42uy"]
+gradient = SubResource("Gradient_u2j4w")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_u2j4w")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_i42uy")
+shader_parameter/albedo_gradient_texture = SubResource("GradientTexture2D_ys3m5")
+shader_parameter/overlay_texture = ExtResource("2_i42uy")

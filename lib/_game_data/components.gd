@@ -8,7 +8,8 @@ const component_library = {
 	},
 	"test_component": {
 		"title": "Test Component",
-		"texture": preload("res://lib/ui/card_bar/card_icon/icons/icon_test_component.png")
+		"texture": preload("res://lib/ui/card_bar/card_icon/icons/icon_test_component.png"),
+		"tempo_cost": 20
 	}
 }
 

@@ -18,7 +18,7 @@ color_ramp = SubResource("Gradient_tvv10")
 noise = SubResource("FastNoiseLite_8frsl")
 
 [resource]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("1_tvv10")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_xeweo")
 shader_parameter/gradient_mask = SubResource("GradientTexture2D_xeweo")

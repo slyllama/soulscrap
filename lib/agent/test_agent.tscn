@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://eoe6rexn06fv"]
+[gd_scene load_steps=17 format=3 uid="uid://eoe6rexn06fv"]
 
 [ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="1_am71l"]
 [ext_resource type="Script" uid="uid://cb6avdfqm1j3y" path="res://lib/agent/test_agent.gd" id="1_otbm1"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c1uh4fv3t7swu" path="res://lib/bounding_circle/bounding_circle.tscn" id="5_6ur32"]
 [ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="6_d7cpf"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="7_d7cpf"]
+[ext_resource type="Texture2D" uid="uid://dgriptbp6d5jr" path="res://lib/agent/textures/outline.png" id="8_h375a"]
+[ext_resource type="PackedScene" uid="uid://bt4weraukcdam" path="res://lib/agent/meshes/anguished_claw.glb" id="9_oyjya"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otbm1"]
 render_priority = 0
@@ -24,24 +26,24 @@ height = 0.5
 radius = 0.125
 height = 0.5
 
-[sub_resource type="Gradient" id="Gradient_228eg"]
+[sub_resource type="Gradient" id="Gradient_d7cpf"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.5, 0.75, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vjeik"]
-gradient = SubResource("Gradient_228eg")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h375a"]
+gradient = SubResource("Gradient_d7cpf")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d7cpf"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("6_d7cpf")
-shader_parameter/gradient_texture = SubResource("GradientTexture2D_vjeik")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_h375a")
 shader_parameter/paint_texture = ExtResource("7_d7cpf")
 shader_parameter/alpha = 0.25
 shader_parameter/uv_scale = Vector2(7, 2)
-shader_parameter/albedo_color = Color(0.728667, 1, 0.26, 1)
+shader_parameter/albedo_color = Color(0.543667, 0.826524, 3.85046e-07, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_h375a"]
 resource_local_to_scene = true
@@ -61,6 +63,7 @@ floor_constant_speed = true
 script = ExtResource("1_otbm1")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_iochv")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
@@ -70,11 +73,6 @@ shape = SubResource("CapsuleShape3D_odf55")
 navigation_layers = 3
 debug_enabled = true
 debug_path_custom_color = Color(1, 1, 0, 1)
-
-[node name="NodeSpatial" parent="." instance=ExtResource("3_81wq3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-text = "TestAgent"
-text_color = Color(1, 1, 0, 1)
 
 [node name="NavTarget" type="Marker3D" parent="."]
 top_level = true
@@ -86,9 +84,29 @@ texture_albedo = ExtResource("4_cilqg")
 upper_fade = 1e-05
 cull_mask = 4
 
+[node name="OutlineDecal" type="Decal" parent="."]
+size = Vector3(4, 3, 4)
+texture_albedo = ExtResource("8_h375a")
+modulate = Color(0.545098, 0.827451, 0, 1)
+albedo_mix = 0.65
+normal_fade = 0.5
+distance_fade_enabled = true
+distance_fade_begin = 4.0
+distance_fade_length = 1.0
+
 [node name="BoundingCircle" parent="." instance=ExtResource("5_6ur32")]
 mesh = SubResource("CylinderMesh_h375a")
 radius = 0.47
+albedo_color = Color(0.543667, 0.826524, 3.85046e-07, 1)
+
+[node name="NodeSpatial" parent="." instance=ExtResource("3_81wq3")]
+top_level = true
+text_color = Color(1, 0.216667, 0, 1)
 
 [node name="YCast" type="RayCast3D" parent="."]
 exclude_parent = false
+
+[node name="AnguishedClaw" parent="." instance=ExtResource("9_oyjya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="AnimTarget" type="Marker3D" parent="."]
