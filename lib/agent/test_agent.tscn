@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://eoe6rexn06fv"]
+[gd_scene load_steps=15 format=3 uid="uid://eoe6rexn06fv"]
 
 [ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="1_am71l"]
 [ext_resource type="Script" uid="uid://cb6avdfqm1j3y" path="res://lib/agent/test_agent.gd" id="1_otbm1"]
 [ext_resource type="PackedScene" uid="uid://b0vqktx3q2d2r" path="res://lib/ui/node_spatial/node_spatial.tscn" id="3_81wq3"]
+[ext_resource type="Texture2D" uid="uid://cwrah8d446ok5" path="res://lib/agent/textures/test_decal.png" id="4_cilqg"]
+[ext_resource type="PackedScene" uid="uid://c1uh4fv3t7swu" path="res://lib/bounding_circle/bounding_circle.tscn" id="5_6ur32"]
+[ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="6_d7cpf"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="7_d7cpf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otbm1"]
 render_priority = 0
@@ -20,7 +24,37 @@ height = 0.5
 radius = 0.125
 height = 0.5
 
-[node name="TestAgent" type="CharacterBody3D"]
+[sub_resource type="Gradient" id="Gradient_228eg"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.5, 0.75, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vjeik"]
+gradient = SubResource("Gradient_228eg")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7cpf"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_d7cpf")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_vjeik")
+shader_parameter/paint_texture = ExtResource("7_d7cpf")
+shader_parameter/alpha = 0.25
+shader_parameter/uv_scale = Vector2(7, 2)
+shader_parameter/albedo_color = Color(0.728667, 1, 0.26, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h375a"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_d7cpf")
+top_radius = 0.47
+bottom_radius = 0.47
+height = 0.27
+radial_segments = 32
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[node name="Agent" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 2
 floor_constant_speed = true
@@ -41,3 +75,20 @@ debug_path_custom_color = Color(1, 1, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 text = "TestAgent"
 text_color = Color(1, 1, 0, 1)
+
+[node name="NavTarget" type="Marker3D" parent="."]
+top_level = true
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("4_cilqg")
+upper_fade = 1e-05
+cull_mask = 4
+
+[node name="BoundingCircle" parent="." instance=ExtResource("5_6ur32")]
+mesh = SubResource("CylinderMesh_h375a")
+radius = 0.47
+
+[node name="YCast" type="RayCast3D" parent="."]
+exclude_parent = false

@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1uh4fv3t7swu"]
+
+[ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="1_228eg"]
+[ext_resource type="Script" uid="uid://di8glckd8ffic" path="res://lib/bounding_circle/bounding_circle.gd" id="2_vjeik"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="2_xoj6u"]
+
+[sub_resource type="Gradient" id="Gradient_228eg"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.5, 0.75, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vjeik"]
+gradient = SubResource("Gradient_228eg")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjeik"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_228eg")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_vjeik")
+shader_parameter/paint_texture = ExtResource("2_xoj6u")
+shader_parameter/alpha = 0.25
+shader_parameter/uv_scale = Vector2(7, 2)
+shader_parameter/albedo_color = Color(0.728667, 1, 0.26, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i5jov"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_vjeik")
+height = 0.27
+radial_segments = 32
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[node name="BoundingCircle" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_i5jov")
+script = ExtResource("2_vjeik")

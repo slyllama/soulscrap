@@ -35,13 +35,18 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:CentralPlatform": {
-"mesh_instance/cast_shadow": 0
+"mesh_instance/cast_shadow": 0,
+"mesh_instance/layers": 5
 },
 "PATH:Cliffs": {
 "mesh_instance/cast_shadow": 0
 },
 "PATH:Ocean": {
 "mesh_instance/cast_shadow": 0
+},
+"PATH:UpperPlatform": {
+"mesh_instance/cast_shadow": 0,
+"mesh_instance/layers": 5
 }
 }
 }

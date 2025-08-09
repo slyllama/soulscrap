@@ -15,6 +15,8 @@ var _target_velocity = 0.0
 var nitro_active = false
 
 func _ready() -> void:
+	Global.player = self
+	
 	Utils.tick.connect(func():
 		if nitro_active: PlayerData.change_tempo(-3)
 		else: PlayerData.change_tempo(1))

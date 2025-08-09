@@ -35,6 +35,7 @@ mouse_cursor/custom_image="uid://d1525hpmlbtln"
 
 [gui]
 
+theme/custom="uid://busynjbspubxe"
 theme/custom_font="uid://cla5xi3d7w53b"
 
 [input]

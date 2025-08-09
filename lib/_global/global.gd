@@ -11,13 +11,14 @@ signal mouse_capture_gained
 
 # Global references
 var camera: Camera3D
+var player: CharacterBody3D
 
 # States
 var mouse_in_ui = false
 var dragging_card = null # should be the ID of the card being dragged when active
 
 func clear_dragged_card() -> void:
-	card_drag_ended.emit()
+	card_drag_ended.emit(null)
 	dragging_card = null
 
 func _input(_event: InputEvent) -> void:

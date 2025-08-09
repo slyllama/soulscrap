@@ -15,6 +15,7 @@ shader = ExtResource("1_4t4lj")
 shader_parameter/albedo_texture = ExtResource("2_xunhb")
 shader_parameter/albedo_color = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/uv_scale = 64.0
+shader_parameter/fade_value = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_c370e"]
 material = SubResource("ShaderMaterial_vt6hs")

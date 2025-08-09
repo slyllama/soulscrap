@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx34qwdt1wnko"]
+
+[ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="1_ar3lt"]
+[ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="2_aym1y"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_vjkql"]
+[ext_resource type="Script" uid="uid://bvjvsqqlrw78e" path="res://lib/debug/agent_editor/agent_editor.gd" id="4_aym1y"]
+[ext_resource type="FontFile" uid="uid://biapv16q3jin7" path="res://generic/fonts/ibm_plex_mono.otf" id="5_vjkql"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0lk26"]
+resource_local_to_scene = true
+shader = ExtResource("2_aym1y")
+shader_parameter/dissolve_texture = ExtResource("3_vjkql")
+shader_parameter/dissolve_state = 0.0
+
+[node name="AgentEditor" instance=ExtResource("1_ar3lt")]
+material = SubResource("ShaderMaterial_0lk26")
+script = ExtResource("4_aym1y")
+title = "Agent Editor"
+
+[node name="Title" parent="VBox/Header" index="0"]
+text = "Agent Editor"
+
+[node name="AgentDetails" type="RichTextLabel" parent="VBox" index="2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.548298, 0.548298, 0.548298, 1)
+theme_override_fonts/normal_font = ExtResource("5_vjkql")
+theme_override_font_sizes/normal_font_size = 10
+text = "((Agent))"
+fit_content = true
+scroll_active = false
+autowrap_mode = 1
+
+[node name="TogglePlayerTargeting" type="Button" parent="VBox" index="3"]
+layout_mode = 2
+mouse_filter = 1
+text = "Toggle Player Targeting"
+
+[connection signal="button_down" from="VBox/TogglePlayerTargeting" to="." method="_on_toggle_player_targeting_button_down"]
