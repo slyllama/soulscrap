@@ -38,6 +38,7 @@ func _input(event: InputEvent) -> void:
 	elif Input.is_action_just_pressed("left_click"):
 		if !_is_mouse_captured() and !Global.mouse_in_ui:
 			Global.mouse_capture_gained.emit()
+			await get_tree().process_frame # don't fire weapon on first frame of capture
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	if Input.is_action_just_pressed("ui_home"):

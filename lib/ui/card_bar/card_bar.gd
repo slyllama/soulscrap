@@ -3,6 +3,16 @@ extends HBoxContainer
 var card_source = null
 
 func _input(_event: InputEvent) -> void:
+	if !Global.dragging_card:
+	# Handle special keyboard inputs for primary and secondary cards
+		if Input.is_action_just_pressed("card_primary"): $CardPrimary._hover()
+		elif Input.is_action_just_released("card_primary"): $CardPrimary.use()
+		if Input.is_action_just_pressed("card_secondary"): $CardSecondary._hover()
+		elif Input.is_action_just_released("card_secondary"): $CardSecondary.use()
+		if (Input.is_action_just_pressed("left_click")
+			and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
+			$CardPrimary.use()
+	
 	if Input.is_action_just_released("left_click"):
 		if Global.dragging_card:
 			if !get_window().gui_get_hovered_control() is CardIcon:
@@ -21,7 +31,8 @@ func _ready() -> void:
 	
 	Global.card_drag_ended.connect(func(_card_destination_id):
 		if _card_destination_id:
-			card_source.update(_card_destination_id)
+			if card_source.id != Global.dragging_card:
+				card_source.update(_card_destination_id)
 		else: card_source = null)
 	
 	get_window().focus_exited.connect(func():

@@ -9,7 +9,7 @@ render_priority = 0
 shader = ExtResource("1_am71l")
 shader_parameter/albedo_color = Color(1, 1, 0, 1)
 shader_parameter/uv_scale = 1.0
-shader_parameter/near_fade = true
+shader_parameter/fade_value = 0.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iochv"]
 material = SubResource("ShaderMaterial_otbm1")

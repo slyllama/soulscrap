@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c22mmoiy3jofj"]
+[gd_scene load_steps=22 format=3 uid="uid://c22mmoiy3jofj"]
 
 [ext_resource type="PackedScene" uid="uid://by0uvskvsqnmj" path="res://lib/ui/fps_counter/fps_counter.tscn" id="1_6ca3a"]
 [ext_resource type="Script" uid="uid://cb0y3yvxw8uqh" path="res://lib/ui/hud/hud.gd" id="1_dntma"]
@@ -16,8 +16,6 @@
 [ext_resource type="Script" uid="uid://b3rfhh2iki3wa" path="res://lib/ui/hud/combat_indicator.gd" id="10_2eonm"]
 [ext_resource type="PackedScene" uid="uid://bvyop3wo3tmu8" path="res://lib/ui/card_bar/card_icon/card_icon.tscn" id="10_l7ms4"]
 [ext_resource type="Texture2D" uid="uid://c3yhr6rfi1dqh" path="res://lib/ui/hud/textures/diamond_mote.png" id="11_6rdt5"]
-[ext_resource type="FontFile" uid="uid://biapv16q3jin7" path="res://generic/fonts/ibm_plex_mono.otf" id="17_7q6qr"]
-[ext_resource type="Texture2D" uid="uid://bfb10sfhtuevh" path="res://lib/ui/card_bar/card_icon/textures/hotkey_container.png" id="18_2nwb8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f8u0o"]
 resource_local_to_scene = true
@@ -45,25 +43,7 @@ scale_min = 0.09
 scale_max = 0.12
 scale_curve = SubResource("CurveTexture_bly2c")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7q6qr"]
-resource_local_to_scene = true
-shader = ExtResource("4_n0ge7")
-shader_parameter/dissolve_texture = ExtResource("5_dntma")
-shader_parameter/dissolve_state = 0.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6u16q"]
-content_margin_left = 4.0
-content_margin_right = 4.0
-texture = ExtResource("18_2nwb8")
-axis_stretch_horizontal = 1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2nwb8"]
-resource_local_to_scene = true
-shader = ExtResource("4_n0ge7")
-shader_parameter/dissolve_texture = ExtResource("5_dntma")
-shader_parameter/dissolve_state = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6u16q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_panat"]
 resource_local_to_scene = true
 shader = ExtResource("4_n0ge7")
 shader_parameter/dissolve_texture = ExtResource("5_dntma")
@@ -98,7 +78,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=yellow]24fps[/color]"
+text = "[color=green]145fps[/color]"
 
 [node name="Reticule" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(55, 17)
@@ -207,64 +187,8 @@ offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_constants/separation = -7
 
-[node name="CardPrimary" parent="CardBar" instance=ExtResource("10_l7ms4")]
-material = SubResource("ShaderMaterial_7q6qr")
-layout_mode = 2
-id = "item"
-
-[node name="Hotkey" type="RichTextLabel" parent="CardBar/CardPrimary"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -14.0
-offset_top = 29.0
-offset_right = 14.0
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("17_7q6qr")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxTexture_6u16q")
-text = "123"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CardSecondary" parent="CardBar" instance=ExtResource("10_l7ms4")]
-material = SubResource("ShaderMaterial_2nwb8")
-layout_mode = 2
-id = "test_component"
-
-[node name="Hotkey" type="RichTextLabel" parent="CardBar/CardSecondary"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -14.0
-offset_top = 29.0
-offset_right = 14.0
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("17_7q6qr")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxTexture_6u16q")
-text = "123"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="CardIcon" parent="CardBar" instance=ExtResource("10_l7ms4")]
-material = SubResource("ShaderMaterial_6u16q")
+material = SubResource("ShaderMaterial_panat")
 layout_mode = 2
 
 [node name="CursorCard" parent="." instance=ExtResource("10_l7ms4")]

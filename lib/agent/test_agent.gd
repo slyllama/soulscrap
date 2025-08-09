@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var nav_target: Node3D
+@export var resilience = 100
 
 func _physics_process(delta: float) -> void:
 	if !nav_target: return # no navigation target

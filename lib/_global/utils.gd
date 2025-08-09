@@ -1,6 +1,7 @@
 extends Node
 
 const TICK_SIZE = 100 # tick duration in milliseconds
+const NULL_VEC3 = Vector3(-999, -999, -999)
 
 signal tick
 var _delta = 0.0

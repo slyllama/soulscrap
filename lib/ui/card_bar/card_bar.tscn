@@ -1,10 +1,89 @@
-[gd_scene load_steps=2 format=3 uid="uid://tk6cm5vqursc"]
+[gd_scene load_steps=10 format=3 uid="uid://tk6cm5vqursc"]
 
 [ext_resource type="Script" uid="uid://bhrqdlcb6cajc" path="res://lib/ui/card_bar/card_bar.gd" id="1_6da0o"]
+[ext_resource type="PackedScene" uid="uid://bvyop3wo3tmu8" path="res://lib/ui/card_bar/card_icon/card_icon.tscn" id="2_46qs2"]
+[ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="3_mbaxn"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="4_hsa2w"]
+[ext_resource type="FontFile" uid="uid://biapv16q3jin7" path="res://generic/fonts/ibm_plex_mono.otf" id="5_xvqvn"]
+[ext_resource type="Texture2D" uid="uid://bfb10sfhtuevh" path="res://lib/ui/card_bar/card_icon/textures/hotkey_container.png" id="6_7v6q8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_46qs2"]
+resource_local_to_scene = true
+shader = ExtResource("3_mbaxn")
+shader_parameter/dissolve_texture = ExtResource("4_hsa2w")
+shader_parameter/dissolve_state = 0.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tlkcm"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+texture = ExtResource("6_7v6q8")
+axis_stretch_horizontal = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbaxn"]
+resource_local_to_scene = true
+shader = ExtResource("3_mbaxn")
+shader_parameter/dissolve_texture = ExtResource("4_hsa2w")
+shader_parameter/dissolve_state = 0.0
 
 [node name="CardBar" type="HBoxContainer"]
 alignment = 1
 script = ExtResource("1_6da0o")
+
+[node name="CardPrimary" parent="." instance=ExtResource("2_46qs2")]
+material = SubResource("ShaderMaterial_46qs2")
+layout_mode = 2
+id = "item"
+
+[node name="Hotkey" type="RichTextLabel" parent="CardPrimary"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = 29.0
+offset_right = 14.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("5_xvqvn")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_tlkcm")
+text = "123"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardSecondary" parent="." instance=ExtResource("2_46qs2")]
+material = SubResource("ShaderMaterial_mbaxn")
+layout_mode = 2
+id = "test_component"
+
+[node name="Hotkey" type="RichTextLabel" parent="CardSecondary"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = 29.0
+offset_right = 14.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("5_xvqvn")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_tlkcm")
+text = "123"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

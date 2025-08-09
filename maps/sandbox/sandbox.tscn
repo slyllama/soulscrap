@@ -139,10 +139,13 @@ transform = Transform3D(0.784949, 0, -1.1713, 0, 1.41, 0, 1.1713, 0, 0.784949, 6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.530754, 0)
 
 [node name="weird_thing" parent="." index="10" instance=ExtResource("10_j25ev")]
-transform = Transform3D(0.440127, 0, -0.897935, 0, 1, 0, 0.897935, 0, 0.440127, 2.65362, 0.0551457, 0.0560002)
+transform = Transform3D(1.2206, 0, -0.871864, 0, 1.5, 0, 0.871864, 0, 1.2206, 4.8636, -0.0484773, -0.732085)
 
 [node name="weird_thing2" parent="." index="11" instance=ExtResource("10_j25ev")]
 transform = Transform3D(0.753065, 0, 0.953477, 0, 1.215, 0, -0.953477, 0, 0.753065, -4.05309, -0.742924, 2.15148)
 
 [node name="weird_thing3" parent="." index="12" instance=ExtResource("10_j25ev")]
 transform = Transform3D(0.639489, 0.089806, -1.30942, -0.203041, 1.44581, 0, 1.2967, 0.182101, 0.645764, -5.28268, -0.69594, 0.671057)
+
+[node name="weird_thing4" parent="." index="13" instance=ExtResource("10_j25ev")]
+transform = Transform3D(4.38943e-09, 0.100419, -1.99748, 1.82411, -0.819098, -0.0411784, -0.820133, -1.82181, -0.0915876, -4.56261, -0.0496428, 3.78832)

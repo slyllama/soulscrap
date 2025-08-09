@@ -65,8 +65,16 @@ func _physics_process(_delta: float) -> void:
 		$PlayerMesh/Stars.amount_ratio = 1.0
 	else: $PlayerMesh/Stars.amount_ratio = 0.2
 	if velocity.length() > 0.1:
+		$Orbit/Track/Camera.rotation_degrees.z = lerp( # extremely gentle camera rotation
+			$Orbit/Track/Camera.rotation_degrees.z, 0.65 * -_dir.x, Utils.clerp(2.0))
 		$PlayerMesh.rotation_degrees.y = lerp(
 			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(7.0))
+	
+	if $CombatPivot.cursor_position > Utils.NULL_VEC3:
+		$CombatPivot.look_at($CombatPivot.cursor_position + Vector3(0, 0.25, 0))
+		#$CombatPivot.global_rotation.x = 0
+	else: $CombatPivot.rotation.y = $Orbit.rotation.y
+	$DebugArrow.global_position = $CombatPivot.cursor_position
 	
 	# Handle animations
 	var _calc_forward = lerp(

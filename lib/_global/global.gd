@@ -5,6 +5,7 @@ const GRAVITY = -9.8
 # Bus signals
 signal card_drag_started(card_source)
 signal card_drag_ended(card_destination_id)
+signal component_used(id)
 signal mouse_capture_lost
 signal mouse_capture_gained
 
@@ -16,8 +17,13 @@ var mouse_in_ui = false
 var dragging_card = null # should be the ID of the card being dragged when active
 
 func clear_dragged_card() -> void:
-	dragging_card = null
 	card_drag_ended.emit()
+	dragging_card = null
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_end"):
+		if !get_tree().paused: get_tree().paused = true
+		else: get_tree().paused = false
 
 func _ready() -> void:
 	if DisplayServer.screen_get_size().x > 2000:

@@ -11,8 +11,7 @@ var _last_mouse_pos = Vector2.ZERO
 var _mouse_delta = 0.0 # distance (length)
 var _mouse_in = false
 var _mouse_down = false
-# Wait a single frame after updating to prevent any instant input actions
-var _updated = true
+var _updated = true # wait a single frame after updating to prevent any instant input actions
 
 func update(new_id = id) -> void:
 	_updated = false
@@ -36,7 +35,7 @@ func _gain_focus() -> void:
 		$Hover.visible = true
 
 func _lose_focus() -> void:
-	z_index = 0
+	if enabled: z_index = 0 # only alter z-index when enabled
 	$Hover.visible = false
 	_unhover()
 
@@ -46,6 +45,8 @@ func _unhover() -> void: $Mask.modulate = Color(1.0, 1.0, 1.0)
 
 func use() -> void:
 	if id == "blank": return # has no use
+	
+	Global.component_used.emit(id)
 	
 	PlayerData.damage_taken.emit()
 	var _t = create_tween()
@@ -60,8 +61,8 @@ func _input(_event: InputEvent) -> void:
 			var _old_id = id
 			
 			update(Global.dragging_card)
-			Global.dragging_card = null
 			Global.card_drag_ended.emit(_old_id)
+			Global.dragging_card = null
 
 func _ready() -> void:
 	get_window().focus_exited.connect(_lose_focus)

@@ -1,13 +1,5 @@
 extends CanvasLayer
 
-func _input(_event: InputEvent) -> void:
-	if Global.dragging_card: return
-	# Handle special keyboard inputs for primary and secondary cards
-	if Input.is_action_just_pressed("card_primary"): $CardBar/CardPrimary._hover()
-	elif Input.is_action_just_released("card_primary"): $CardBar/CardPrimary.use()
-	if Input.is_action_just_pressed("card_secondary"): $CardBar/CardSecondary._hover()
-	elif Input.is_action_just_released("card_secondary"): $CardBar/CardSecondary.use()
-
 func _ready() -> void:
 	$Overlay.visible = true
 	
