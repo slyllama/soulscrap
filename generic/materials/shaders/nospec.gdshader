@@ -2,8 +2,11 @@ shader_type spatial;
 render_mode specular_disabled;
 
 uniform sampler2D albedo_texture: filter_linear_mipmap, repeat_enable;
+uniform sampler2D normal_texture: filter_linear_mipmap, hint_normal;
+
 uniform vec3 albedo_color: source_color = vec3(0.5);
-uniform float uv_scale = 1.0;
+uniform vec2 uv_scale = vec2(1.0, 1.0);
+uniform float normal_strength = 1.0;
 uniform float fade_value: hint_range(0.0, 1.0) = 0.0;
 
 void fragment() {
@@ -13,6 +16,8 @@ void fragment() {
 	SPECULAR = 0.0;
 	METALLIC = 0.0;
 	ROUGHNESS = 1.0;
+	NORMAL_MAP = texture(normal_texture, UV * uv_scale).rgb;
+	NORMAL_MAP_DEPTH = normal_strength;
 	
 	float fade_distance = length(VERTEX);
 	const vec3 magic = vec3(0.06711056, 0.00583715, 52.9829189);

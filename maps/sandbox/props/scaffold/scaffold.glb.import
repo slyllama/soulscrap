@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c3a6m02noqd4y"
-path="res://.godot/imported/branch_thing.glb-689063f8f26024a9dae00402fcc5f106.scn"
+uid="uid://bqxek2xp5ncn0"
+path="res://.godot/imported/scaffold.glb-80e5043f909186b0ba88404871121126.scn"
 
 [deps]
 
-source_file="res://maps/sandbox/meshes/branch_thing.glb"
-dest_files=["res://.godot/imported/branch_thing.glb-689063f8f26024a9dae00402fcc5f106.scn"]
+source_file="res://maps/sandbox/props/scaffold/scaffold.glb"
+dest_files=["res://.godot/imported/scaffold.glb-80e5043f909186b0ba88404871121126.scn"]
 
 [params]
 
 nodes/root_type=""
-nodes/root_name=""
+nodes/root_name="Scaffold"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false

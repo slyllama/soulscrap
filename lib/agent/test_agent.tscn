@@ -14,7 +14,8 @@
 render_priority = 0
 shader = ExtResource("1_am71l")
 shader_parameter/albedo_color = Color(1, 1, 0, 1)
-shader_parameter/uv_scale = 1.0
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/normal_strength = 1.0
 shader_parameter/fade_value = 0.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iochv"]
@@ -79,6 +80,7 @@ top_level = true
 
 [node name="Decal" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+sorting_offset = 0.1
 size = Vector3(1, 1, 1)
 texture_albedo = ExtResource("4_cilqg")
 upper_fade = 1e-05

@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cmq02yikwbt1l"]
+
+[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="1_wm001"]
+[ext_resource type="Texture2D" uid="uid://dhc0qq7uxdl2x" path="res://maps/sandbox/materials/textures/platform_diff.jpg" id="2_god6p"]
+[ext_resource type="Texture2D" uid="uid://cwc41kv2yci37" path="res://maps/sandbox/materials/textures/platform_norm.jpg" id="3_god6p"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wm001")
+shader_parameter/albedo_texture = ExtResource("2_god6p")
+shader_parameter/normal_texture = ExtResource("3_god6p")
+shader_parameter/albedo_color = Color(0.75, 0.6875, 0.675, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/normal_strength = 2.0
+shader_parameter/fade_value = 0.0
