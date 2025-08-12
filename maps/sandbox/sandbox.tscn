@@ -69,9 +69,6 @@ target_agent = NodePath("../../TestAgent")
 [node name="Sky" parent="." index="1"]
 environment = SubResource("Environment_v3xsa")
 
-[node name="Sun" parent="Sky" index="0"]
-directional_shadow_mode = 1
-
 [node name="UpperPlatform" type="StaticBody3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04, 0)
 visible = false
@@ -139,7 +136,7 @@ transform = Transform3D(-1.96018, 0.245079, -3.47816, 3.48667, 0.17027, -1.95298
 transform = Transform3D(1.75496, 4.39545, 1.05957, 3.99408, -0.97446, -2.57298, -2.11894, 1.8036, -3.97235, -10.3542, 4.38534, -15.3248)
 
 [node name="RockOutgrowth" parent="Decorations" index="7" instance=ExtResource("10_j25ev")]
-transform = Transform3D(-1.22859, 0, -0.691854, 0, 1.41, 0, 0.691854, 0, -1.22859, -6.64305, -0.742956, -0.0557969)
+transform = Transform3D(-1.22859, 0, -0.691854, 0, 1.41, 0, 0.691854, 0, -1.22859, -6.47006, -0.742956, 0.0997247)
 
 [node name="RockOutgrowth3" parent="Decorations" index="8" instance=ExtResource("10_j25ev")]
 transform = Transform3D(-0.576898, 0, 2.0244, -0.730855, 1.96303, -0.208273, -1.88787, -0.759952, -0.53799, 7.36206, -0.830009, -4.77861)

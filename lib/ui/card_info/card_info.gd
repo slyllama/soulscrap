@@ -1,15 +1,24 @@
 extends "res://lib/ui/container/container.gd"
 
 func update(id) -> void:
+	if Input.is_action_pressed("left_click"): return
 	if $Timer.is_stopped(): undissolve()
 	$VBox/Header/Title.text = Components.get_title(id)
 	$Timer.start()
 	shrink()
 
 func dismiss() -> void:
+	if Input.is_action_pressed("left_click"): return
+	
 	await get_tree().process_frame
-	if !get_window().gui_get_hovered_control() is CardIcon:
-		dissolve()
+	var _c = get_window().gui_get_hovered_control()
+	if !_c is CardIcon: dissolve()
+	elif _c.id == "blank": dissolve()
+	
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_released("left_click"):
+		dismiss()
 
 func _ready() -> void:
 	dissolve()

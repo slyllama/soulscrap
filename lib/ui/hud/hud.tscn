@@ -38,7 +38,7 @@ scale_min = 0.09
 scale_max = 0.12
 scale_curve = SubResource("CurveTexture_bly2c")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6u16q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_asrt8"]
 resource_local_to_scene = true
 shader = ExtResource("4_n0ge7")
 shader_parameter/dissolve_texture = ExtResource("5_dntma")
@@ -200,7 +200,7 @@ grow_horizontal = 2
 theme_override_constants/separation = -7
 
 [node name="CardIcon" parent="CardBar" instance=ExtResource("10_l7ms4")]
-material = SubResource("ShaderMaterial_6u16q")
+material = SubResource("ShaderMaterial_asrt8")
 layout_mode = 2
 
 [node name="CursorCard" parent="." instance=ExtResource("10_l7ms4")]
