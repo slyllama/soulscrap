@@ -32,7 +32,7 @@ script = ExtResource("1_6da0o")
 [node name="CardPrimary" parent="." instance=ExtResource("2_46qs2")]
 material = SubResource("ShaderMaterial_46qs2")
 layout_mode = 2
-id = "item"
+id = "short_burst_projectile"
 
 [node name="Hotkey" type="RichTextLabel" parent="CardPrimary"]
 layout_mode = 1

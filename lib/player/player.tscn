@@ -239,7 +239,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_5lbbh")
 script = ExtResource("3_0y160")
 start_alpha = 0.25
-diffuse_color = Color(0.5, 0.5, 0.5, 1)
+diffuse_color = Color(0.75, 0.75, 0.75, 1)
 metadata/_custom_type_script = "uid://d4mgvogtplgaw"
 
 [node name="Trail3D_R" type="MeshInstance3D" parent="PlayerMesh"]
@@ -247,7 +247,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_5lbbh")
 script = ExtResource("3_0y160")
 start_alpha = 0.25
-diffuse_color = Color(0.5, 0.5, 0.5, 1)
+diffuse_color = Color(0.75, 0.75, 0.75, 1)
 metadata/_custom_type_script = "uid://d4mgvogtplgaw"
 
 [node name="Stars" type="GPUParticles3D" parent="PlayerMesh"]
@@ -286,7 +286,7 @@ current = true
 fov = 37.8493
 
 [node name="Motes" type="GPUParticles3D" parent="Orbit/Track/Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, -5)
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, -2.5)
 cast_shadow = 0
 amount = 180
 lifetime = 2.0

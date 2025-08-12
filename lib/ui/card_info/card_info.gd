@@ -3,9 +3,13 @@ extends "res://lib/ui/container/container.gd"
 func update(id) -> void:
 	if Input.is_action_pressed("left_click"): return
 	if $Timer.is_stopped(): undissolve()
-	$VBox/Header/Title.text = Components.get_title(id)
-	$Timer.start()
+	
 	shrink()
+	$VBox/Header/Title.text = Components.get_title(id)
+	$VBox/Header/Icon.texture = Components.get_texture(id)
+	$VBox/Description.text = Components.get_description(id)
+	
+	$Timer.start()
 
 func dismiss() -> void:
 	if Input.is_action_pressed("left_click"): return

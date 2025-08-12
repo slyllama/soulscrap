@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://grvqqefx3lnm"
-path="res://.godot/imported/graffiti_top.png-8cadfd0f7ab56b3e05bf6b7b10e6f6ca.ctex"
+uid="uid://b7m5nwv0pghhp"
+path="res://.godot/imported/ornament.png-4d5e41ae6717d2e03eef0d7d3e6a5690.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/ui/textures/graffiti_top.png"
-dest_files=["res://.godot/imported/graffiti_top.png-8cadfd0f7ab56b3e05bf6b7b10e6f6ca.ctex"]
+source_file="res://lib/ui/hud/textures/ornament.png"
+dest_files=["res://.godot/imported/ornament.png-4d5e41ae6717d2e03eef0d7d3e6a5690.ctex"]
 
 [params]
 

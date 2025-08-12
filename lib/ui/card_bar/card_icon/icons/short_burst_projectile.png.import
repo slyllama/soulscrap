@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s7x4w4xtu0sv"
-path="res://.godot/imported/icon_unknown.png-2bd285b8d01348e5740d4261f1df9740.ctex"
+uid="uid://k15mnau82p1j"
+path="res://.godot/imported/short_burst_projectile.png-97d05bb8ef9c7b06313383e1444d0d5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/ui/card_bar/card_icon/icons/icon_unknown.png"
-dest_files=["res://.godot/imported/icon_unknown.png-2bd285b8d01348e5740d4261f1df9740.ctex"]
+source_file="res://lib/ui/card_bar/card_icon/icons/short_burst_projectile.png"
+dest_files=["res://.godot/imported/short_burst_projectile.png-97d05bb8ef9c7b06313383e1444d0d5f.ctex"]
 
 [params]
 
