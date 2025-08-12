@@ -16,5 +16,9 @@ func _ready() -> void:
 		$CursorCard.visible = false)
 
 func _process(_delta: float) -> void:
+	$PrimsCounter.text = (str(snapped(Performance.get_monitor(
+		Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME), 1)))
+	$PrimsCounter.text += ("/" + str(snapped(Performance.get_monitor(
+		Performance.RENDER_VIDEO_MEM_USED) / 1048576, 1)) + "MB")
 	$CursorCard.global_position = (get_window().get_mouse_position()
 		- $CursorCard.size * 0.5)

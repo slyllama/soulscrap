@@ -41,6 +41,15 @@ _subresources={
 "mat_scaffold": {
 "use_external/enabled": true,
 "use_external/path": "uid://y5ewyamqwned"
+},
+"mat_surrounding": {
+"use_external/enabled": true,
+"use_external/path": "uid://rla475v077t4"
+}
+},
+"nodes": {
+"PATH:PlatformPiece_005": {
+"mesh_instance/layers": 5
 }
 }
 }
