@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://s8awyrwv1tmb"]
+
+[ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="1_ciqje"]
+[ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="2_g33b8"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_v1tqk"]
+[ext_resource type="Script" uid="uid://drnerinhau8ek" path="res://lib/ui/card_info/card_info.gd" id="4_g33b8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnbcw"]
+resource_local_to_scene = true
+shader = ExtResource("2_g33b8")
+shader_parameter/dissolve_texture = ExtResource("3_v1tqk")
+shader_parameter/dissolve_state = 0.0
+
+[node name="CardInfo" instance=ExtResource("1_ciqje")]
+material = SubResource("ShaderMaterial_bnbcw")
+script = ExtResource("4_g33b8")
+
+[node name="Close" parent="VBox/Header" index="1"]
+visible = false
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 0.27
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

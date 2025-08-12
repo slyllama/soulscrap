@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cla5xi3d7w53b"
-path="res://.godot/imported/libertinus_sans.otf-673eba777e77288e657f8190dcf966af.fontdata"
+uid="uid://2mojdir7ucxy"
+path="res://.godot/imported/exo_italic.ttf-ae85de90b3dd88f6bee87fbeed3f521b.fontdata"
 
 [deps]
 
-source_file="res://generic/fonts/libertinus_sans.otf"
-dest_files=["res://.godot/imported/libertinus_sans.otf-673eba777e77288e657f8190dcf966af.fontdata"]
+source_file="res://generic/fonts/exo_italic.ttf"
+dest_files=["res://.godot/imported/exo_italic.ttf-ae85de90b3dd88f6bee87fbeed3f521b.fontdata"]
 
 [params]
 

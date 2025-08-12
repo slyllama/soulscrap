@@ -87,10 +87,14 @@ func _process(_delta: float) -> void:
 			Global.card_drag_started.emit(self)
 
 func _on_mouse_entered() -> void:
+	if enabled and id != "blank":
+		Global.card_hovered.emit(id)
 	_mouse_in = true
 	_gain_focus()
 
 func _on_mouse_exited() -> void:
+	if enabled and id != "blank":
+		Global.card_unhovered.emit()
 	_mouse_in = false
 	_lose_focus()
 

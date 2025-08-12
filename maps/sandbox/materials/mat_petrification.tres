@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://b3j1yjrxmijwb"]
+
+[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="1_mcvl3"]
+[ext_resource type="Texture2D" uid="uid://c1by7jo672apl" path="res://maps/sandbox/materials/textures/petrification_diff.jpg" id="2_mcvl3"]
+[ext_resource type="Texture2D" uid="uid://mkqh21ovnp3s" path="res://maps/sandbox/materials/textures/petrification_norm.jpg" id="3_fmqh8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_mcvl3")
+shader_parameter/albedo_texture = ExtResource("2_mcvl3")
+shader_parameter/normal_texture = ExtResource("3_fmqh8")
+shader_parameter/albedo_color = Color(0.787759, 0.787759, 0.787759, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/normal_strength = 1.0
+shader_parameter/fade_value = 0.0

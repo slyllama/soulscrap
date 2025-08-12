@@ -103,7 +103,6 @@ albedo_color = Color(0.543667, 0.826524, 3.85046e-07, 1)
 
 [node name="NodeSpatial" parent="." instance=ExtResource("3_81wq3")]
 top_level = true
-text_color = Color(1, 0.216667, 0, 1)
 
 [node name="YCast" type="RayCast3D" parent="."]
 exclude_parent = false

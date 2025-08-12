@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c22mmoiy3jofj"]
+[gd_scene load_steps=23 format=3 uid="uid://c22mmoiy3jofj"]
 
 [ext_resource type="PackedScene" uid="uid://by0uvskvsqnmj" path="res://lib/ui/fps_counter/fps_counter.tscn" id="1_6ca3a"]
 [ext_resource type="Script" uid="uid://cb0y3yvxw8uqh" path="res://lib/ui/hud/hud.gd" id="1_dntma"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b3rfhh2iki3wa" path="res://lib/ui/hud/combat_indicator.gd" id="10_2eonm"]
 [ext_resource type="PackedScene" uid="uid://bvyop3wo3tmu8" path="res://lib/ui/card_bar/card_icon/card_icon.tscn" id="10_l7ms4"]
 [ext_resource type="Texture2D" uid="uid://c3yhr6rfi1dqh" path="res://lib/ui/hud/textures/diamond_mote.png" id="11_6rdt5"]
+[ext_resource type="PackedScene" uid="uid://s8awyrwv1tmb" path="res://lib/ui/card_info/card_info.tscn" id="18_7q6qr"]
 
 [sub_resource type="Curve" id="Curve_6rdt5"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253165, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -37,7 +38,13 @@ scale_min = 0.09
 scale_max = 0.12
 scale_curve = SubResource("CurveTexture_bly2c")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_panat"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6u16q"]
+resource_local_to_scene = true
+shader = ExtResource("4_n0ge7")
+shader_parameter/dissolve_texture = ExtResource("5_dntma")
+shader_parameter/dissolve_state = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfgqh"]
 resource_local_to_scene = true
 shader = ExtResource("4_n0ge7")
 shader_parameter/dissolve_texture = ExtResource("5_dntma")
@@ -85,7 +92,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=yellow]10fps[/color]"
+text = "[color=green]130fps[/color]"
 
 [node name="PrimsCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -193,7 +200,7 @@ grow_horizontal = 2
 theme_override_constants/separation = -7
 
 [node name="CardIcon" parent="CardBar" instance=ExtResource("10_l7ms4")]
-material = SubResource("ShaderMaterial_panat")
+material = SubResource("ShaderMaterial_6u16q")
 layout_mode = 2
 
 [node name="CursorCard" parent="." instance=ExtResource("10_l7ms4")]
@@ -205,3 +212,17 @@ offset_right = 843.0
 offset_bottom = 72.0
 mouse_filter = 2
 enabled = false
+
+[node name="CardInfo" parent="." instance=ExtResource("18_7q6qr")]
+material = SubResource("ShaderMaterial_nfgqh")
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -55.0
+offset_right = -16.0
+offset_bottom = 55.0
+grow_horizontal = 0
+grow_vertical = 2

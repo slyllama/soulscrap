@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://rxiyen87ib0n" path="res://generic/textures/nasa_stars.jpg" id="4_pxktp"]
 [ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/test_agent.tscn" id="5_lc3d0"]
 [ext_resource type="Texture2D" uid="uid://b1apf47becvow" path="res://maps/sandbox/materials/textures/dirt_decal.png" id="10_ii18f"]
-[ext_resource type="PackedScene" uid="uid://b0tci4piatfdu" path="res://maps/sandbox/meshes/weird_thing.glb" id="10_j25ev"]
+[ext_resource type="PackedScene" uid="uid://b0tci4piatfdu" path="res://maps/sandbox/meshes/mire_petrification.glb" id="10_j25ev"]
 [ext_resource type="PackedScene" uid="uid://cx34qwdt1wnko" path="res://lib/debug/agent_editor/agent_editor.tscn" id="11_kaa0c"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="12_40n1j"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="13_ii18f"]
@@ -55,17 +55,15 @@ script = ExtResource("2_oa8wj")
 
 [node name="AgentEditor" parent="HUD" index="10" node_paths=PackedStringArray("target_agent") instance=ExtResource("11_kaa0c")]
 material = SubResource("ShaderMaterial_up8qe")
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -316.0
-offset_top = -80.0
-offset_right = -16.0
-offset_bottom = 80.0
-grow_horizontal = 0
-grow_vertical = 2
+custom_minimum_size = Vector2(300, 160)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -176.0
+offset_right = 316.0
+offset_bottom = -16.0
+grow_vertical = 0
 target_agent = NodePath("../../TestAgent")
 
 [node name="Sky" parent="." index="1"]

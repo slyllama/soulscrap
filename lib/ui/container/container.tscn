@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dss8jsi1q5yco"]
+[gd_scene load_steps=12 format=3 uid="uid://dss8jsi1q5yco"]
 
 [ext_resource type="Texture2D" uid="uid://bw2ra7yhv6bvi" path="res://lib/ui/textures/ui_bg.jpg" id="1_gbke4"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="1_pd6sc"]
@@ -8,13 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://bp0j0s1omf4xs" path="res://lib/ui/textures/close_button.png" id="3_twvld"]
 [ext_resource type="Texture2D" uid="uid://dpoapotaw4aqk" path="res://lib/ui/textures/close_button_hover.png" id="4_cxotv"]
 [ext_resource type="Texture2D" uid="uid://cdbdelgj23c0p" path="res://lib/ui/textures/separator.png" id="5_0wxwo"]
+[ext_resource type="FontFile" uid="uid://2mojdir7ucxy" path="res://generic/fonts/exo_italic.ttf" id="6_svexr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rs40i"]
 resource_local_to_scene = true
 shader = ExtResource("1_pd6sc")
 shader_parameter/dissolve_texture = ExtResource("2_rs40i")
 shader_parameter/dissolve_state = 0.0
-shader_parameter/uv_scale = 2.5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7h81"]
 texture = ExtResource("1_gbke4")
@@ -27,9 +27,9 @@ axis_stretch_vertical = 1
 
 [node name="Container" type="Panel"]
 material = SubResource("ShaderMaterial_rs40i")
-custom_minimum_size = Vector2(300, 160)
+custom_minimum_size = Vector2(300, 110)
 offset_right = 300.0
-offset_bottom = 155.0
+offset_bottom = 110.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_j7h81")
 script = ExtResource("2_4cwwj")
 
@@ -71,7 +71,8 @@ use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_font_sizes/normal_font_size = 18
+theme_override_fonts/normal_font = ExtResource("6_svexr")
+theme_override_font_sizes/normal_font_size = 16
 text = "((Window))"
 fit_content = true
 scroll_active = false
