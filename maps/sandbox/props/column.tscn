@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bim05oeh3ds2y"]
 
-[ext_resource type="PackedScene" uid="uid://bqxek2xp5ncn0" path="res://maps/sandbox/props/scaffold/scaffold.glb" id="3_kcskl"]
+[ext_resource type="PackedScene" uid="uid://dfp47kwo6u0dx" path="res://maps/sandbox/meshes/mire_scaffold.glb" id="1_1ee1x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7kbs0"]
 size = Vector3(0.5, 2, 0.5)
@@ -11,8 +11,7 @@ size = Vector3(0.5, 2, 0.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_7kbs0")
 
-[node name="Scaffold" parent="." instance=ExtResource("3_kcskl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="mire_scaffold" parent="." instance=ExtResource("1_1ee1x")]
 
-[node name="Scaffold2" parent="." instance=ExtResource("3_kcskl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="mire_scaffold2" parent="." instance=ExtResource("1_1ee1x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

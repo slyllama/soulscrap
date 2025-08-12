@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbe0prhepudwf"
-path.s3tc="res://.godot/imported/scaffold_scaffold_diff.jpg-34631573e2002decc0e0ef20f2875f21.s3tc.ctex"
+uid="uid://dwkf5mno5nchr"
+path.s3tc="res://.godot/imported/player_player_bake_diff.jpg-9dfb9bd8e48e68c4f0e2c5895dce1a1b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "aa21e07cf044ac604f579829e6ccc4b9"
+"md5": "dedd7d01388e7130fec24c9ce757a56c"
 }
 
 [deps]
 
-source_file="res://maps/sandbox/props/scaffold/scaffold_scaffold_diff.jpg"
-dest_files=["res://.godot/imported/scaffold_scaffold_diff.jpg-34631573e2002decc0e0ef20f2875f21.s3tc.ctex"]
+source_file="res://lib/player/meshes/player_player_bake_diff.jpg"
+dest_files=["res://.godot/imported/player_player_bake_diff.jpg-9dfb9bd8e48e68c4f0e2c5895dce1a1b.s3tc.ctex"]
 
 [params]
 

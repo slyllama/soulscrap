@@ -5433,10 +5433,6 @@ _subresources={
 }
 },
 "materials": {
-"mat_bot": {
-"use_external/enabled": true,
-"use_external/path": "uid://hwrn6txiqw0q"
-},
 "mat_engine": {
 "use_external/enabled": true,
 "use_external/path": "uid://hc7cxjpqr7o5"

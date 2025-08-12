@@ -16,13 +16,6 @@ func get_bone_position(skeleton: Skeleton3D, bone_name: String) -> Vector3:
 	var _bone_origin = skeleton.get_bone_global_pose(_bone_idx).origin
 	return(skeleton.to_global(_bone_origin))
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_home"):
-		if !target: target = Global.player
-		else:
-			target = null
-			manual_target_position = Vector3.ZERO
-
 func _ready() -> void:
 	$AnguishedClaw/AnimationPlayer.speed_scale = randf_range(0.9, 1.1)
 	$AnguishedClaw/AnimationPlayer.seek(randf_range(0.0, 0.75))

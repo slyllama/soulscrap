@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mkeh6npyol2x"
-path.s3tc="res://.godot/imported/scaffold_scaffold_norm.jpg-40aff1c6beba0301d793051fe2490c73.s3tc.ctex"
+uid="uid://c2rnuukmkhhg7"
+path.s3tc="res://.godot/imported/scaffold_norm.jpg-c19f5ad26947fe416241985ef49bc880.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "27b095f80ebc8840d4127eb90f3fd777"
-}
 
 [deps]
 
-source_file="res://maps/sandbox/props/scaffold/scaffold_scaffold_norm.jpg"
-dest_files=["res://.godot/imported/scaffold_scaffold_norm.jpg-40aff1c6beba0301d793051fe2490c73.s3tc.ctex"]
+source_file="res://maps/sandbox/materials/textures/scaffold_norm.jpg"
+dest_files=["res://.godot/imported/scaffold_norm.jpg-c19f5ad26947fe416241985ef49bc880.s3tc.ctex"]
 
 [params]
 
@@ -27,8 +24,8 @@ compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://maps/sandbox/props/scaffold/scaffold_scaffold_norm.jpg"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

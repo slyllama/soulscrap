@@ -1,18 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7kkp37wp3ndo"]
+[gd_scene load_steps=8 format=3 uid="uid://b7kkp37wp3ndo"]
 
 [ext_resource type="Script" uid="uid://c5efta1qqtkn3" path="res://lib/overlays/overlay.gd" id="1_2m328"]
 [ext_resource type="Shader" uid="uid://dfubs0v03468n" path="res://lib/overlays/shaders/smoke.gdshader" id="1_lw2cd"]
-[ext_resource type="Texture2D" uid="uid://da0xt0w34hnyb" path="res://lib/overlays/textures/smoke_noise.tres" id="3_2m328"]
+[ext_resource type="Texture2D" uid="uid://cjh33d4amtyhc" path="res://generic/textures/graffiti_mask.jpg" id="3_busvx"]
 [ext_resource type="Texture2D" uid="uid://dvi4vh7lcum0r" path="res://lib/ui/hud/textures/damage_taken.png" id="4_3nxxb"]
 [ext_resource type="Script" uid="uid://bgltvt34r5x0i" path="res://lib/ui/dissolve_control/dissolve_control.gd" id="4_46fvq"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="4_busvx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3x0gg"]
 shader = ExtResource("1_lw2cd")
-shader_parameter/smoke_effect = ExtResource("3_2m328")
-shader_parameter/wobble_pattern = ExtResource("3_2m328")
+shader_parameter/smoke_effect = ExtResource("3_busvx")
+shader_parameter/wobble_pattern = ExtResource("4_busvx")
 shader_parameter/value = 0.0
-shader_parameter/overall_scale = 2.0
-shader_parameter/time_factor = 0.2
+shader_parameter/overall_scale = 1.5
+shader_parameter/time_factor = 0.02
 
 [node name="Overlay" type="CanvasLayer"]
 script = ExtResource("1_2m328")
@@ -38,7 +39,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
 [node name="StartTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.65
 one_shot = true
 autostart = true
 

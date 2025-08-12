@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b5v3yq0iiwtac"
-path="res://.godot/imported/test_landscape.glb-d5834c21de82da9a9541187da73692e3.scn"
+uid="uid://dfp47kwo6u0dx"
+path="res://.godot/imported/mire_scaffold.glb-210ebd3b3b2a2ac1caa2b5bcee1233e9.scn"
 
 [deps]
 
-source_file="res://maps/sandbox/meshes/test_landscape.glb"
-dest_files=["res://.godot/imported/test_landscape.glb-d5834c21de82da9a9541187da73692e3.scn"]
+source_file="res://maps/sandbox/meshes/mire_scaffold.glb"
+dest_files=["res://.godot/imported/mire_scaffold.glb-210ebd3b3b2a2ac1caa2b5bcee1233e9.scn"]
 
 [params]
 
@@ -33,20 +33,10 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
-"nodes": {
-"PATH:CentralPlatform": {
-"mesh_instance/cast_shadow": 0,
-"mesh_instance/layers": 5
-},
-"PATH:Cliffs": {
-"mesh_instance/cast_shadow": 0
-},
-"PATH:Ocean": {
-"mesh_instance/cast_shadow": 0
-},
-"PATH:UpperPlatform": {
-"mesh_instance/cast_shadow": 0,
-"mesh_instance/layers": 5
+"materials": {
+"scaffold": {
+"use_external/enabled": true,
+"use_external/path": "uid://y5ewyamqwned"
 }
 }
 }

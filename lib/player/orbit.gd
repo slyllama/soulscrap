@@ -41,9 +41,6 @@ func _input(event: InputEvent) -> void:
 			await get_tree().process_frame # don't fire weapon on first frame of capture
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	if Input.is_action_just_pressed("ui_home"):
-		shake_camera()
-	
 	# Handle zoom inputs
 	if Input.is_action_just_pressed("zoom_in"): _target_zoom -= zoom_increment
 	elif Input.is_action_just_pressed("zoom_out"): _target_zoom += zoom_increment
