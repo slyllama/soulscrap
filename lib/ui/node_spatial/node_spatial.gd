@@ -1,20 +1,35 @@
 extends VisibleOnScreenNotifier3D
 
-@export var text = "((Spatial Text))":
-	get: return(text)
-	set(_val):
-		text = _val
-		$Canvas/Root2D/Text.text = text
-@export var text_color = Color.WHITE:
-	get: return(text_color)
-	set(_val):
-		text_color = _val
-		$Canvas/Root2D/Text.self_modulate = text_color
-@export var bar_value = 100.0:
-	get: return(bar_value)
-	set(_val):
-		bar_value = _val
-		$Canvas/Root2D/Bar.value = bar_value
+@export var text = "((Spatial Text))"
+@export var text_color = Color.WHITE
+@export var bar_active = false
+@export var bar_value = 100.0
+
+@onready var og_text_pos = $Canvas/Root2D/Text.position.y
+
+func float_away(time = 0.5) -> void:
+	$Canvas/Root2D/Text.modulate.a = 1.0
+	var _f = create_tween()
+	_f.tween_property($Canvas/Root2D/Text, "position:y", og_text_pos - 20.0, time)
+	var _a = create_tween()
+	_a.set_parallel()
+	_a.tween_property($Canvas/Root2D/Text, "modulate:a", 0.0, time)
+
+func update_value(val: int) -> void:
+	bar_value = val
+	$Canvas/Root2D/Bar.value = bar_value
+
+func update_appearance() -> void:
+	$Canvas/Root2D/Bar.visible = bar_active
+	$Canvas/Root2D/Text.self_modulate = text_color
+	$Canvas/Root2D/Text.text = text
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_home"):
+		float_away()
+
+func _ready() -> void:
+	update_appearance()
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return

@@ -14,6 +14,7 @@ signal integrity_changed
 @export var manual_target_position = Vector3.ZERO
 
 @onready var current_integrity = integrity
+var target_bar_value = 100.0
 
 func get_bone_position(skeleton: Skeleton3D, bone_name: String) -> Vector3:
 	var _bone_idx = skeleton.find_bone(bone_name)
@@ -35,8 +36,9 @@ func _ready() -> void:
 	$NodeSpatial.text = agent_name
 
 func _process(_delta: float) -> void:
-	$NodeSpatial.bar_value = lerp(
-		$NodeSpatial.bar_value, float(current_integrity) / float(integrity) * 100.0, Utils.clerp(20.0))
+	target_bar_value = lerp(
+		target_bar_value, float(current_integrity) / float(integrity) * 100.0, Utils.clerp(20.0))
+	$NodeSpatial.update_value(target_bar_value)
 
 func _physics_process(delta: float) -> void:
 	if !stationary:

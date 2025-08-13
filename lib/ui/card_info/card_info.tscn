@@ -97,6 +97,7 @@ layout_mode = 2
 theme_override_constants/separation = 2
 
 [node name="PassiveSubtitle" type="RichTextLabel" parent="VBox" index="7"]
+visible = false
 use_parent_material = true
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
