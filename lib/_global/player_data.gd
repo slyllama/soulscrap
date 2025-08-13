@@ -3,7 +3,7 @@ extends Node
 signal damage_taken
 
 var tempo = 99
-var resilience = 100
+var integrity = 100
 
 # Returns true is a change was effected
 func change_tempo(amount: int = -1) -> bool:

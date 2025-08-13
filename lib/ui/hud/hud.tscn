@@ -141,7 +141,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("5_wq6ye")
 
-[node name="BarResilience" parent="." instance=ExtResource("9_bly2c")]
+[node name="BarIntegrity" parent="." instance=ExtResource("9_bly2c")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -154,7 +154,7 @@ flip_h = true
 flipped = true
 variable = null
 
-[node name="Ornament" type="TextureRect" parent="BarResilience"]
+[node name="Ornament" type="TextureRect" parent="BarIntegrity"]
 custom_minimum_size = Vector2(31, 33)
 layout_mode = 1
 anchors_preset = 8

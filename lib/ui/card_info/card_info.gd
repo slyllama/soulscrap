@@ -3,7 +3,10 @@ extends "res://lib/ui/container/container.gd"
 
 const CardStat = preload("res://lib/ui/card_info/card_stat/card_stat.tscn")
 const StatIcons = {
-	"damage": preload("res://lib/ui/card_info/card_stat/stat_icons/icon_damage.png")
+	"damage": preload(
+		"res://lib/ui/card_info/card_stat/stat_icons/icon_damage.png"),
+	"tempo": preload(
+		"res://lib/ui/card_info/card_stat/stat_icons/icon_tempo.png")
 }
 
 func add_card_stat(id, parameter: String, component_title: String) -> void:

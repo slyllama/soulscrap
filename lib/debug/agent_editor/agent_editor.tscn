@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx34qwdt1wnko"]
+[gd_scene load_steps=9 format=3 uid="uid://cx34qwdt1wnko"]
 
 [ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="1_ar3lt"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="2_aym1y"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_vjkql"]
 [ext_resource type="Script" uid="uid://bvjvsqqlrw78e" path="res://lib/debug/agent_editor/agent_editor.gd" id="4_aym1y"]
 [ext_resource type="FontFile" uid="uid://biapv16q3jin7" path="res://generic/fonts/ibm_plex_mono.otf" id="5_vjkql"]
+[ext_resource type="PackedScene" uid="uid://ciwry3e0ycc6v" path="res://lib/ui/card_info/card_stat/card_stat.tscn" id="6_0lk26"]
+[ext_resource type="Texture2D" uid="uid://dccksnepj5yb7" path="res://lib/ui/card_info/card_stat/stat_icons/icon_damage.png" id="7_irjwi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0lk26"]
 resource_local_to_scene = true
@@ -32,13 +34,24 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 1
 
-[node name="TogglePlayerTargeting" type="Button" parent="VBox" index="3"]
+[node name="IntegrityStat" parent="VBox" index="3" instance=ExtResource("6_0lk26")]
+layout_mode = 2
+icon = ExtResource("7_irjwi")
+
+[node name="Pad" type="ColorRect" parent="VBox" index="4"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TogglePlayerTargeting" type="Button" parent="VBox" index="5"]
 use_parent_material = true
 layout_mode = 2
 mouse_filter = 1
 text = "Target Player"
 
-[node name="Stationary" type="Button" parent="VBox" index="4"]
+[node name="Stationary" type="Button" parent="VBox" index="6"]
 use_parent_material = true
 layout_mode = 2
 mouse_filter = 1

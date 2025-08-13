@@ -31,3 +31,10 @@ func get_texture(component: String) -> Texture2D:
 	if component in component_library:
 		return(component_library[component].texture)
 	else: return(component_library["blank"].texture)
+
+func get_damage(component: String) -> int:
+	if component in component_library:
+		if "damage" in component_library[component]:
+			return(component_library[component].damage)
+		else: return(0)
+	else: return(0)

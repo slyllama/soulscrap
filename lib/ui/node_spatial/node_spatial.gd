@@ -10,6 +10,11 @@ extends VisibleOnScreenNotifier3D
 	set(_val):
 		text_color = _val
 		$Canvas/Root2D/Text.self_modulate = text_color
+@export var bar_value = 100.0:
+	get: return(bar_value)
+	set(_val):
+		bar_value = _val
+		$Canvas/Root2D/Bar.value = bar_value
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
