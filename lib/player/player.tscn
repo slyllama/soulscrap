@@ -129,12 +129,12 @@ height = 0.36
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5x5nn"]
 exposure_multiplier = 1.1
 dof_blur_far_enabled = true
-dof_blur_far_distance = 7.0
-dof_blur_amount = 0.02
+dof_blur_far_distance = 9.0
+dof_blur_amount = 0.01
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jyhpi"]
-emission_shape = 1
-emission_sphere_radius = 7.5
+emission_shape = 2
+emission_sphere_radius = 3.4
 direction = Vector3(0, 1, 0)
 spread = 10.0
 initial_velocity_min = 0.1
@@ -234,6 +234,11 @@ nitro_speed = 3.8
 
 [node name="PlayerMesh" parent="." instance=ExtResource("2_2ocui")]
 
+[node name="FrontLight" type="OmniLight3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.368947)
+light_color = Color(0.738861, 0.868319, 1, 1)
+omni_range = 0.9
+
 [node name="Trail3D_L" type="MeshInstance3D" parent="PlayerMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_5lbbh")
@@ -286,7 +291,7 @@ current = true
 fov = 37.8493
 
 [node name="Motes" type="GPUParticles3D" parent="Orbit/Track/Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, -2.5)
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
 cast_shadow = 0
 amount = 180
 lifetime = 2.0

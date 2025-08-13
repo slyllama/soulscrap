@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode unshaded, cull_disabled;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 uniform sampler2D noise_texture: filter_linear_mipmap, repeat_enable;
@@ -14,6 +14,6 @@ void fragment() {
 	float f = fresnel(1.0, NORMAL, VIEW);
 	ALBEDO = mix(
 		texture(SCREEN_TEXTURE, SCREEN_UV).rgb,
-		texture(SCREEN_TEXTURE, SCREEN_UV + wobble * 0.06).rgb,
+		texture(SCREEN_TEXTURE, SCREEN_UV + wobble * 0.12).rgb,
 		(1.0 - f) * texture(gradient_mask, UV).r);
 }

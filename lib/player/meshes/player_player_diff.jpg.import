@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh0c6o86lf7g3"
-path.s3tc="res://.godot/imported/player_player_bake_norm.jpg-8de05bebfb8ee664c9a87c69e64b43b1.s3tc.ctex"
+uid="uid://qgycj02gvmnj"
+path.s3tc="res://.godot/imported/player_player_diff.jpg-90729e8e551ba5e680fc76190d7f0e4b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "1888afa7607cebf0317fa03d0943b217"
+"md5": "f92369eccadaba3b07b1786ec84a2c5f"
 }
 
 [deps]
 
-source_file="res://lib/player/meshes/player_player_bake_norm.jpg"
-dest_files=["res://.godot/imported/player_player_bake_norm.jpg-8de05bebfb8ee664c9a87c69e64b43b1.s3tc.ctex"]
+source_file="res://lib/player/meshes/player_player_diff.jpg"
+dest_files=["res://.godot/imported/player_player_diff.jpg-90729e8e551ba5e680fc76190d7f0e4b.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +23,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://lib/player/meshes/player_player_bake_norm.jpg"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

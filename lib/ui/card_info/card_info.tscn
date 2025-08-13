@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s8awyrwv1tmb"]
+[gd_scene load_steps=10 format=3 uid="uid://s8awyrwv1tmb"]
 
 [ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="1_ciqje"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="2_g33b8"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://drnerinhau8ek" path="res://lib/ui/card_info/card_info.gd" id="4_g33b8"]
 [ext_resource type="Texture2D" uid="uid://d3haoyu382cl7" path="res://lib/ui/card_info/textures/graffiti_side.png" id="5_v1tqk"]
 [ext_resource type="Texture2D" uid="uid://s7x4w4xtu0sv" path="res://lib/ui/card_bar/card_icon/icons/unknown.png" id="6_bnbcw"]
+[ext_resource type="Texture2D" uid="uid://cdbdelgj23c0p" path="res://lib/ui/textures/separator.png" id="7_e5o6l"]
+[ext_resource type="FontFile" uid="uid://2mojdir7ucxy" path="res://generic/fonts/exo_italic.ttf" id="8_wdgc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnbcw"]
 resource_local_to_scene = true
@@ -62,6 +64,43 @@ text = "((Description))"
 fit_content = true
 scroll_active = false
 vertical_alignment = 1
+
+[node name="Pad2" type="ColorRect" parent="VBox" index="3"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Sep2" type="TextureRect" parent="VBox" index="4"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+texture = ExtResource("7_e5o6l")
+expand_mode = 1
+
+[node name="Pad" type="ColorRect" parent="VBox" index="5"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ActiveSubtitle" type="RichTextLabel" parent="VBox" index="6"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.513405, 0.804358, 1, 1)
+theme_override_fonts/normal_font = ExtResource("8_wdgc0")
+theme_override_font_sizes/normal_font_size = 14
+text = "((Active))"
+fit_content = true
+scroll_active = false
+
+[node name="ActiveStats" type="VBoxContainer" parent="VBox" index="7"]
+use_parent_material = true
+layout_mode = 2
+theme_override_constants/separation = 2
 
 [node name="Timer" type="Timer" parent="." index="3"]
 wait_time = 0.27

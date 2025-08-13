@@ -21,6 +21,7 @@ title = "Agent Editor"
 text = "Agent Editor"
 
 [node name="AgentDetails" type="RichTextLabel" parent="VBox" index="2"]
+use_parent_material = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(0.548298, 0.548298, 0.548298, 1)
@@ -32,11 +33,13 @@ scroll_active = false
 autowrap_mode = 1
 
 [node name="TogglePlayerTargeting" type="Button" parent="VBox" index="3"]
+use_parent_material = true
 layout_mode = 2
 mouse_filter = 1
 text = "Target Player"
 
 [node name="Stationary" type="Button" parent="VBox" index="4"]
+use_parent_material = true
 layout_mode = 2
 mouse_filter = 1
 text = "Make Stationary"

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciwry3e0ycc6v"]
+
+[ext_resource type="Texture2D" uid="uid://j8hie2pud5a7" path="res://lib/ui/card_info/card_stat/textures/card_stat_bg.png" id="1_o20m2"]
+[ext_resource type="Script" uid="uid://cu3q7s108cyuh" path="res://lib/ui/card_info/card_stat/card_stat.gd" id="2_3mllf"]
+[ext_resource type="Texture2D" uid="uid://s7x4w4xtu0sv" path="res://lib/ui/card_bar/card_icon/icons/unknown.png" id="2_ppcap"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3mllf"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+texture = ExtResource("1_o20m2")
+
+[node name="CardStat" type="PanelContainer"]
+use_parent_material = true
+offset_right = 389.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3mllf")
+script = ExtResource("2_3mllf")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+use_parent_material = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="HBox"]
+use_parent_material = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("2_ppcap")
+expand_mode = 1
+
+[node name="Description" type="RichTextLabel" parent="HBox"]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
