@@ -78,13 +78,7 @@ layout_mode = 2
 texture = ExtResource("7_e5o6l")
 expand_mode = 1
 
-[node name="Pad" type="ColorRect" parent="VBox" index="5"]
-use_parent_material = true
-custom_minimum_size = Vector2(0, 8)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="ActiveSubtitle" type="RichTextLabel" parent="VBox" index="6"]
+[node name="ActiveSubtitle" type="RichTextLabel" parent="VBox" index="5"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
@@ -93,14 +87,27 @@ mouse_filter = 1
 theme_override_colors/default_color = Color(0.513405, 0.804358, 1, 1)
 theme_override_fonts/normal_font = ExtResource("8_wdgc0")
 theme_override_font_sizes/normal_font_size = 14
-text = "((Active))"
+text = "ACTIVE"
 fit_content = true
 scroll_active = false
 
-[node name="ActiveStats" type="VBoxContainer" parent="VBox" index="7"]
+[node name="ActiveStats" type="VBoxContainer" parent="VBox" index="6"]
 use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 2
+
+[node name="PassiveSubtitle" type="RichTextLabel" parent="VBox" index="7"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.513405, 0.804358, 1, 1)
+theme_override_fonts/normal_font = ExtResource("8_wdgc0")
+theme_override_font_sizes/normal_font_size = 14
+text = "PASSIVE"
+fit_content = true
+scroll_active = false
 
 [node name="Timer" type="Timer" parent="." index="3"]
 wait_time = 0.27

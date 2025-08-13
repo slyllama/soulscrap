@@ -24,6 +24,10 @@ func lose_integrity(amount: int) -> void:
 	current_integrity -= amount
 	integrity_changed.emit()
 
+func reset_integrity() -> void:
+	current_integrity = integrity
+	integrity_changed.emit()
+
 func _ready() -> void:
 	$AnguishedClaw/AnimationPlayer.speed_scale = randf_range(0.9, 1.1)
 	$AnguishedClaw/AnimationPlayer.seek(randf_range(0.0, 0.75))

@@ -10,8 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Soulscrap"
+config/name="Dwelt"
+config/description="Dwelt"
+config/version="1.0.0.0"
 run/main_scene="uid://d4i4jjh5re868"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="dwelt"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"

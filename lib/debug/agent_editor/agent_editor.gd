@@ -11,7 +11,7 @@ func update_stats() -> void:
 
 func _ready() -> void:
 	if !target_agent or Engine.is_editor_hint(): return
-	$VBox/AgentDetails.text = str(target_agent)
+	$VBox/Header/Title.text = str(target_agent.agent_name)
 	target_agent.integrity_changed.connect(update_stats)
 	
 	await get_tree().process_frame
@@ -33,3 +33,6 @@ func _on_stationary_button_down() -> void:
 	else:
 		$VBox/Stationary.text = "Make Stationary"
 		target_agent.stationary = false
+
+func _on_reset_integrity_button_down() -> void:
+	target_agent.reset_integrity()
