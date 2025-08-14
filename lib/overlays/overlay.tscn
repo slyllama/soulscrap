@@ -21,7 +21,7 @@ shader_parameter/time_factor = 0.02
 shader = ExtResource("5_busvx")
 shader_parameter/smoke_effect = ExtResource("4_busvx")
 shader_parameter/wobble_pattern = ExtResource("7_764qm")
-shader_parameter/value = 0.0
+shader_parameter/value = 1.0
 shader_parameter/overall_scale = 1.5
 shader_parameter/time_factor = 0.1
 
