@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgriptbp6d5jr"
-path="res://.godot/imported/outline.png-32f9318d1147985aba43b7da80ef39f3.ctex"
+uid="uid://cwrah8d446ok5"
+path="res://.godot/imported/test_decal.png-be97a770fbf84597d8f5ac4ec88649a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/agent/textures/outline.png"
-dest_files=["res://.godot/imported/outline.png-32f9318d1147985aba43b7da80ef39f3.ctex"]
+source_file="res://maps/sandbox/agents/anguished_claw/textures/test_decal.png"
+dest_files=["res://.godot/imported/test_decal.png-be97a770fbf84597d8f5ac4ec88649a3.ctex"]
 
 [params]
 
@@ -26,7 +26,7 @@ mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
-process/premult_alpha=false
+process/premult_alpha=true
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false

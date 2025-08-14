@@ -5,13 +5,19 @@ const TARGET_THRESHOLD = 0.5
 signal integrity_changed
 
 @export var agent_name = "((Test Agent))"
+
+@export_category("Parameters")
 @export var integrity = 100
 @export var speed = 1.0
 @export var acceleration = 10.0
 
+@export_category("AI")
 @export var stationary = false
 @export var target: Node3D
 @export var manual_target_position = Vector3.ZERO
+
+@export_category("Art")
+@export var model: Node3D
 
 @onready var current_integrity = integrity
 var target_bar_value = 100.0
@@ -30,9 +36,10 @@ func reset_integrity() -> void:
 	integrity_changed.emit()
 
 func _ready() -> void:
-	$AnguishedClaw/AnimationPlayer.speed_scale = randf_range(0.9, 1.1)
-	$AnguishedClaw/AnimationPlayer.seek(randf_range(0.0, 0.75))
-	$AnguishedClaw/AnimationPlayer.play("idle")
+	if model:
+		model.get_node("AnimationPlayer").speed_scale = randf_range(0.9, 1.1)
+		model.get_node("AnimationPlayer").seek(randf_range(0.0, 0.75))
+		model.get_node("AnimationPlayer").play("idle")
 	$NodeSpatial.text = agent_name
 
 func _process(_delta: float) -> void:
@@ -46,9 +53,6 @@ func _physics_process(delta: float) -> void:
 		if target: $NavTarget.global_position = target.global_position
 		else: $NavTarget.global_position = manual_target_position
 	else: $NavTarget.global_position = self.global_position
-	
-	$NodeSpatial.global_position = get_bone_position(
-		$AnguishedClaw/Skeleton3D, "Hand") + Vector3(0, 0.35, 0)
 	
 	var _dir = Vector3.ZERO
 	$NavAgent.target_position = $NavTarget.global_position

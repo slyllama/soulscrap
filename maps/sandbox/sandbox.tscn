@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://c22mmoiy3jofj" path="res://lib/ui/hud/hud.tscn" id="2_ix24m"]
 [ext_resource type="Script" uid="uid://b6pgdjxymisrs" path="res://maps/sandbox/sandbox.gd" id="2_oa8wj"]
 [ext_resource type="Texture2D" uid="uid://rxiyen87ib0n" path="res://generic/textures/nasa_stars.jpg" id="4_pxktp"]
-[ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/test_agent.tscn" id="5_lc3d0"]
 [ext_resource type="Texture2D" uid="uid://bw2ra7yhv6bvi" path="res://lib/ui/textures/ui_bg.jpg" id="7_40n1j"]
 [ext_resource type="Texture2D" uid="uid://b1apf47becvow" path="res://maps/sandbox/materials/textures/dirt_decal.png" id="10_ii18f"]
 [ext_resource type="PackedScene" uid="uid://b0tci4piatfdu" path="res://maps/sandbox/meshes/mire_petrification.glb" id="10_j25ev"]
@@ -15,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bim05oeh3ds2y" path="res://maps/sandbox/props/column.tscn" id="13_kaa0c"]
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
 [ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://maps/sandbox/test_projectile/molten_metal.tscn" id="15_ii18f"]
+[ext_resource type="PackedScene" uid="uid://b8ugq7w8i4b1n" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.tscn" id="15_up8qe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_up8qe"]
 resource_local_to_scene = true
@@ -80,7 +80,7 @@ offset_right = 316.0
 offset_bottom = -16.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_j7h81")
-target_agent = NodePath("../../TestAgent")
+target_agent = NodePath("../../AnguishedClaw")
 
 [node name="Sky" parent="." index="1"]
 environment = SubResource("Environment_v3xsa")
@@ -118,19 +118,7 @@ visible = false
 [node name="Player" parent="." index="4" instance=ExtResource("2_hxxcf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 2.8)
 
-[node name="TestAgent" parent="." index="5" instance=ExtResource("5_lc3d0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -5)
-agent_name = "Anguished Claw"
-integrity = 40
-speed = 0.41
-
-[node name="TestAgent2" parent="." index="6" instance=ExtResource("5_lc3d0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88782, 0.25, -2.04482)
-agent_name = "Anguished Claw"
-integrity = 40
-speed = 0.41
-
-[node name="Decorations" type="Node3D" parent="." index="7"]
+[node name="Decorations" type="Node3D" parent="." index="5"]
 
 [node name="Column" parent="Decorations" index="0" instance=ExtResource("13_kaa0c")]
 transform = Transform3D(3.90446, 0.372072, -0.785349, -4.75974e-08, 3.61484, 1.71259, 0.869028, -1.67168, 3.52849, 3.48424, -2.21371, 9.62558)
@@ -168,7 +156,7 @@ transform = Transform3D(-0.691584, -0.144047, 1.96699, -0.575402, 2.00847, -0.05
 [node name="RockOutgrowth2" parent="Decorations" index="11" instance=ExtResource("10_j25ev")]
 transform = Transform3D(0.365339, 9.06561e-09, 1.6193, 0.80622, 1.43963, -0.181896, -1.40433, 0.826485, 0.316838, -1.04831, -0.989268, -6.0174)
 
-[node name="MireLandscape" parent="." index="8" instance=ExtResource("14_40n1j")]
+[node name="MireLandscape" parent="." index="6" instance=ExtResource("14_40n1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.640544, 0)
 
 [node name="Decal" type="Decal" parent="MireLandscape" index="7"]
@@ -185,5 +173,8 @@ texture_albedo = ExtResource("10_ii18f")
 albedo_mix = 0.65
 cull_mask = 4
 
-[node name="MoltenMetal" parent="." index="9" instance=ExtResource("15_ii18f")]
+[node name="MoltenMetal" parent="." index="7" instance=ExtResource("15_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="AnguishedClaw" parent="." index="8" instance=ExtResource("15_up8qe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.056, 0.5, -1.146)

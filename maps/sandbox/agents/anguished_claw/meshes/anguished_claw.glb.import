@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bt4weraukcdam"
-path="res://.godot/imported/anguished_claw.glb-d8042c6d2a9b0fde5aaeee6274e24996.scn"
+path="res://.godot/imported/anguished_claw.glb-c529853b29c64d68a4ac285040093b5c.scn"
 
 [deps]
 
-source_file="res://lib/agent/meshes/anguished_claw.glb"
-dest_files=["res://.godot/imported/anguished_claw.glb-d8042c6d2a9b0fde5aaeee6274e24996.scn"]
+source_file="res://maps/sandbox/agents/anguished_claw/meshes/anguished_claw.glb"
+dest_files=["res://.godot/imported/anguished_claw.glb-c529853b29c64d68a4ac285040093b5c.scn"]
 
 [params]
 

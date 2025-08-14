@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8ugq7w8i4b1n"]
+
+[ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/agent.tscn" id="1_hyjce"]
+[ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="2_svn0r"]
+[ext_resource type="Script" uid="uid://dpt3kvvvta4lc" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.gd" id="2_wairi"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_j4ioo"]
+[ext_resource type="Texture2D" uid="uid://cwrah8d446ok5" path="res://maps/sandbox/agents/anguished_claw/textures/test_decal.png" id="3_qkuix"]
+[ext_resource type="PackedScene" uid="uid://bt4weraukcdam" path="res://maps/sandbox/agents/anguished_claw/meshes/anguished_claw.glb" id="4_svn0r"]
+[ext_resource type="Texture2D" uid="uid://dgriptbp6d5jr" path="res://maps/sandbox/agents/anguished_claw/textures/outline.png" id="4_wairi"]
+[ext_resource type="PackedScene" uid="uid://c1uh4fv3t7swu" path="res://lib/bounding_circle/bounding_circle.tscn" id="5_yskyh"]
+
+[sub_resource type="Gradient" id="Gradient_d7cpf"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.5, 0.75, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ek1lu"]
+gradient = SubResource("Gradient_d7cpf")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7cpf"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_svn0r")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_ek1lu")
+shader_parameter/paint_texture = ExtResource("3_j4ioo")
+shader_parameter/alpha = 0.25
+shader_parameter/uv_scale = Vector2(7, 2)
+shader_parameter/albedo_color = Color(0.543667, 0.826524, 3.85046e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bc51q"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_d7cpf")
+top_radius = 0.47
+bottom_radius = 0.47
+height = 0.27
+radial_segments = 32
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[node name="AnguishedClaw" node_paths=PackedStringArray("model") instance=ExtResource("1_hyjce")]
+script = ExtResource("2_wairi")
+model = NodePath("AnguishedClaw")
+
+[node name="AnguishedClaw" parent="." index="6" instance=ExtResource("4_svn0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Decal" type="Decal" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+sorting_offset = 0.1
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("3_qkuix")
+upper_fade = 1e-05
+cull_mask = 4
+
+[node name="OutlineDecal" type="Decal" parent="." index="8"]
+size = Vector3(4, 3, 4)
+texture_albedo = ExtResource("4_wairi")
+modulate = Color(0.545098, 0.827451, 0, 1)
+albedo_mix = 0.65
+normal_fade = 0.5
+distance_fade_enabled = true
+distance_fade_begin = 4.0
+distance_fade_length = 1.0
+
+[node name="BoundingCircle" parent="." index="9" instance=ExtResource("5_yskyh")]
+mesh = SubResource("CylinderMesh_bc51q")
+radius = 0.47
+albedo_color = Color(0.543667, 0.826524, 3.85046e-07, 1)
