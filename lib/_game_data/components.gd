@@ -8,12 +8,19 @@ const component_library = {
 		"title": "Blank",
 		"texture": preload(ICON_PATH + "unknown.png")
 	},
-	"short_burst_projectile": {
-		"title": "((Short Burst Projectile))",
-		"description": "((Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.))",
-		"texture": preload(ICON_PATH + "short_burst_projectile.png"),
+	"molten_shot": {
+		"title": "Molten Shot",
+		"description": "Fire a super-heated blob of scrap metal.",
+		"texture": preload(ICON_PATH + "molten_shot.png"),
 		"tempo_cost": 20,
-		"damage": 10
+		"damage": 10,
+		"cooldown": 0.5
+	},
+	"test_item": {
+		"title": "((Test Item))",
+		"description": "((Description))",
+		"texture": preload(ICON_PATH + "test_item.png"),
+		"cooldown": 5.0
 	}
 }
 
@@ -38,3 +45,10 @@ func get_damage(component: String) -> int:
 			return(component_library[component].damage)
 		else: return(0)
 	else: return(0)
+
+func get_cooldown(component: String) -> float:
+	if component in component_library:
+		if "cooldown" in component_library[component]:
+			return(component_library[component].cooldown)
+		else: return(0.0)
+	else: return(0.0)

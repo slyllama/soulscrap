@@ -1,6 +1,6 @@
 extends Node
 
-signal damage_taken
+signal projectile_fired
 
 var tempo = 99
 var integrity = 100

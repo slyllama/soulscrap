@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbs03j84y2d3t"]
+
+[ext_resource type="Script" uid="uid://2gkjfuuvy4mp" path="res://maps/sandbox/test_projectile/molten_metal.gd" id="1_adgnm"]
+[ext_resource type="PackedScene" uid="uid://mkpk8e6rwox2" path="res://maps/sandbox/test_projectile/molten_metal.glb" id="1_et4gg"]
+[ext_resource type="Material" uid="uid://ncc5ctdnq4k" path="res://maps/sandbox/test_projectile/mat_molten_metal.tres" id="2_y31qt"]
+[ext_resource type="PackedScene" uid="uid://fvaxi12kqoqp" path="res://maps/sandbox/test_projectile/fire_spiral.glb" id="4_7pmjd"]
+
+[sub_resource type="Gradient" id="Gradient_f08m0"]
+colors = PackedColorArray(0.194349, 0.194349, 0.194349, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vlv1s"]
+gradient = SubResource("Gradient_f08m0")
+
+[sub_resource type="Curve" id="Curve_y31qt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.202225, 1), 0.0, 0.0, 0, 0, Vector2(0.872382, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_adgnm"]
+curve = SubResource("Curve_y31qt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fs1ld"]
+emission_shape = 2
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 4.0
+initial_velocity_min = 0.97
+initial_velocity_max = 1.03
+gravity = Vector3(0, -6, 0)
+scale_min = 0.11
+scale_max = 0.13
+scale_curve = SubResource("CurveTexture_adgnm")
+color_ramp = SubResource("GradientTexture1D_vlv1s")
+
+[sub_resource type="SphereMesh" id="SphereMesh_75mgc"]
+material = ExtResource("2_y31qt")
+radius = 0.15
+height = 0.3
+radial_segments = 4
+rings = 2
+
+[node name="MoltenMetal" type="Node3D"]
+script = ExtResource("1_adgnm")
+
+[node name="Mesh" parent="." instance=ExtResource("1_et4gg")]
+
+[node name="Motes" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
+cast_shadow = 0
+amount = 22
+lifetime = 0.65
+preprocess = 10.0
+speed_scale = 0.5
+explosiveness = 0.05
+randomness = 0.35
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_fs1ld")
+draw_pass_1 = SubResource("SphereMesh_75mgc")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="FireSpiral" parent="Pivot" instance=ExtResource("4_7pmjd")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0, 0, 0.75)
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

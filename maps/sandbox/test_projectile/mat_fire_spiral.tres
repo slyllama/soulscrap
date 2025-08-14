@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dde3lpymks84d"]
+
+[ext_resource type="Shader" uid="uid://mhtwctqrkl5a" path="res://maps/sandbox/test_projectile/fire_spiral.gdshader" id="1_1vgms"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="2_53y22"]
+
+[sub_resource type="Gradient" id="Gradient_lo7qk"]
+offsets = PackedFloat32Array(0.338384, 0.636364, 0.737374, 0.818182, 1)
+colors = PackedColorArray(0.596517, 0.244882, 0, 1, 0.612371, 0.485088, 0, 1, 0.949446, 0.838784, 0.538159, 1, 0.789992, 0.408066, 0, 1, 0.842494, 0.513004, 0.112993, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qpndt"]
+gradient = SubResource("Gradient_lo7qk")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_53y22"]
+offsets = PackedFloat32Array(0, 0.262626, 0.883838, 0.919192)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lo7qk"]
+gradient = SubResource("Gradient_53y22")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1vgms")
+shader_parameter/paint_texture = ExtResource("2_53y22")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_lo7qk")
+shader_parameter/albedo_gradient_texture = SubResource("GradientTexture2D_qpndt")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/exponent = 0.0

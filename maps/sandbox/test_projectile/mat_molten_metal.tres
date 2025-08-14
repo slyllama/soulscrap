@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ncc5ctdnq4k"]
+
+[ext_resource type="Shader" uid="uid://cr5qi4ycfarcs" path="res://maps/sandbox/test_projectile/molten_metal.gdshader" id="1_8186a"]
+[ext_resource type="Texture2D" uid="uid://bbufw0h5alasj" path="res://maps/sandbox/test_projectile/molten_swirl.png" id="2_msgox"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8186a")
+shader_parameter/molten_texture = ExtResource("2_msgox")
+shader_parameter/dissolve_state = 0.0

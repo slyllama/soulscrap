@@ -50,7 +50,7 @@ func _ready() -> void:
 	Global.mouse_capture_gained.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	PlayerData.damage_taken.connect(shake_camera)
+	PlayerData.projectile_fired.connect(shake_camera)
 	
 	get_window().focus_exited.connect(func():
 		Global.mouse_capture_lost.emit()

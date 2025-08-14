@@ -1,13 +1,11 @@
 @tool
 extends "res://lib/ui/container/container.gd"
 
+const ICON_PATH = "res://lib/ui/card_info/card_stat/stat_icons/"
 const CardStat = preload("res://lib/ui/card_info/card_stat/card_stat.tscn")
 const StatIcons = {
-	"damage": preload(
-		"res://lib/ui/card_info/card_stat/stat_icons/icon_damage.png"),
-	"tempo": preload(
-		"res://lib/ui/card_info/card_stat/stat_icons/icon_tempo.png")
-}
+	"damage": preload(ICON_PATH + "icon_damage.png"),
+	"tempo": preload(ICON_PATH + "icon_tempo.png") }
 
 func add_card_stat(id, parameter: String, component_title: String) -> void:
 	var _data = Components.component_library[id]
@@ -35,7 +33,6 @@ func update(id) -> void:
 		add_card_stat(id, "tempo_cost", "Tempo")
 		
 	if $VBox/ActiveStats.get_child_count() > 0:
-		print($VBox/ActiveStats.get_children())
 		$VBox/ActiveSubtitle.visible = true
 	else: $VBox/ActiveSubtitle.visible = false
 	
@@ -43,7 +40,8 @@ func update(id) -> void:
 	await get_tree().process_frame
 	shrink()
 	size.y = $VBox.get_size().y + 32.0
-	position.y = get_window().size.y / 2.0 / get_window().content_scale_factor - size.y / 2.0
+	position.y = (get_window().size.y / 2.0
+		/ get_window().content_scale_factor - size.y / 2.0)
 	
 	$Timer.start()
 
@@ -54,7 +52,6 @@ func dismiss() -> void:
 	var _c = get_window().gui_get_hovered_control()
 	if !_c is CardIcon: dissolve()
 	elif _c.id == "blank": dissolve()
-	
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("left_click"):

@@ -32,7 +32,7 @@ script = ExtResource("1_6da0o")
 [node name="CardPrimary" parent="." instance=ExtResource("2_46qs2")]
 material = SubResource("ShaderMaterial_46qs2")
 layout_mode = 2
-id = "short_burst_projectile"
+id = "molten_shot"
 
 [node name="Hotkey" type="RichTextLabel" parent="CardPrimary"]
 layout_mode = 1
@@ -60,7 +60,7 @@ vertical_alignment = 1
 [node name="CardSecondary" parent="." instance=ExtResource("2_46qs2")]
 material = SubResource("ShaderMaterial_mbaxn")
 layout_mode = 2
-id = "test_component"
+id = "test_item"
 
 [node name="Hotkey" type="RichTextLabel" parent="CardSecondary"]
 layout_mode = 1

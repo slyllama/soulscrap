@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k15mnau82p1j"
-path="res://.godot/imported/short_burst_projectile.png-97d05bb8ef9c7b06313383e1444d0d5f.ctex"
+uid="uid://bbufw0h5alasj"
+path.s3tc="res://.godot/imported/molten_swirl.png-222719d4597516b3683fbcb5e3b14191.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://lib/ui/card_bar/card_icon/icons/short_burst_projectile.png"
-dest_files=["res://.godot/imported/short_burst_projectile.png-97d05bb8ef9c7b06313383e1444d0d5f.ctex"]
+source_file="res://maps/sandbox/test_projectile/molten_swirl.png"
+dest_files=["res://.godot/imported/molten_swirl.png-222719d4597516b3683fbcb5e3b14191.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

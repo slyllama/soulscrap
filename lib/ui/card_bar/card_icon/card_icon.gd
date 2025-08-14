@@ -12,9 +12,11 @@ var _mouse_delta = 0.0 # distance (length)
 var _mouse_in = false
 var _mouse_down = false
 var _updated = true # wait a single frame after updating to prevent any instant input actions
+var _cd = 0.0
 
 func update(new_id = id) -> void:
 	_updated = false
+	_cd = Components.get_cooldown(id)
 	id = new_id
 	
 	# Hide the icon if the card is blank
@@ -45,20 +47,20 @@ func _unhover() -> void: $Mask.modulate = Color(1.0, 1.0, 1.0)
 
 func use() -> void:
 	if id == "blank": return # has no use
+	_unhover()
 	
+	if _cd > 0.0 and !$CDTimer.is_stopped(): return
 	var _t = create_tween()
 	_t.tween_method($Use._set_dissolve, 0.0, 1.0, 0.32)
 	_t.set_trans(Tween.TRANS_SINE)
 	_t.set_ease(Tween.EASE_OUT)
-	_unhover()
 	
-	if id in Components.component_library:
-		if PlayerData.change_tempo(Components.component_library[id].tempo_cost * -1):
-			pass
-		else: return
+	if _cd > 0.0:
+		$Mask/CDText.visible = true
+		$CDTimer.wait_time = _cd
+		$CDTimer.start()
 	
 	Global.component_used.emit(id)
-	PlayerData.damage_taken.emit()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("left_click"):
@@ -74,6 +76,15 @@ func _ready() -> void:
 	update()
 
 func _process(_delta: float) -> void:
+	if !$CDTimer.is_stopped() and _cd > 0.0:
+		var _tl = $CDTimer.time_left
+		var _ratio = _tl / _cd
+		_ratio = 1.0 - cos((_ratio * PI) / 2.0)
+		$Mask/CDBar.size.y = 50.0 * _ratio
+		
+		if _tl > 1.9: $Mask/CDText.text = str(snapped(_tl, 1))
+		else: $Mask/CDText.text = str(snapped(_tl, 0.1))
+	
 	if Input.is_action_pressed("left_click"):
 		_mouse_delta = (Vector2(get_global_mouse_position()
 			- _last_mouse_pos).length())
@@ -111,3 +122,6 @@ func _on_gui_input(_event: InputEvent) -> void:
 		
 		if !Global.dragging_card:
 			if _mouse_delta < DRAG_THRESHOLD: use()
+
+func _on_cd_timer_timeout() -> void:
+	$Mask/CDText.visible = false
