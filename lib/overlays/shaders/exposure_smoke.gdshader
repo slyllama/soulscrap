@@ -27,6 +27,6 @@ void fragment() {
 	smoke = smoke + vec3(mask) * 0.3 - value * 0.3;
 	float _c = COLOR.a;
 	float _s = pow(smoke.r, value * 2.0) * 1.0 - pow(value, 3.0);
-	COLOR = color_dodge(texture(SCREEN_TEXTURE, SCREEN_UV).rgba, vec4(0.68));
+	COLOR = color_dodge(texture(SCREEN_TEXTURE, SCREEN_UV).rgba, vec4(0.61));
 	COLOR.a *= _c * _s;
 }

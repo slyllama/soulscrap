@@ -21,7 +21,14 @@ func _ready() -> void:
 		if nitro_active: PlayerData.change_tempo(-3)
 		else: PlayerData.change_tempo(1))
 	
+	# Aim visibility
+	Global.mouse_capture_gained.connect(func():
+		$CombatPivot/CombatHandler/Aim.visible = true)
+	Global.mouse_capture_lost.connect(func():
+		$CombatPivot/CombatHandler/Aim.visible = false)
+	
 	get_window().focus_exited.connect(func():
+		$CombatPivot/CombatHandler/Aim.visible = false
 		velocity = Vector3.ZERO)
 
 func _physics_process(_delta: float) -> void:
@@ -72,11 +79,12 @@ func _physics_process(_delta: float) -> void:
 		$PlayerMesh.rotation_degrees.y = lerp(
 			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(7.0))
 	
+	# Orient the combat handler
 	if $CombatPivot.cursor_position > Utils.NULL_VEC3:
 		$CombatPivot.look_at($CombatPivot.cursor_position + Vector3(0, 0.25, 0))
-		#$CombatPivot.global_rotation.x = 0
 	else: $CombatPivot.rotation.y = $Orbit.rotation.y
-	$DebugArrow.global_position = $CombatPivot.cursor_position
+	$CombatPivot.position.x = 0.0
+	$CombatPivot.position.z = 0.0
 	
 	# Handle animations
 	var _calc_forward = lerp(

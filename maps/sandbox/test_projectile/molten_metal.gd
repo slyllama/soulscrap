@@ -1,11 +1,24 @@
 extends Node3D
 
-var _target_speed = 0.3
+var _target_speed = 0.5
+@onready var spiral_mesh: MeshInstance3D = get_node("Pivot/FireSpiral/fire_spiral")
+@onready var metal_mesh: MeshInstance3D = get_node("Mesh/Sphere")
+@onready var facing_rotation = get_parent().global_rotation.y
+
+func _duplicate_mat(mesh: MeshInstance3D) -> void:
+	var _mat = mesh.get_active_material(0).duplicate(true)
+	mesh.set_surface_override_material(0, _mat)
 
 func _set_fire_spiral_exponent(_val) -> void:
-	$Pivot/FireSpiral.get_node("fire_spiral").get_active_material(0).set_shader_parameter("exponent", _val)
+	spiral_mesh.get_active_material(0).set_shader_parameter("exponent", _val)
 
 func _ready() -> void:
+	visible = false
+	top_level = true
+	
+	_duplicate_mat(spiral_mesh)
+	_duplicate_mat(metal_mesh)
+	
 	await get_tree().process_frame
 	$Pivot.top_level = true
 	$Pivot.global_position = global_position
@@ -18,9 +31,15 @@ func _ready() -> void:
 	_u.tween_method(_set_fire_spiral_exponent, 0.0, 1.0, 0.4)
 
 func _physics_process(_delta: float) -> void:
-	_target_speed = lerp(_target_speed, 0.05, Utils.clerp(5.0))
-	position += Vector3.FORWARD.rotated(
-		Vector3.UP, get_parent().global_rotation.y) * _target_speed
+	var _time_ratio = $Lifetime.time_left / $Lifetime.wait_time
+	var _adj_ratio = pow((1.0 - _time_ratio), 4.0)
+	_target_speed = lerp(_target_speed, 0.005, Utils.clerp(10.0))
+	$Mesh/Trail.trail_width = 0.05 * _time_ratio
+	if _time_ratio > 0.0:
+		metal_mesh.get_active_material(0).set_shader_parameter("dissolve_state", _adj_ratio)
+	if facing_rotation:
+		position += Vector3.FORWARD.rotated(
+			Vector3.UP, facing_rotation) * _target_speed
 
 func _on_lifetime_timeout() -> void:
 	queue_free()

@@ -10,7 +10,7 @@
 [ext_resource type="Animation" uid="uid://dui8fru0h66t5" path="res://lib/player/meshes/anims/strafe.res" id="6_ospss"]
 [ext_resource type="Script" uid="uid://covkdksuysclw" path="res://lib/cursor_raycast/cursor_raycast.gd" id="9_5x5nn"]
 [ext_resource type="PackedScene" uid="uid://b8iv1n1t2q8um" path="res://lib/player/combat_handler/combat_handler.tscn" id="9_jyhpi"]
-[ext_resource type="PackedScene" uid="uid://w7qk2fpeconr" path="res://generic/meshes/debug_arrow.glb" id="10_up78s"]
+[ext_resource type="Texture2D" uid="uid://8gwma6y3f3f7" path="res://lib/player/combat_handler/textures/pointer.png" id="12_ram4p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lbbh"]
 transparency = 1
@@ -339,11 +339,8 @@ metadata/_custom_type_script = "uid://covkdksuysclw"
 [node name="CombatHandler" parent="CombatPivot" instance=ExtResource("9_jyhpi")]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, -0.2)
 
-[node name="DebugArrow" parent="CombatPivot/CombatHandler" instance=ExtResource("10_up78s")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 2, 0, 0, 0)
-visible = false
-
-[node name="DebugArrow" parent="." instance=ExtResource("10_up78s")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-top_level = true
-visible = false
+[node name="Aim" type="Decal" parent="CombatPivot/CombatHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
+size = Vector3(1, 2, 1)
+texture_albedo = ExtResource("12_ram4p")
+cull_mask = 4

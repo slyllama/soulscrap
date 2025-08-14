@@ -9,6 +9,7 @@ func _ready() -> void:
 		
 		var _m = $MoltenMetal.duplicate()
 		add_child(_m)
+		_m.visible = true
 		_m.global_position = global_position
 		_m.get_node("Lifetime").start()
 		
