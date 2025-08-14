@@ -13,6 +13,12 @@ signal integrity_changed
 
 @export_category("AI")
 @export var stationary = false
+@export var target_player_on_aggro = true
+@export var aggro_radius = 1.0:
+	get: return(aggro_radius)
+	set(_val):
+		aggro_radius = _val
+		$AggroArea/Collision.shape.radius = aggro_radius
 @export var target: Node3D
 @export var manual_target_position = Vector3.ZERO
 
@@ -28,8 +34,10 @@ func get_bone_position(skeleton: Skeleton3D, bone_name: String) -> Vector3:
 	return(skeleton.to_global(_bone_origin))
 
 func lose_integrity(amount: int) -> void:
-	current_integrity -= amount
-	integrity_changed.emit()
+	if current_integrity - amount >= 0:
+		model.get_node("AnimationPlayer").play("take_damage")
+		current_integrity -= amount
+		integrity_changed.emit()
 
 func reset_integrity() -> void:
 	current_integrity = integrity
@@ -37,14 +45,23 @@ func reset_integrity() -> void:
 
 func _ready() -> void:
 	if model:
-		model.get_node("AnimationPlayer").speed_scale = randf_range(0.9, 1.1)
-		model.get_node("AnimationPlayer").seek(randf_range(0.0, 0.75))
-		model.get_node("AnimationPlayer").play("idle")
+		# Set up animation logic
+		var _anim: AnimationPlayer = model.get_node("AnimationPlayer")
+		_anim.speed_scale = randf_range(0.9, 1.1)
+		_anim.set_blend_time("take_damage", "idle", 0.2)
+		_anim.seek(randf_range(0.0, 0.75))
+		_anim.animation_finished.connect(func(_anim_name):
+			if _anim_name == "take_damage":
+				_anim.play("idle"))
+		
+		_anim.play("idle")
+		
 	$NodeSpatial.text = agent_name
 
 func _process(_delta: float) -> void:
+	var _ir = float(current_integrity) / float(integrity) # integrity ratio
 	target_bar_value = lerp(
-		target_bar_value, float(current_integrity) / float(integrity) * 100.0, Utils.clerp(20.0))
+		target_bar_value, _ir * 100.0, Utils.clerp(20.0))
 	$NodeSpatial.update_value(target_bar_value)
 
 func _physics_process(delta: float) -> void:
@@ -73,4 +90,13 @@ func _physics_process(delta: float) -> void:
 	$OutlineDecal.rotation_degrees.y -= delta * 10.0
 	if $YCast.is_colliding():
 		$BoundingCircle.global_position.y = lerp(
-			$BoundingCircle.global_position.y, $YCast.get_collision_point().y, Utils.clerp(10.0))
+			$BoundingCircle.global_position.y, 
+			$YCast.get_collision_point().y, Utils.clerp(10.0))
+
+func _on_aggro_area_body_entered(body: Node3D) -> void:
+	if body is Player and target_player_on_aggro:
+		target = Global.player
+
+func _on_aggro_area_body_exited(body: Node3D) -> void:
+	if body is Player:
+		target = null

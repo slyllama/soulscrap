@@ -38,8 +38,7 @@ func _physics_process(_delta: float) -> void:
 	if _time_ratio > 0.0:
 		metal_mesh.get_active_material(0).set_shader_parameter("dissolve_state", _adj_ratio)
 	if facing_rotation:
-		position += Vector3.FORWARD.rotated(
-			Vector3.UP, facing_rotation) * _target_speed
+		position -= get_parent().global_transform.basis.z * _target_speed
 
 func _on_lifetime_timeout() -> void:
 	queue_free()

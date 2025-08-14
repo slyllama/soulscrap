@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 const P_STRAFE = "parameters/strafe/add_amount"
 const P_FORWARD = "parameters/forward/add_amount"
