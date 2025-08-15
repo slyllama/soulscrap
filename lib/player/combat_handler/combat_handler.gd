@@ -1,10 +1,18 @@
 extends Node3D
 
+const NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
+
 func _ready() -> void:
 	Global.component_used.connect(func(id):
 		var _data = Components.component_library[id]
 		if "tempo_cost" in _data:
 			if !PlayerData.change_tempo(-_data.tempo_cost):
+				var _d = NodeSpatial.instantiate()
+				_d.text = str("Undertempo")
+				_d.font_size = 16
+				_d.position.z = -0.35
+				add_child(_d)
+				_d.float_away()
 				return
 		
 		var _m = $MoltenMetal.duplicate()

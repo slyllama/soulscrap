@@ -7,8 +7,10 @@ var integrity = 100
 
 # Returns true is a change was effected
 func change_tempo(amount: int = -1) -> bool:
-	if tempo + amount < 0 or tempo + amount > 100: # one tick of a negative value is technically allowed
-		tempo = clamp(tempo, 0, 100)
-		return(false)
-	tempo += amount
-	return(true)
+	var _v = false
+	if amount < 0:
+		if tempo + amount >= 0: _v = true
+	if amount > 0:
+		if tempo + amount <= 100: _v = true
+	if _v: tempo += amount
+	return(_v)

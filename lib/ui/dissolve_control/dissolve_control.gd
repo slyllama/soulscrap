@@ -24,7 +24,7 @@ func _get_dissolve() -> float:
 func disappear(duration = 0.21) -> void:
 	var _i = _get_dissolve() # initial dissolve value
 	var _t = create_tween()
-	_t.tween_method(_set_dissolve, 0.0, 1.0, duration)
+	_t.tween_method(_set_dissolve, _get_dissolve(), 1.0, duration)
 
 func appear(duration = 0.21) -> void:
 	var _i = _get_dissolve() # initial dissolve value

@@ -18,8 +18,17 @@ func _ready() -> void:
 	Global.player = self
 	
 	Utils.tick.connect(func():
-		if nitro_active: PlayerData.change_tempo(-3)
-		else: PlayerData.change_tempo(1))
+		if Input.is_action_pressed("nitro"):
+			if PlayerData.change_tempo(-3):
+				nitro_active = true
+				Global.sprint_started.emit()
+			else:
+				nitro_active = false
+				Global.sprint_ended.emit()
+		else:
+			nitro_active = false
+			Global.sprint_ended.emit()
+			PlayerData.change_tempo(1))
 	
 	# Aim visibility
 	Global.mouse_capture_gained.connect(func():
@@ -36,18 +45,14 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	# Nitro (sprinting) - handles FOV changes too
-	if Input.is_action_pressed("nitro"):
-		nitro_active = true
+	if nitro_active:
 		if PlayerData.tempo > 0:
 			$Orbit._target_fov = $Orbit.fov + 5.0
 			target_speed = nitro_speed
-		else:
-			$Orbit._target_fov = $Orbit.fov
-			target_speed = speed
 	else:
 		$Orbit._target_fov = $Orbit.fov
-		nitro_active = false
 		target_speed = speed
+	
 	_actual_speed = lerp(_actual_speed, target_speed, Utils.clerp(10.0))
 	
 	var _dir = Vector3.ZERO

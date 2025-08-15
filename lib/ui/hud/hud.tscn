@@ -109,7 +109,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=green]128fps[/color]"
+text = "[color=green]144fps[/color]"
 
 [node name="PrimsCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -121,6 +121,18 @@ offset_right = -16.0
 offset_bottom = 52.0
 grow_horizontal = 0
 text = "((Primitives))"
+script = null
+
+[node name="TempoCounter" parent="." instance=ExtResource("1_6ca3a")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_top = 52.0
+offset_right = -16.0
+offset_bottom = 74.0
+grow_horizontal = 0
+text = "((Tempo))"
 script = null
 
 [node name="Reticule" type="TextureRect" parent="."]
