@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fvaxi12kqoqp"
-path="res://.godot/imported/fire_spiral.glb-d1b57a62246474fe9e52d3a06e9f5670.scn"
+uid="uid://mkpk8e6rwox2"
+path="res://.godot/imported/molten_metal.glb-cb11fe1138628da37af155bc5dba0ce8.scn"
 
 [deps]
 
-source_file="res://maps/sandbox/test_projectile/fire_spiral.glb"
-dest_files=["res://.godot/imported/fire_spiral.glb-d1b57a62246474fe9e52d3a06e9f5670.scn"]
+source_file="res://lib/projectiles/molten_shot/meshes/molten_metal.glb"
+dest_files=["res://.godot/imported/molten_metal.glb-cb11fe1138628da37af155bc5dba0ce8.scn"]
 
 [params]
 
 nodes/root_type=""
-nodes/root_name=""
+nodes/root_name="MoltenMetal"
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=2.0
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
@@ -34,13 +34,13 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"mat_fire_spiral": {
+"mat_molten_metal": {
 "use_external/enabled": true,
-"use_external/path": "uid://dde3lpymks84d"
+"use_external/path": "uid://ncc5ctdnq4k"
 }
 },
 "nodes": {
-"PATH:fire_spiral": {
+"PATH:Sphere": {
 "mesh_instance/cast_shadow": 0
 }
 }

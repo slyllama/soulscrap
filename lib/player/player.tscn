@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://ban0go6y3b25c"]
+[gd_scene load_steps=42 format=4 uid="uid://ban0go6y3b25c"]
 
 [ext_resource type="Script" uid="uid://ckhdif2cde65" path="res://lib/player/player.gd" id="1_al4t3"]
 [ext_resource type="PackedScene" uid="uid://m0o8woonsvva" path="res://lib/player/meshes/player.glb" id="2_2ocui"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://covkdksuysclw" path="res://lib/cursor_raycast/cursor_raycast.gd" id="9_5x5nn"]
 [ext_resource type="PackedScene" uid="uid://b8iv1n1t2q8um" path="res://lib/player/combat_handler/combat_handler.tscn" id="9_jyhpi"]
 [ext_resource type="AudioStream" uid="uid://cs6fjphwgvtii" path="res://lib/player/sounds/engine.ogg" id="12_r1bse"]
-[ext_resource type="Texture2D" uid="uid://8gwma6y3f3f7" path="res://lib/player/combat_handler/textures/pointer.png" id="12_ram4p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lbbh"]
 transparency = 1
@@ -341,12 +340,6 @@ metadata/_custom_type_script = "uid://covkdksuysclw"
 
 [node name="CombatHandler" parent="CombatPivot" instance=ExtResource("9_jyhpi")]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, -0.2)
-
-[node name="Aim" type="Decal" parent="CombatPivot/CombatHandler"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
-size = Vector3(1, 2, 1)
-texture_albedo = ExtResource("12_ram4p")
-cull_mask = 4
 
 [node name="Engine" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_r1bse")

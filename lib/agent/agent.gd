@@ -41,6 +41,12 @@ func lose_integrity(amount: int) -> void:
 		var _d = NodeSpatial.instantiate()
 		_d.text = str(amount)
 		_d.font_size = 24
+		
+		# Add amall amount of variation
+		var _offset = randf_range(-0.25, 0.25)
+		_d.position.x += _offset
+		_d.position.y += _offset
+		
 		add_child(_d)
 		_d.float_away()
 		

@@ -9,7 +9,7 @@ const P_FORWARD = "parameters/forward/add_amount"
 @export var gravity_damping = 10.0
 
 @export var nitro_impulse_time = 0.34
-@export var nitro_impulse_multiplier = 4.0
+@export var nitro_impulse_multiplier = 3.0
 
 var target_speed = speed
 var _actual_speed = target_speed
@@ -33,14 +33,7 @@ func _ready() -> void:
 			Global.sprint_ended.emit()
 			PlayerData.change_tempo(1))
 	
-	# Aim visibility
-	Global.mouse_capture_gained.connect(func():
-		$CombatPivot/CombatHandler/Aim.visible = true)
-	Global.mouse_capture_lost.connect(func():
-		$CombatPivot/CombatHandler/Aim.visible = false)
-	
 	get_window().focus_exited.connect(func():
-		$CombatPivot/CombatHandler/Aim.visible = false
 		velocity = Vector3.ZERO)
 
 func _process(_delta: float) -> void:

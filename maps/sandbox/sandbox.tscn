@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bim05oeh3ds2y" path="res://maps/sandbox/props/column.tscn" id="13_kaa0c"]
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
 [ext_resource type="AudioStream" uid="uid://birqpa5ocx83n" path="res://maps/sandbox/sounds/mus_scrapper.mp3" id="15_c8n4n"]
-[ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://maps/sandbox/test_projectile/molten_metal.tscn" id="15_ii18f"]
+[ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://lib/projectiles/molten_shot/molten_metal.tscn" id="15_ii18f"]
 [ext_resource type="PackedScene" uid="uid://b8ugq7w8i4b1n" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.tscn" id="15_up8qe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_up8qe"]

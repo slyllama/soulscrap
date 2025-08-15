@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dde3lpymks84d"]
 
-[ext_resource type="Shader" uid="uid://mhtwctqrkl5a" path="res://maps/sandbox/test_projectile/fire_spiral.gdshader" id="1_1vgms"]
+[ext_resource type="Shader" uid="uid://mhtwctqrkl5a" path="res://lib/projectiles/molten_shot/materials/shaders/fire_spiral.gdshader" id="1_1vgms"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="2_53y22"]
 
 [sub_resource type="Gradient" id="Gradient_lo7qk"]
