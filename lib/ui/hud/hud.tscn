@@ -123,18 +123,6 @@ grow_horizontal = 0
 text = "((Primitives))"
 script = null
 
-[node name="TempoCounter" parent="." instance=ExtResource("1_6ca3a")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -117.0
-offset_top = 52.0
-offset_right = -16.0
-offset_bottom = 74.0
-grow_horizontal = 0
-text = "((Tempo))"
-script = null
-
 [node name="Reticule" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(55, 17)
 anchors_preset = 8
@@ -268,6 +256,7 @@ theme_override_constants/separation = -7
 [node name="CardIcon" parent="CardBar" instance=ExtResource("10_l7ms4")]
 material = SubResource("ShaderMaterial_2nwb8")
 layout_mode = 2
+id = "anguished_egg"
 
 [node name="CursorCard" parent="." instance=ExtResource("10_l7ms4")]
 visible = false

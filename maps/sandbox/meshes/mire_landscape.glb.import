@@ -34,6 +34,10 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
+"mat_ocean": {
+"use_external/enabled": true,
+"use_external/path": "uid://cuvntonjcmoqf"
+},
 "mat_platform": {
 "use_external/enabled": true,
 "use_external/path": "uid://cmq02yikwbt1l"
@@ -50,6 +54,21 @@ _subresources={
 "nodes": {
 "PATH:PlatformPiece_005": {
 "mesh_instance/layers": 5
+},
+"PATH:Waterfall": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Waterfall_001": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Waterfall_002": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Waterfall_003": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Waterfall_004": {
+"mesh_instance/cast_shadow": 0
 }
 }
 }

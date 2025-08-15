@@ -7,6 +7,8 @@ func _ready() -> void:
 		var _data = Components.component_library[id]
 		if "tempo_cost" in _data:
 			if !PlayerData.change_tempo(-_data.tempo_cost):
+				$TempoWarning.play()
+				
 				var _d = NodeSpatial.instantiate()
 				_d.text = str("Undertempo")
 				_d.font_size = 16

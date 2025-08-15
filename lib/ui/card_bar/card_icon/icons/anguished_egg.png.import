@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dccksnepj5yb7"
-path.s3tc="res://.godot/imported/icon_damage.png-a6088ec609db2feeb02f56fb54e1aeec.s3tc.ctex"
+uid="uid://3qhd8wb7011w"
+path="res://.godot/imported/anguished_egg.png-eca2cfaca352173f8036816e32c16208.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/ui/card_info/card_stat/stat_icons/icon_damage.png"
-dest_files=["res://.godot/imported/icon_damage.png-a6088ec609db2feeb02f56fb54e1aeec.s3tc.ctex"]
+source_file="res://lib/ui/card_bar/card_icon/icons/anguished_egg.png"
+dest_files=["res://.godot/imported/anguished_egg.png-eca2cfaca352173f8036816e32c16208.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

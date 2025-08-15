@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dccksnepj5yb7"
-path.s3tc="res://.godot/imported/icon_damage.png-a6088ec609db2feeb02f56fb54e1aeec.s3tc.ctex"
+uid="uid://crago42kqw1qd"
+path.s3tc="res://.godot/imported/ocean_surface.jpg-143591ae53c7e34d8c6a6cb5934bef8e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://lib/ui/card_info/card_stat/stat_icons/icon_damage.png"
-dest_files=["res://.godot/imported/icon_damage.png-a6088ec609db2feeb02f56fb54e1aeec.s3tc.ctex"]
+source_file="res://maps/sandbox/materials/textures/ocean_surface.jpg"
+dest_files=["res://.godot/imported/ocean_surface.jpg-143591ae53c7e34d8c6a6cb5934bef8e.s3tc.ctex"]
 
 [params]
 

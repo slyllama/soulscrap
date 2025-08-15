@@ -21,6 +21,12 @@ const component_library = {
 		"description": "((Description))",
 		"texture": preload(ICON_PATH + "test_item.png"),
 		"cooldown": 5.0
+	},
+	"anguished_egg": {
+		"title": "Anguished Egg",
+		"description": "((Description))",
+		"texture": preload(ICON_PATH + "anguished_egg.png"),
+		"cooldown": 5.0
 	}
 }
 
