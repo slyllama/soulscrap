@@ -11,7 +11,7 @@ func _ready() -> void:
 		add_child(_m)
 		_m.visible = true
 		_m.global_position = global_position
-		_m.get_node("Lifetime").start()
+		_m.fire()
 		
 		PlayerData.projectile_fired.emit()
 		

@@ -1,6 +1,6 @@
 extends Node3D
 
-var _target_speed = 0.5
+var _target_speed = 0.8
 @onready var spiral_mesh: MeshInstance3D = get_node("Pivot/FireSpiral/fire_spiral")
 @onready var metal_mesh: MeshInstance3D = get_node("Mesh/Sphere")
 @onready var facing_rotation = get_parent().global_rotation.y
@@ -11,6 +11,17 @@ func _duplicate_mat(mesh: MeshInstance3D) -> void:
 
 func _set_fire_spiral_exponent(_val) -> void:
 	spiral_mesh.get_active_material(0).set_shader_parameter("exponent", _val)
+
+func fire() -> void:
+	$Sound.pitch_scale = randf_range(0.8, 1.2)
+	$Sound.play()
+	$Lifetime.start()
+	
+	_set_fire_spiral_exponent(1.0)
+	var _t = create_tween()
+	_t.tween_method(_set_fire_spiral_exponent, 1.0, 0.0, 0.1)
+	var _u = create_tween()
+	_u.tween_method(_set_fire_spiral_exponent, 0.0, 1.0, 0.4)
 
 func _ready() -> void:
 	visible = false
@@ -23,17 +34,11 @@ func _ready() -> void:
 	$Pivot.top_level = true
 	$Pivot.global_position = global_position
 	$Pivot.global_rotation.y = get_parent().global_rotation.y
-	
-	_set_fire_spiral_exponent(1.0)
-	var _t = create_tween()
-	_t.tween_method(_set_fire_spiral_exponent, 1.0, 0.0, 0.1)
-	var _u = create_tween()
-	_u.tween_method(_set_fire_spiral_exponent, 0.0, 1.0, 0.4)
 
 func _physics_process(_delta: float) -> void:
 	var _time_ratio = $Lifetime.time_left / $Lifetime.wait_time
-	var _adj_ratio = pow((1.0 - _time_ratio), 4.0)
-	_target_speed = lerp(_target_speed, 0.005, Utils.clerp(10.0))
+	var _adj_ratio = pow((1.0 - _time_ratio), 1.5)
+	_target_speed = lerp(_target_speed, 0.25, Utils.clerp(10.0))
 	$Mesh/Trail.trail_width = 0.05 * _time_ratio
 	if _time_ratio > 0.0:
 		metal_mesh.get_active_material(0).set_shader_parameter("dissolve_state", _adj_ratio)

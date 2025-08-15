@@ -4,6 +4,12 @@ extends VisibleOnScreenNotifier3D
 @export var text_color = Color.WHITE
 @export var bar_active = false
 @export var bar_value = 100.0
+@export var font_size = 13:
+	get: return(font_size)
+	set(_val):
+		font_size = _val
+		$Canvas/Root2D/Text.add_theme_font_size_override(
+			"normal_font_size", font_size)
 
 @onready var og_text_pos = $Canvas/Root2D/Text.position.y
 
@@ -14,6 +20,8 @@ func float_away(time = 0.5) -> void:
 	var _a = create_tween()
 	_a.set_parallel()
 	_a.tween_property($Canvas/Root2D/Text, "modulate:a", 0.0, time)
+	
+	_f.tween_callback(queue_free)
 
 func update_value(val: int) -> void:
 	bar_value = val

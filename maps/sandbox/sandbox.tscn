@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://d0j3ryssexkcj" path="res://lib/map/map.tscn" id="1_8bryw"]
 [ext_resource type="PackedScene" uid="uid://ban0go6y3b25c" path="res://lib/player/player.tscn" id="2_hxxcf"]
 [ext_resource type="PackedScene" uid="uid://c22mmoiy3jofj" path="res://lib/ui/hud/hud.tscn" id="2_ix24m"]
-[ext_resource type="Script" uid="uid://b6pgdjxymisrs" path="res://maps/sandbox/sandbox.gd" id="2_oa8wj"]
 [ext_resource type="Texture2D" uid="uid://rxiyen87ib0n" path="res://generic/textures/nasa_stars.jpg" id="4_pxktp"]
 [ext_resource type="Texture2D" uid="uid://bw2ra7yhv6bvi" path="res://lib/ui/textures/ui_bg.jpg" id="7_40n1j"]
 [ext_resource type="Texture2D" uid="uid://b1apf47becvow" path="res://maps/sandbox/materials/textures/dirt_decal.png" id="10_ii18f"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="13_ii18f"]
 [ext_resource type="PackedScene" uid="uid://bim05oeh3ds2y" path="res://maps/sandbox/props/column.tscn" id="13_kaa0c"]
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
+[ext_resource type="AudioStream" uid="uid://birqpa5ocx83n" path="res://maps/sandbox/sounds/mus_scrapper.mp3" id="15_c8n4n"]
 [ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://maps/sandbox/test_projectile/molten_metal.tscn" id="15_ii18f"]
 [ext_resource type="PackedScene" uid="uid://b8ugq7w8i4b1n" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.tscn" id="15_up8qe"]
 
@@ -64,7 +64,6 @@ agent_height = 0.5
 agent_radius = 0.4
 
 [node name="Sandbox" instance=ExtResource("1_8bryw")]
-script = ExtResource("2_oa8wj")
 
 [node name="HUD" parent="." index="0" instance=ExtResource("2_ix24m")]
 
@@ -178,3 +177,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="AnguishedClaw" parent="." index="8" instance=ExtResource("15_up8qe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.056, 0.5, -1.146)
+
+[node name="Ambience" parent="." index="9"]
+stream = ExtResource("15_c8n4n")

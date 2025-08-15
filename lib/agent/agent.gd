@@ -1,6 +1,7 @@
 class_name Agent extends CharacterBody3D
 
 const TARGET_THRESHOLD = 0.5
+const NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
 
 signal integrity_changed
 
@@ -34,7 +35,15 @@ func get_bone_position(skeleton: Skeleton3D, bone_name: String) -> Vector3:
 	return(skeleton.to_global(_bone_origin))
 
 func lose_integrity(amount: int) -> void:
+	target = Global.player
+	
 	if current_integrity - amount >= 0:
+		var _d = NodeSpatial.instantiate()
+		_d.text = str(amount)
+		_d.font_size = 24
+		add_child(_d)
+		_d.float_away()
+		
 		model.get_node("AnimationPlayer").play("take_damage")
 		current_integrity -= amount
 		integrity_changed.emit()

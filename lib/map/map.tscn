@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0j3ryssexkcj"]
+[gd_scene load_steps=8 format=3 uid="uid://d0j3ryssexkcj"]
 
 [ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="1_4t4lj"]
+[ext_resource type="Script" uid="uid://vby32bb353gn" path="res://lib/map/map.gd" id="1_xunhb"]
 [ext_resource type="Texture2D" uid="uid://brx1lj0t583kn" path="res://generic/materials/textures/tile_diff.jpg" id="2_xunhb"]
 
 [sub_resource type="Environment" id="Environment_uw02r"]
@@ -24,6 +25,7 @@ size = Vector2(100, 100)
 orientation = 1
 
 [node name="Map" type="Node3D"]
+script = ExtResource("1_xunhb")
 
 [node name="Sky" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uw02r")
@@ -43,3 +45,6 @@ debug_fill = false
 
 [node name="Mesh" type="MeshInstance3D" parent="NavRegion/Floor"]
 mesh = SubResource("QuadMesh_c370e")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0

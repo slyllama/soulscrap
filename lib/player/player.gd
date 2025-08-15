@@ -31,6 +31,9 @@ func _ready() -> void:
 		$CombatPivot/CombatHandler/Aim.visible = false
 		velocity = Vector3.ZERO)
 
+func _process(_delta: float) -> void:
+	$Engine.pitch_scale = 1.0 + clamp(_target_velocity.length() * 0.85, 0.0, 0.85)
+
 func _physics_process(_delta: float) -> void:
 	# Nitro (sprinting) - handles FOV changes too
 	if Input.is_action_pressed("nitro"):
