@@ -4,9 +4,12 @@ const P_STRAFE = "parameters/strafe/add_amount"
 const P_FORWARD = "parameters/forward/add_amount"
 
 @export var speed = 1.9
-@export var nitro_speed = 7.0
+@export var nitro_speed = 3.8
 @export var acceleration = 9.0
 @export var gravity_damping = 10.0
+
+@export var nitro_impulse_time = 0.34
+@export var nitro_impulse_multiplier = 4.0
 
 var target_speed = speed
 var _actual_speed = target_speed
@@ -43,8 +46,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$Engine.pitch_scale = 1.0 + clamp(_target_velocity.length() * 0.2, 0.0, 0.85)
 
-var nitro_impulse_time = 1.2
 var _c = nitro_impulse_time
+const MAGIC = 1.70158;
+const MAGIC_ADD = MAGIC + 1.0;
 
 func _physics_process(delta: float) -> void:
 	# Nitro (sprinting) - handles FOV changes too
@@ -69,16 +73,18 @@ func _physics_process(delta: float) -> void:
 	_target_velocity += $Orbit.basis * Vector3.RIGHT * _dir.x * Vector3(1, 0, 1)
 	_target_velocity *= _actual_speed
 	
+	# Apply a "dodge" impulse if nitro is initiated while moving
 	if _dir.length() > 0:
-		if Input.is_action_just_pressed("nitro"):
-			_c = 0.0
+		if Input.is_action_just_pressed("nitro"): _c = 0.0
 	if _c < nitro_impulse_time:
 		_c += delta / nitro_impulse_time
-		_c = 1.0 - pow(_c, 4.0)
-		_c = sin(PI * _c)
-		_target_velocity *= clamp(_c * 2.0 + 1.0, 1.0, INF)
+		var _d = (1.0 + MAGIC_ADD * pow(_c - 1.0, 3)
+			+ MAGIC * pow(_c - 1.0, 2.0));
+		_d = sin(PI * _c) * nitro_impulse_multiplier
+		_target_velocity *= clamp(_d + 1.0, 1.0, INF)
 	
-	velocity = lerp(velocity, _target_velocity, Utils.clerp(acceleration))
+	velocity = lerp(
+		velocity, _target_velocity, Utils.clerp(acceleration))
 	
 	# Apply gravity and hover
 	var _y_diff = $YCast.global_position.y - $YCast.get_collision_point().y
