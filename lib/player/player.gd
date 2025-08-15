@@ -41,9 +41,12 @@ func _ready() -> void:
 		velocity = Vector3.ZERO)
 
 func _process(_delta: float) -> void:
-	$Engine.pitch_scale = 1.0 + clamp(_target_velocity.length() * 0.85, 0.0, 0.85)
+	$Engine.pitch_scale = 1.0 + clamp(_target_velocity.length() * 0.2, 0.0, 0.85)
 
-func _physics_process(_delta: float) -> void:
+var nitro_impulse_time = 1.2
+var _c = nitro_impulse_time
+
+func _physics_process(delta: float) -> void:
 	# Nitro (sprinting) - handles FOV changes too
 	if nitro_active:
 		if PlayerData.tempo > 0:
@@ -65,6 +68,16 @@ func _physics_process(_delta: float) -> void:
 	_target_velocity = $Orbit.basis * Vector3.FORWARD * _dir.z * Vector3(1, 0, 1)
 	_target_velocity += $Orbit.basis * Vector3.RIGHT * _dir.x * Vector3(1, 0, 1)
 	_target_velocity *= _actual_speed
+	
+	if _dir.length() > 0:
+		if Input.is_action_just_pressed("nitro"):
+			_c = 0.0
+	if _c < nitro_impulse_time:
+		_c += delta / nitro_impulse_time
+		_c = 1.0 - pow(_c, 4.0)
+		_c = sin(PI * _c)
+		_target_velocity *= clamp(_c * 2.0 + 1.0, 1.0, INF)
+	
 	velocity = lerp(velocity, _target_velocity, Utils.clerp(acceleration))
 	
 	# Apply gravity and hover

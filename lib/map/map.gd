@@ -9,4 +9,4 @@ func _init() -> void:
 func _ready() -> void:
 	$Ambience.play()
 	var _v = create_tween()
-	_v.tween_method(set_bus_vol, 0.0, 1.0, 5.0)
+	_v.tween_method(set_bus_vol, 0.0, 1.0, 3.0)
