@@ -13,11 +13,13 @@ var _mouse_in = false
 var _mouse_down = false
 var _updated = true # wait a single frame after updating to prevent any instant input actions
 var _cd = 0.0
+var _strayed_in = false
 
 func update(new_id = id) -> void:
 	_updated = false
-	_cd = Components.get_cooldown(id)
+	
 	id = new_id
+	_cd = Components.get_cooldown(id)
 	
 	# Hide the icon if the card is blank
 	if id == "blank": $Mask.visible = false
@@ -31,6 +33,9 @@ func update(new_id = id) -> void:
 	_updated = true
 
 #region Helper functions
+func _is_on_cd() -> bool: # are we on cooldown?
+	return !$CDTimer.is_stopped()
+
 func _gain_focus() -> void:
 	if enabled:
 		z_index = 2
@@ -49,7 +54,7 @@ func use() -> void:
 	if id == "blank": return # has no use
 	_unhover()
 	
-	if _cd > 0.0 and !$CDTimer.is_stopped(): return
+	if _cd > 0.0 and _is_on_cd(): return
 	var _t = create_tween()
 	_t.tween_method($Use._set_dissolve, 0.0, 1.0, 0.32)
 	_t.set_trans(Tween.TRANS_SINE)
@@ -59,11 +64,13 @@ func use() -> void:
 		$Mask/CDText.visible = true
 		$CDTimer.wait_time = _cd
 		$CDTimer.start()
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	Global.component_used.emit(id)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("left_click"):
+		_strayed_in = false
 		if Global.dragging_card and _mouse_in:
 			var _old_id = id
 			
@@ -90,7 +97,7 @@ func _process(_delta: float) -> void:
 			- _last_mouse_pos).length())
 	else: _mouse_delta = 0.0
 	
-	if id != "blank" and !Global.dragging_card:
+	if id != "blank" and !Global.dragging_card and !_strayed_in:
 		if _mouse_in and _mouse_delta > 5.0:
 			Global.dragging_card = id
 			# Emit self as a source so that CardBar can clear it (or reset it
@@ -98,6 +105,8 @@ func _process(_delta: float) -> void:
 			Global.card_drag_started.emit(self)
 
 func _on_mouse_entered() -> void:
+	if Input.is_action_pressed("left_click"):
+		_strayed_in = true
 	if enabled and id != "blank":
 		Global.card_hovered.emit(id)
 	_mouse_in = true
@@ -124,4 +133,6 @@ func _on_gui_input(_event: InputEvent) -> void:
 			if _mouse_delta < DRAG_THRESHOLD: use()
 
 func _on_cd_timer_timeout() -> void:
+	if enabled:
+		mouse_filter = Control.MOUSE_FILTER_PASS
 	$Mask/CDText.visible = false

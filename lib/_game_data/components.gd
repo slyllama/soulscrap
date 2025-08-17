@@ -12,7 +12,7 @@ const component_library = {
 		"title": "Molten Shot",
 		"description": "Fire a super-heated blob of scrap metal.",
 		"texture": preload(ICON_PATH + "molten_shot.png"),
-		"tempo_cost": 20,
+		"tempo_cost": 1,
 		"damage": 10,
 		"cooldown": 0.5
 	},

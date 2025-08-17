@@ -339,7 +339,7 @@ active = true
 metadata/_custom_type_script = "uid://covkdksuysclw"
 
 [node name="CombatHandler" parent="CombatPivot" instance=ExtResource("9_jyhpi")]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, -0.2)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
 
 [node name="Engine" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_r1bse")

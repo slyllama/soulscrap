@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Orient the combat handler
 	if $CombatPivot.cursor_position > Utils.NULL_VEC3:
-		$CombatPivot.look_at($CombatPivot.cursor_position + Vector3(0, 0.25, 0))
+		$CombatPivot.look_at($CombatPivot.cursor_position)
 	else:
 		$CombatPivot.rotation.y = $Orbit.rotation.y
 		$CombatPivot.rotation.z = -PI / 2.0

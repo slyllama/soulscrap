@@ -109,7 +109,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=green]144fps[/color]"
+text = "[color=green]143fps[/color]"
 
 [node name="PrimsCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -256,7 +256,6 @@ theme_override_constants/separation = -7
 [node name="CardIcon" parent="CardBar" instance=ExtResource("10_l7ms4")]
 material = SubResource("ShaderMaterial_2nwb8")
 layout_mode = 2
-id = "anguished_egg"
 
 [node name="CursorCard" parent="." instance=ExtResource("10_l7ms4")]
 visible = false

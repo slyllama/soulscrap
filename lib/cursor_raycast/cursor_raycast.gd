@@ -10,8 +10,9 @@ func _process(_delta: float) -> void:
 		cursor_position = Utils.NULL_VEC3
 		return
 	var mouse_pos = get_viewport().get_mouse_position()
-	var from = Global.camera.project_ray_origin(mouse_pos)
-	var to = from + Global.camera.project_ray_normal(mouse_pos) * 200
+	#var from = Global.camera.project_ray_origin(mouse_pos)
+	var from = global_position
+	var to = from + Global.camera.project_ray_normal(mouse_pos) * 200.0 + Vector3(0, 1.5, 0)
 	var space_state = get_world_3d().direct_space_state
 	
 	var mesh_query = PhysicsRayQueryParameters3D.create(from, to)

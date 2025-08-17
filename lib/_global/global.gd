@@ -34,7 +34,7 @@ func _ready() -> void:
 	if DisplayServer.screen_get_size().x > 2000:
 		if !Engine.is_embedded_in_editor():
 			get_window().size *= 2.0
-		get_window().content_scale_factor = 2.0
+		get_window().content_scale_factor = 1.75
 		
 		if OS.get_name() != "macos":
 			DisplayServer.cursor_set_custom_image(
