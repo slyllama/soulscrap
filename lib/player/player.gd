@@ -14,6 +14,7 @@ const P_FORWARD = "parameters/forward/add_amount"
 var target_speed = speed
 var _actual_speed = target_speed
 var _target_velocity = 0.0
+var _target_nitro_trail_width = 0.0
 
 var nitro_active = false
 
@@ -28,6 +29,9 @@ func _ready() -> void:
 	Utils.tick.connect(func():
 		if Input.is_action_pressed("nitro"):
 			if PlayerData.change_tempo(-3):
+				if !nitro_active:
+					_target_nitro_trail_width = 0.1
+					$PlayerMesh/Trail3D_Nitro.reenable()
 				nitro_active = true
 				PlayerData.sprint_started.emit()
 			else:
@@ -43,6 +47,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	$Engine.pitch_scale = 1.0 + clamp(_target_velocity.length() * 0.2, 0.0, 0.85)
+	_target_nitro_trail_width = lerp(
+		_target_nitro_trail_width, 0.0, Utils.clerp(5.0))
+	$PlayerMesh/Trail3D_Nitro.trail_width = _target_nitro_trail_width
 
 var _c = nitro_impulse_time
 const MAGIC = 1.70158;
