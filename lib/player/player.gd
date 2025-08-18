@@ -24,7 +24,9 @@ func _ready() -> void:
 	SettingsHandler.propogated.connect(func(_param):
 		if _param == "dof":
 			var _val = SettingsHandler.settings.dof
-			$Orbit/Track/Camera.attributes.dof_blur_far_enabled = _val)
+			var _v = false
+			if _val == "true": _v = true
+			$Orbit/Track/Camera.attributes.dof_blur_far_enabled = _v)
 	
 	Utils.tick.connect(func():
 		if Input.is_action_pressed("nitro"):

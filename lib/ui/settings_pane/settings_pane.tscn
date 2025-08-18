@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://v8uh4tf53js4"]
+[gd_scene load_steps=9 format=3 uid="uid://v8uh4tf53js4"]
 
 [ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="1_cagy3"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="2_ywkbs"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_a0oe6"]
+[ext_resource type="PackedScene" uid="uid://dvt8ivg77tlb1" path="res://lib/ui/settings_pane/setting/setting.tscn" id="4_ywkbs"]
+[ext_resource type="Script" uid="uid://ccyoyut212sbr" path="res://lib/ui/settings_pane/setting_alias.gd" id="5_a0oe6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gfo50"]
 resource_local_to_scene = true
@@ -10,7 +12,20 @@ shader = ExtResource("2_ywkbs")
 shader_parameter/dissolve_texture = ExtResource("3_a0oe6")
 shader_parameter/dissolve_state = 0.0
 
+[sub_resource type="Resource" id="Resource_gfo50"]
+script = ExtResource("5_a0oe6")
+title = "On"
+id = "true"
+metadata/_custom_type_script = "uid://ccyoyut212sbr"
+
+[sub_resource type="Resource" id="Resource_hbub8"]
+script = ExtResource("5_a0oe6")
+title = "Off"
+id = "false"
+metadata/_custom_type_script = "uid://ccyoyut212sbr"
+
 [node name="SettingsPane" instance=ExtResource("1_cagy3")]
+process_mode = 3
 material = SubResource("ShaderMaterial_gfo50")
 offset_bottom = 430.0
 title = "Settings"
@@ -19,8 +34,17 @@ title = "Settings"
 text = "Settings"
 
 [node name="ScrollBase" type="ScrollContainer" parent="VBox" index="2"]
+use_parent_material = true
 custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 
 [node name="BoxBase" type="VBoxContainer" parent="VBox/ScrollBase" index="0"]
+use_parent_material = true
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DOF" parent="VBox/ScrollBase/BoxBase" index="0" instance=ExtResource("4_ywkbs")]
+layout_mode = 2
+title = "Depth of Field"
+id = "dof"
+setting_aliases = Array[ExtResource("5_a0oe6")]([SubResource("Resource_gfo50"), SubResource("Resource_hbub8")])

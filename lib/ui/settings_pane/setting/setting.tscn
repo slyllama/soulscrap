@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvt8ivg77tlb1"]
+
+[ext_resource type="Script" uid="uid://b5j20ymjy3ww6" path="res://lib/ui/settings_pane/setting/setting.gd" id="1_mb24n"]
+[ext_resource type="Texture2D" uid="uid://d3cgv3tbnhgdy" path="res://lib/ui/settings_pane/textures/arrow.png" id="2_7mfj1"]
+[ext_resource type="FontFile" uid="uid://2mojdir7ucxy" path="res://generic/fonts/exo_italic.ttf" id="2_mb24n"]
+[ext_resource type="Texture2D" uid="uid://beurmo3l4bqjq" path="res://lib/ui/settings_pane/textures/arrow_press.png" id="3_u2b4g"]
+[ext_resource type="Texture2D" uid="uid://bbluljschp7ri" path="res://lib/ui/settings_pane/textures/arrow_hover.png" id="4_nfyi0"]
+
+[node name="Setting" type="VBoxContainer"]
+use_parent_material = true
+custom_minimum_size = Vector2(250, 0)
+size_flags_horizontal = 3
+script = ExtResource("1_mb24n")
+
+[node name="Box" type="HBoxContainer" parent="."]
+use_parent_material = true
+layout_mode = 2
+
+[node name="Left" type="TextureButton" parent="Box"]
+use_parent_material = true
+custom_minimum_size = Vector2(22, 27)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("2_7mfj1")
+texture_pressed = ExtResource("3_u2b4g")
+texture_hover = ExtResource("4_nfyi0")
+ignore_texture_size = true
+stretch_mode = 5
+flip_h = true
+
+[node name="SettingName" type="RichTextLabel" parent="Box"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.513405, 0.804358, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_mb24n")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "((Value))
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right" type="TextureButton" parent="Box"]
+use_parent_material = true
+custom_minimum_size = Vector2(22, 27)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("2_7mfj1")
+texture_pressed = ExtResource("3_u2b4g")
+texture_hover = ExtResource("4_nfyi0")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="button_down" from="Box/Left" to="." method="_on_left_button_down"]
+[connection signal="mouse_entered" from="Box/Left" to="." method="_on_left_mouse_entered"]
+[connection signal="button_down" from="Box/Right" to="." method="_on_right_button_down"]
+[connection signal="mouse_entered" from="Box/Right" to="." method="_on_right_mouse_entered"]

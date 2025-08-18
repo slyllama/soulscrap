@@ -4,8 +4,12 @@ extends Node
 signal propogated(param)
 
 var settings = {
-	"dof": false
+	"dof": "false"
 }
+
+func change(param: String, value: String) -> void:
+	settings[param] = value
+	propogate()
 
 func propogate(exceptions = []) -> void:
 	await get_tree().process_frame

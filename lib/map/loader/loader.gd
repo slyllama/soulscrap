@@ -30,4 +30,4 @@ func _process(_delta: float) -> void:
 			finished_loading = true
 			_transition()
 		ResourceLoader.THREAD_LOAD_FAILED:
-			Utils.pdebug("[Loader] load failed.", "red")
+			Utils.pdebug("Map loading failed.", "Setting", Utils.PCOLOR_DEBUG)

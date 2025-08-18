@@ -26,11 +26,13 @@ func clear_dragged_card() -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_end"):
-		if !get_tree().paused: get_tree().paused = true
+		if !get_tree().paused:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			get_tree().paused = true
 		else: get_tree().paused = false
 
 func _ready() -> void:
-	Utils.pdebug("*** This is DWELT ***", "Global")
+	Utils.pdebug("*** This is DWELT. ***", "Global")
 	if DisplayServer.screen_get_size().x > 2000:
 		if !Engine.is_embedded_in_editor():
 			get_window().size *= 2.0
