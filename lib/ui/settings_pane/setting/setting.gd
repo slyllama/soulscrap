@@ -7,7 +7,7 @@ extends VBoxContainer
 var current_value: SettingAlias
 var value_count = 0
 
-func _update() -> void:
+func _update(alter_settings = true) -> void:
 	if !setting_aliases:
 		Utils.pdebug("No setting aliases set.", "Setting", Utils.PCOLOR_DEBUG)
 		return
@@ -16,14 +16,24 @@ func _update() -> void:
 		return
 	
 	$Box/SettingName.text = title + ":   [color=white]" + current_value.title + "[/color]"
-	SettingsHandler.change(id, current_value.id)
+	if alter_settings:
+		SettingsHandler.change(id, current_value.id)
 
 func _ready() -> void:
+	SettingsHandler.propogated.connect(func(_param):
+		if _param == id:
+			var _val = SettingsHandler.settings[_param]
+			for _a in setting_aliases:
+				if _a.id == _val:
+					current_value = _a
+					_update(false)
+					return)
+	
 	if !setting_aliases: return
 	value_count = setting_aliases.size()
 	if value_count > 0:
 		current_value = setting_aliases[0]
-		_update()
+		_update(false)
 
 func _on_left_mouse_entered() -> void: Global.mouse_in_ui = true
 func _on_right_mouse_entered() -> void: Global.mouse_in_ui = true

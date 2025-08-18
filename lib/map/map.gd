@@ -8,7 +8,7 @@ func _init() -> void:
 	set_bus_vol(0.0)
 
 func _ready() -> void:
-	SettingsHandler.propogate()
+	SettingsHandler.open()
 	
 	$Ambience.play()
 	var _v = create_tween()
