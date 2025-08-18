@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://j8hie2pud5a7" path="res://lib/ui/card_info/card_stat/textures/card_stat_bg.png" id="1_o20m2"]
 [ext_resource type="Script" uid="uid://cu3q7s108cyuh" path="res://lib/ui/card_info/card_stat/card_stat.gd" id="2_3mllf"]
-[ext_resource type="Texture2D" uid="uid://s7x4w4xtu0sv" path="res://lib/ui/card_bar/card_icon/icons/unknown.png" id="2_ppcap"]
+[ext_resource type="Texture2D" uid="uid://s7x4w4xtu0sv" path="res://lib/ui/deck/card_icon/icons/unknown.png" id="2_ppcap"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3mllf"]
 content_margin_left = 2.0

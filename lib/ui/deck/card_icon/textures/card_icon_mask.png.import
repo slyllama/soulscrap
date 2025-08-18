@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3qhd8wb7011w"
-path="res://.godot/imported/anguished_egg.png-eca2cfaca352173f8036816e32c16208.ctex"
+uid="uid://bcnh28pg5stny"
+path="res://.godot/imported/card_icon_mask.png-fe11c7fc5f459a6e8850e166cad22b8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/ui/card_bar/card_icon/icons/anguished_egg.png"
-dest_files=["res://.godot/imported/anguished_egg.png-eca2cfaca352173f8036816e32c16208.ctex"]
+source_file="res://lib/ui/deck/card_icon/textures/card_icon_mask.png"
+dest_files=["res://.godot/imported/card_icon_mask.png-fe11c7fc5f459a6e8850e166cad22b8a.ctex"]
 
 [params]
 

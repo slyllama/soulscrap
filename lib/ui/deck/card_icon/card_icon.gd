@@ -5,6 +5,7 @@ class_name CardIcon extends Panel
 const DRAG_THRESHOLD = 5.0
 
 @export var id = "blank"
+@export_range(1, 16) var quantity = 1
 @export var enabled = true
 
 var _last_mouse_pos = Vector2.ZERO
@@ -25,6 +26,10 @@ func update(new_id = id) -> void:
 	if id == "blank": $Mask.visible = false
 	else: $Mask.visible = true
 	$Mask/Icon.texture = Components.get_texture(id)
+	if quantity > 1:
+		$Qty.text = str(quantity)
+		$Qty.visible = true
+	else: $Qty.visible = false
 	
 	if enabled: mouse_filter = Control.MOUSE_FILTER_PASS
 	else: mouse_filter = Control.MOUSE_FILTER_IGNORE

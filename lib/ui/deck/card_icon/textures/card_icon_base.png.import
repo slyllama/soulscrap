@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxjytmrepr521"
-path="res://.godot/imported/card_icon_base.png-61b4c51c72bbccaa5d952e01512300d9.ctex"
+path="res://.godot/imported/card_icon_base.png-cac0dbec331616ac9ce30d700b9e6776.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/ui/card_bar/card_icon/textures/card_icon_base.png"
-dest_files=["res://.godot/imported/card_icon_base.png-61b4c51c72bbccaa5d952e01512300d9.ctex"]
+source_file="res://lib/ui/deck/card_icon/textures/card_icon_base.png"
+dest_files=["res://.godot/imported/card_icon_base.png-cac0dbec331616ac9ce30d700b9e6776.ctex"]
 
 [params]
 

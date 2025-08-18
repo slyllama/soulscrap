@@ -12,10 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://b7m5nwv0pghhp" path="res://lib/ui/hud/textures/ornament.png" id="9_7q6qr"]
 [ext_resource type="PackedScene" uid="uid://bx5rximxjsp5a" path="res://lib/ui/stat_bar/stat_bar.tscn" id="9_bly2c"]
 [ext_resource type="Texture2D" uid="uid://b1fff52obo2jc" path="res://lib/ui/hud/textures/combat_indicator.png" id="9_l8w22"]
-[ext_resource type="Texture2D" uid="uid://mqruul86co37" path="res://lib/ui/card_bar/textures/card_bar_separator.png" id="9_pxgdb"]
-[ext_resource type="PackedScene" uid="uid://tk6cm5vqursc" path="res://lib/ui/card_bar/card_bar.tscn" id="9_tx7oa"]
+[ext_resource type="Texture2D" uid="uid://mqruul86co37" path="res://lib/ui/deck/textures/card_bar_separator.png" id="9_pxgdb"]
+[ext_resource type="PackedScene" uid="uid://tk6cm5vqursc" path="res://lib/ui/deck/deck.tscn" id="9_tx7oa"]
 [ext_resource type="Script" uid="uid://b3rfhh2iki3wa" path="res://lib/ui/hud/combat_indicator.gd" id="10_2eonm"]
-[ext_resource type="PackedScene" uid="uid://bvyop3wo3tmu8" path="res://lib/ui/card_bar/card_icon/card_icon.tscn" id="10_l7ms4"]
+[ext_resource type="PackedScene" uid="uid://bvyop3wo3tmu8" path="res://lib/ui/deck/card_icon/card_icon.tscn" id="10_l7ms4"]
 [ext_resource type="Texture2D" uid="uid://c3yhr6rfi1dqh" path="res://lib/ui/hud/textures/diamond_mote.png" id="11_6rdt5"]
 [ext_resource type="PackedScene" uid="uid://s8awyrwv1tmb" path="res://lib/ui/card_info/card_info.tscn" id="18_7q6qr"]
 [ext_resource type="Texture2D" uid="uid://bw2ra7yhv6bvi" path="res://lib/ui/textures/ui_bg.jpg" id="19_2nwb8"]
@@ -109,7 +109,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=green]143fps[/color]"
+text = "[color=green]136fps[/color]"
 
 [node name="PrimsCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -241,7 +241,7 @@ speed_scale = 0.9
 randomness = 0.1
 process_material = SubResource("ParticleProcessMaterial_bly2c")
 
-[node name="CardBar" parent="." instance=ExtResource("9_tx7oa")]
+[node name="Deck" parent="." instance=ExtResource("9_tx7oa")]
 z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -253,9 +253,11 @@ offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_constants/separation = -7
 
-[node name="CardIcon" parent="CardBar" instance=ExtResource("10_l7ms4")]
+[node name="CardIcon" parent="Deck" instance=ExtResource("10_l7ms4")]
 material = SubResource("ShaderMaterial_2nwb8")
 layout_mode = 2
+id = "anguished_egg"
+quantity = 12
 
 [node name="CursorCard" parent="." instance=ExtResource("10_l7ms4")]
 visible = false

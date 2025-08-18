@@ -8,10 +8,9 @@ signal card_drag_ended(card_destination_id)
 signal card_hovered(id)
 signal card_unhovered
 signal component_used(id)
+
 signal mouse_capture_lost
 signal mouse_capture_gained
-signal sprint_started
-signal sprint_ended
 
 # Global references
 var camera: Camera3D

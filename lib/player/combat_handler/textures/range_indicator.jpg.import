@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5blg8sswcuvk"
-path="res://.godot/imported/card_icon_hover.png-4551356b51e413bb2ada9d384ae78754.ctex"
+uid="uid://dmn13c17ljexm"
+path="res://.godot/imported/range_indicator.jpg-4b5cf7d16654fb5468c5569f53c68257.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/ui/card_bar/card_icon/textures/card_icon_hover.png"
-dest_files=["res://.godot/imported/card_icon_hover.png-4551356b51e413bb2ada9d384ae78754.ctex"]
+source_file="res://lib/player/combat_handler/textures/range_indicator.jpg"
+dest_files=["res://.godot/imported/range_indicator.jpg-4b5cf7d16654fb5468c5569f53c68257.ctex"]
 
 [params]
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://bvyop3wo3tmu8"]
 
-[ext_resource type="Texture2D" uid="uid://cxjytmrepr521" path="res://lib/ui/card_bar/card_icon/textures/card_icon_base.png" id="1_ol776"]
-[ext_resource type="Script" uid="uid://ca6gyc0l6bky3" path="res://lib/ui/card_bar/card_icon/card_icon.gd" id="2_ejva6"]
-[ext_resource type="Texture2D" uid="uid://bt34t41f2eljb" path="res://lib/ui/card_bar/card_icon/textures/card_icon_use.png" id="3_1vyve"]
-[ext_resource type="Texture2D" uid="uid://bcnh28pg5stny" path="res://lib/ui/card_bar/card_icon/textures/card_icon_mask.png" id="3_chdha"]
-[ext_resource type="Texture2D" uid="uid://b5blg8sswcuvk" path="res://lib/ui/card_bar/card_icon/textures/card_icon_hover.png" id="3_s5lkj"]
-[ext_resource type="Texture2D" uid="uid://s7x4w4xtu0sv" path="res://lib/ui/card_bar/card_icon/icons/unknown.png" id="5_s5lkj"]
+[ext_resource type="Texture2D" uid="uid://cxjytmrepr521" path="res://lib/ui/deck/card_icon/textures/card_icon_base.png" id="1_ol776"]
+[ext_resource type="Script" uid="uid://ca6gyc0l6bky3" path="res://lib/ui/deck/card_icon/card_icon.gd" id="2_ejva6"]
+[ext_resource type="Texture2D" uid="uid://bt34t41f2eljb" path="res://lib/ui/deck/card_icon/textures/card_icon_use.png" id="3_1vyve"]
+[ext_resource type="Texture2D" uid="uid://bcnh28pg5stny" path="res://lib/ui/deck/card_icon/textures/card_icon_mask.png" id="3_chdha"]
+[ext_resource type="Texture2D" uid="uid://b5blg8sswcuvk" path="res://lib/ui/deck/card_icon/textures/card_icon_hover.png" id="3_s5lkj"]
+[ext_resource type="Texture2D" uid="uid://s7x4w4xtu0sv" path="res://lib/ui/deck/card_icon/icons/unknown.png" id="5_s5lkj"]
 [ext_resource type="Script" uid="uid://bgltvt34r5x0i" path="res://lib/ui/dissolve_control/dissolve_control.gd" id="6_84ogj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejva6"]
@@ -108,6 +108,28 @@ vertical_alignment = 1
 
 [node name="CDTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Qty" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_top = 5.0
+offset_right = -7.0
+offset_bottom = 30.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/normal_font_size = 16
+text = "#"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

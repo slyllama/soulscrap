@@ -31,6 +31,9 @@ func update(id) -> void:
 	if id in Components.component_library:
 		add_card_stat(id, "damage", "Damage")
 		add_card_stat(id, "tempo_cost", "Tempo")
+		var _cd = Components.get_cooldown(id)
+		if _cd > 0.0:
+			$VBox/Header/CD.text = str(_cd) + "s"
 		
 	if $VBox/ActiveStats.get_child_count() > 0:
 		$VBox/ActiveSubtitle.visible = true

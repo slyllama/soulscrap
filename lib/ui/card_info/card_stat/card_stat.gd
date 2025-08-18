@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var icon: Texture2D = load("res://lib/ui/card_bar/card_icon/icons/unknown.png"):
+@export var icon: Texture2D = load("res://lib/ui/deck/card_icon/icons/unknown.png"):
 	get: return(icon)
 	set(_val):
 		icon = _val

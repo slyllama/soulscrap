@@ -7,9 +7,9 @@ uniform float uv_scale = 1.0;
 
 void fragment() {
 	// Called for every pixel the material is visible on.
-	ALBEDO = texture(ocean_texture, UV * uv_scale + TIME * 0.01).rgb * vec3(0.5);
-	NORMAL_MAP = texture(normal_texture, UV * 2.0 - TIME * 0.003).rgb;
-	NORMAL_MAP_DEPTH = 4.0;
-	ROUGHNESS = 0.2;
+	ALBEDO = texture(ocean_texture, UV * uv_scale + TIME * 0.02).rgb * vec3(0.5);
+	NORMAL_MAP = texture(normal_texture, UV * uv_scale - TIME * 0.02).rgb;
+	NORMAL_MAP_DEPTH = 1.0;
+	ROUGHNESS = 0.0;
 	EMISSION = ALBEDO * 0.15;
 }

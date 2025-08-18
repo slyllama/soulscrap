@@ -7,10 +7,6 @@ uniform sampler2D albedo_gradient_texture: hint_default_white, repeat_disable, f
 uniform vec2 uv_scale = vec2(1.0, 1.0);
 uniform float exponent: hint_range(0.0, 1.0) = 1.0;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
-
 void fragment() {
 	ALBEDO = texture(albedo_gradient_texture, UV * uv_scale * vec2(3.0, 1.0)).rgb;
 

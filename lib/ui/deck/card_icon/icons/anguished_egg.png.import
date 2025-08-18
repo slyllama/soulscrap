@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df2odpd3o433u"
-path="res://.godot/imported/molten_shot.png-28932a67d4f48c849a38c3dbf9e297e8.ctex"
+uid="uid://3qhd8wb7011w"
+path="res://.godot/imported/anguished_egg.png-bd2e607ad342194290f6f573ae47558e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/ui/card_bar/card_icon/icons/molten_shot.png"
-dest_files=["res://.godot/imported/molten_shot.png-28932a67d4f48c849a38c3dbf9e297e8.ctex"]
+source_file="res://lib/ui/deck/card_icon/icons/anguished_egg.png"
+dest_files=["res://.godot/imported/anguished_egg.png-bd2e607ad342194290f6f573ae47558e.ctex"]
 
 [params]
 

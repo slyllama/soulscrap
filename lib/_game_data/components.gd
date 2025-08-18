@@ -1,7 +1,7 @@
 extends Node
 # Components library - names, etc
 
-const ICON_PATH = "res://lib/ui/card_bar/card_icon/icons/"
+const ICON_PATH = "res://lib/ui/deck/card_icon/icons/"
 
 const component_library = {
 	"blank": {
@@ -14,7 +14,8 @@ const component_library = {
 		"texture": preload(ICON_PATH + "molten_shot.png"),
 		"tempo_cost": 1,
 		"damage": 10,
-		"cooldown": 0.5
+		"cooldown": 0.5,
+		"range": 1 # given in meters
 	},
 	"test_item": {
 		"title": "((Test Item))",

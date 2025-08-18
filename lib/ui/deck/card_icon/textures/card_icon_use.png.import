@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfb10sfhtuevh"
-path="res://.godot/imported/hotkey_container.png-135e015d7bfa48e225634b6eb981b457.ctex"
+uid="uid://bt34t41f2eljb"
+path="res://.godot/imported/card_icon_use.png-efdc50b58122a590ac63efa883555051.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lib/ui/card_bar/card_icon/textures/hotkey_container.png"
-dest_files=["res://.godot/imported/hotkey_container.png-135e015d7bfa48e225634b6eb981b457.ctex"]
+source_file="res://lib/ui/deck/card_icon/textures/card_icon_use.png"
+dest_files=["res://.godot/imported/card_icon_use.png-efdc50b58122a590ac63efa883555051.ctex"]
 
 [params]
 

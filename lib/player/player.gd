@@ -24,13 +24,13 @@ func _ready() -> void:
 		if Input.is_action_pressed("nitro"):
 			if PlayerData.change_tempo(-3):
 				nitro_active = true
-				Global.sprint_started.emit()
+				PlayerData.sprint_started.emit()
 			else:
 				nitro_active = false
-				Global.sprint_ended.emit()
+				PlayerData.sprint_ended.emit()
 		else:
 			nitro_active = false
-			Global.sprint_ended.emit()
+			PlayerData.sprint_ended.emit()
 			PlayerData.change_tempo(1))
 	
 	get_window().focus_exited.connect(func():
@@ -105,6 +105,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$CombatPivot.rotation.y = $Orbit.rotation.y
 		$CombatPivot.rotation.z = -PI / 2.0
+	$CombatPivot.rotation.x = clamp($CombatPivot.rotation.x, 0.0, INF)
 	$CombatPivot.position.x = 0.0
 	$CombatPivot.position.z = 0.0
 	

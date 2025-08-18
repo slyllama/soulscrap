@@ -37,6 +37,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	$Pivot.top_level = true
 	$Pivot.global_rotation = get_parent().global_rotation
+	$Pivot.global_rotation.x = clamp($Pivot.global_rotation.x, 0.0, INF)
 
 func _physics_process(_delta: float) -> void:
 	var _time_ratio = $Lifetime.time_left / $Lifetime.wait_time
@@ -45,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 	$Mesh/Trail.trail_width = 0.05 * _time_ratio
 	if _time_ratio > 0.0:
 		metal_mesh.get_active_material(0).set_shader_parameter("dissolve_state", _adj_ratio)
+	
 	if position_delta: position -= position_delta
 
 func _on_lifetime_timeout() -> void:

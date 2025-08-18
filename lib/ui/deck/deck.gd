@@ -19,6 +19,13 @@ func _input(_event: InputEvent) -> void:
 				reset_card_source()
 				Global.clear_dragged_card()
 
+func get_deck() -> Dictionary: # returns dictionary of quantities by ID
+	var _a = {}
+	for _n in get_children():
+		if _n is CardIcon:
+			_a[_n.id] = _n.quantity
+	return(_a)
+
 func reset_card_source() -> void:
 	if card_source is CardIcon:
 		card_source.update(Global.dragging_card)
@@ -33,6 +40,7 @@ func _ready() -> void:
 		if _card_destination_id:
 			if card_source.id != Global.dragging_card:
 				card_source.update(_card_destination_id)
+				print(get_deck())
 		else: card_source = null)
 	
 	get_window().focus_exited.connect(func():

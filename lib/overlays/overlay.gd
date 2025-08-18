@@ -16,5 +16,5 @@ func _ready() -> void:
 		var _t = create_tween()
 		_t.tween_method(set_highlight_value, 0.0, 1.0, 0.3))
 	
-	Global.sprint_started.connect(func(): $Anime.appear(0.2))
-	Global.sprint_ended.connect(func(): $Anime.disappear(0.4))
+	PlayerData.sprint_started.connect(func(): $Anime.appear(0.2))
+	PlayerData.sprint_ended.connect(func(): $Anime.disappear(0.4))
