@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8ugq7w8i4b1n"]
+[gd_scene load_steps=25 format=3 uid="uid://b8ugq7w8i4b1n"]
 
 [ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/agent.tscn" id="1_hyjce"]
 [ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="2_svn0r"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bt4weraukcdam" path="res://maps/sandbox/agents/anguished_claw/meshes/anguished_claw.glb" id="4_svn0r"]
 [ext_resource type="Texture2D" uid="uid://dgriptbp6d5jr" path="res://maps/sandbox/agents/anguished_claw/textures/outline.png" id="4_wairi"]
 [ext_resource type="PackedScene" uid="uid://c1uh4fv3t7swu" path="res://lib/bounding_circle/bounding_circle.tscn" id="5_yskyh"]
+[ext_resource type="Texture2D" uid="uid://cxfqbrey3dgt6" path="res://maps/sandbox/agents/anguished_claw/textures/splash.png" id="9_yskyh"]
 
 [sub_resource type="Gradient" id="Gradient_d7cpf"]
 interpolation_mode = 2
@@ -45,6 +46,57 @@ height = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yskyh"]
 resource_local_to_scene = true
 radius = 2.0
+
+[sub_resource type="Curve" id="Curve_ek1lu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.166667, 0.947368), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bc51q"]
+curve = SubResource("Curve_ek1lu")
+
+[sub_resource type="Gradient" id="Gradient_0hm7p"]
+colors = PackedColorArray(0.206029, 0.298506, 0, 1, 0.1708, 0.61, 0.22204, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fkkuu"]
+gradient = SubResource("Gradient_0hm7p")
+
+[sub_resource type="Curve" id="Curve_g6n3w"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.202225, 1), 0.0, 0.0, 0, 0, Vector2(0.872382, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_adgnm"]
+curve = SubResource("Curve_g6n3w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_47us5"]
+emission_shape = 2
+emission_sphere_radius = 0.2
+angle_min = -90.0
+angle_max = 90.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 0.97
+initial_velocity_max = 1.03
+gravity = Vector3(0, -6, 0)
+scale_min = 0.1
+scale_max = 0.15
+scale_curve = SubResource("CurveTexture_adgnm")
+color_initial_ramp = SubResource("GradientTexture1D_fkkuu")
+alpha_curve = SubResource("CurveTexture_bc51q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5c87"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("9_yskyh")
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_y4ym0"]
+material = SubResource("StandardMaterial3D_t5c87")
+size = Vector2(0.45, 0.45)
 
 [node name="AnguishedClaw" node_paths=PackedStringArray("model") instance=ExtResource("1_hyjce")]
 script = ExtResource("2_wairi")
@@ -84,3 +136,18 @@ shape = SubResource("CylinderShape3D_wairi")
 
 [node name="Collision" parent="AggroArea" index="0"]
 shape = SubResource("CylinderShape3D_yskyh")
+
+[node name="DamageSplat" type="GPUParticles3D" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.172122, 0)
+cast_shadow = 0
+emitting = false
+amount = 12
+lifetime = 0.65
+one_shot = true
+preprocess = 0.2
+speed_scale = 0.75
+explosiveness = 0.5
+randomness = 0.35
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_47us5")
+draw_pass_1 = SubResource("QuadMesh_y4ym0")

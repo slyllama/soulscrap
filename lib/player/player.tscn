@@ -141,7 +141,7 @@ height = 0.36
 exposure_multiplier = 1.1
 dof_blur_far_enabled = true
 dof_blur_far_distance = 9.0
-dof_blur_amount = 0.01
+dof_blur_amount = 0.02
 
 [sub_resource type="Curve" id="Curve_5lbbh"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.13515, 0.0, 0, 0]

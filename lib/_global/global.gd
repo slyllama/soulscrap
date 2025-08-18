@@ -1,3 +1,4 @@
+@icon("res://generic/editor_icons/CoreHandler.svg")
 extends Node
 
 const GRAVITY = -9.8

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://v8uh4tf53js4"]
+
+[ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="1_cagy3"]
+[ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="2_ywkbs"]
+[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_a0oe6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gfo50"]
+resource_local_to_scene = true
+shader = ExtResource("2_ywkbs")
+shader_parameter/dissolve_texture = ExtResource("3_a0oe6")
+shader_parameter/dissolve_state = 0.0
+
+[node name="SettingsPane" instance=ExtResource("1_cagy3")]
+material = SubResource("ShaderMaterial_gfo50")
+offset_bottom = 430.0
+title = "Settings"
+
+[node name="Title" parent="VBox/Header" index="0"]
+text = "Settings"
+
+[node name="ScrollBase" type="ScrollContainer" parent="VBox" index="2"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+
+[node name="BoxBase" type="VBoxContainer" parent="VBox/ScrollBase" index="0"]
+layout_mode = 2

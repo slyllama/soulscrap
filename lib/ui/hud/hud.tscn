@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c22mmoiy3jofj"]
+[gd_scene load_steps=28 format=3 uid="uid://c22mmoiy3jofj"]
 
 [ext_resource type="PackedScene" uid="uid://by0uvskvsqnmj" path="res://lib/ui/fps_counter/fps_counter.tscn" id="1_6ca3a"]
 [ext_resource type="Script" uid="uid://cb0y3yvxw8uqh" path="res://lib/ui/hud/hud.gd" id="1_dntma"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c3yhr6rfi1dqh" path="res://lib/ui/hud/textures/diamond_mote.png" id="11_6rdt5"]
 [ext_resource type="PackedScene" uid="uid://s8awyrwv1tmb" path="res://lib/ui/card_info/card_info.tscn" id="18_7q6qr"]
 [ext_resource type="Texture2D" uid="uid://bw2ra7yhv6bvi" path="res://lib/ui/textures/ui_bg.jpg" id="19_2nwb8"]
+[ext_resource type="PackedScene" uid="uid://v8uh4tf53js4" path="res://lib/ui/settings_pane/settings_pane.tscn" id="20_6u16q"]
 
 [sub_resource type="Curve" id="Curve_6rdt5"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253165, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -40,7 +41,7 @@ scale_min = 0.09
 scale_max = 0.12
 scale_curve = SubResource("CurveTexture_bly2c")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2nwb8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdq5k"]
 resource_local_to_scene = true
 shader = ExtResource("4_n0ge7")
 shader_parameter/dissolve_texture = ExtResource("5_dntma")
@@ -64,6 +65,12 @@ texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwuwv"]
+resource_local_to_scene = true
+shader = ExtResource("4_n0ge7")
+shader_parameter/dissolve_texture = ExtResource("5_dntma")
+shader_parameter/dissolve_state = 0.0
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_dntma")
@@ -109,7 +116,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=green]136fps[/color]"
+text = "[color=green]145fps[/color]"
 
 [node name="PrimsCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -254,7 +261,7 @@ grow_horizontal = 2
 theme_override_constants/separation = -7
 
 [node name="CardIcon" parent="Deck" instance=ExtResource("10_l7ms4")]
-material = SubResource("ShaderMaterial_2nwb8")
+material = SubResource("ShaderMaterial_hdq5k")
 layout_mode = 2
 id = "anguished_egg"
 quantity = 12
@@ -283,3 +290,17 @@ offset_bottom = 55.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_j7h81")
+
+[node name="SettingsPane" parent="." instance=ExtResource("20_6u16q")]
+material = SubResource("ShaderMaterial_mwuwv")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -215.0
+offset_right = 150.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2

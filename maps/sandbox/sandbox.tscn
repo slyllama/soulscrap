@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4i4jjh5re868"]
+[gd_scene load_steps=22 format=3 uid="uid://d4i4jjh5re868"]
 
 [ext_resource type="PackedScene" uid="uid://d0j3ryssexkcj" path="res://lib/map/map.tscn" id="1_8bryw"]
 [ext_resource type="PackedScene" uid="uid://ban0go6y3b25c" path="res://lib/player/player.tscn" id="2_hxxcf"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="13_ii18f"]
 [ext_resource type="PackedScene" uid="uid://bim05oeh3ds2y" path="res://maps/sandbox/props/column.tscn" id="13_kaa0c"]
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
+[ext_resource type="AudioStream" uid="uid://bgi5ffx4h5ejc" path="res://maps/sandbox/sounds/mus_scrapper.ogg" id="15_c8n4n"]
 [ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://lib/projectiles/molten_shot.tscn" id="15_ii18f"]
 [ext_resource type="PackedScene" uid="uid://b8ugq7w8i4b1n" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.tscn" id="15_up8qe"]
 
@@ -175,3 +176,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="AnguishedClaw" parent="." index="7" instance=ExtResource("15_up8qe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.056, 0.5, -1.146)
+
+[node name="Ambience" parent="." index="8"]
+stream = ExtResource("15_c8n4n")

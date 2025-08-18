@@ -16,14 +16,14 @@ vertex_color_use_as_albedo = true
 [sub_resource type="Gradient" id="Gradient_f08m0"]
 colors = PackedColorArray(0.194349, 0.194349, 0.194349, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vlv1s"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7trbr"]
 gradient = SubResource("Gradient_f08m0")
 
 [sub_resource type="Curve" id="Curve_y31qt"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.202225, 1), 0.0, 0.0, 0, 0, Vector2(0.872382, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_adgnm"]
+[sub_resource type="CurveTexture" id="CurveTexture_d0taf"]
 curve = SubResource("Curve_y31qt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fs1ld"]
@@ -36,8 +36,8 @@ initial_velocity_max = 1.03
 gravity = Vector3(0, -6, 0)
 scale_min = 0.11
 scale_max = 0.13
-scale_curve = SubResource("CurveTexture_adgnm")
-color_ramp = SubResource("GradientTexture1D_vlv1s")
+scale_curve = SubResource("CurveTexture_d0taf")
+color_ramp = SubResource("GradientTexture1D_7trbr")
 
 [sub_resource type="SphereMesh" id="SphereMesh_75mgc"]
 material = ExtResource("4_21gx2")

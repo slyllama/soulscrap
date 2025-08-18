@@ -8,6 +8,8 @@ func _init() -> void:
 	set_bus_vol(0.0)
 
 func _ready() -> void:
+	SettingsHandler.propogate()
+	
 	$Ambience.play()
 	var _v = create_tween()
 	_v.tween_method(set_bus_vol, 0.0, 1.0, 3.0)

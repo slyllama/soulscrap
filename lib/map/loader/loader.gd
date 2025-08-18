@@ -16,7 +16,7 @@ func _transition() -> void:
 	_t.tween_property($Fade, "modulate:a", 1.0, 0.3)
 	_t.tween_callback(_change_scene)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _ready() -> void:

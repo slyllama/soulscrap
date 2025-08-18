@@ -20,6 +20,11 @@ var nitro_active = false
 func _ready() -> void:
 	Global.player = self
 	
+	SettingsHandler.propogated.connect(func(_param):
+		if _param == "dof":
+			var _val = SettingsHandler.settings.dof
+			$Orbit/Track/Camera.attributes.dof_blur_far_enabled = _val)
+	
 	Utils.tick.connect(func():
 		if Input.is_action_pressed("nitro"):
 			if PlayerData.change_tempo(-3):
