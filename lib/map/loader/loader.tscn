@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://de8o7doakvvf1"]
+
+[ext_resource type="Script" uid="uid://cqp4jl70raotl" path="res://lib/map/loader/loader.gd" id="1_l68rf"]
+[ext_resource type="FontFile" uid="uid://biapv16q3jin7" path="res://generic/fonts/ibm_plex_mono.otf" id="2_4xeml"]
+[ext_resource type="Script" uid="uid://d2blf0koe72ct" path="res://lib/map/loader/loader_text.gd" id="3_eop2m"]
+
+[node name="Loader" type="CanvasLayer"]
+script = ExtResource("1_l68rf")
+
+[node name="Text" type="RichTextLabel" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -54.0
+offset_right = 176.0
+offset_bottom = -32.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.117647)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_4xeml")
+text = "124DFV76CMP97Y2"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("3_eop2m")
+
+[node name="TextTimer" type="Timer" parent="Text"]
+wait_time = 0.1
+autostart = true
+
+[node name="Fade" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="timeout" from="Text/TextTimer" to="Text" method="_on_text_timer_timeout"]

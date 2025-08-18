@@ -29,6 +29,7 @@ func _input(_event: InputEvent) -> void:
 		else: get_tree().paused = false
 
 func _ready() -> void:
+	Utils.pdebug("*** This is DWELT ***", "Global")
 	if DisplayServer.screen_get_size().x > 2000:
 		if !Engine.is_embedded_in_editor():
 			get_window().size *= 2.0
