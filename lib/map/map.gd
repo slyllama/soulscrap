@@ -1,3 +1,4 @@
+@icon("res://generic/editor_icons/Map.svg")
 extends Node3D
 
 func set_bus_vol(_vol: float) -> void:

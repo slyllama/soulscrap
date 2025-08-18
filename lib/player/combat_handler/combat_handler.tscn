@@ -1,18 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8iv1n1t2q8um"]
+[gd_scene load_steps=5 format=3 uid="uid://b8iv1n1t2q8um"]
 
 [ext_resource type="Script" uid="uid://dev8the4gr6be" path="res://lib/player/combat_handler/combat_handler.gd" id="1_61r3d"]
-[ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://lib/projectiles/molten_shot/molten_metal.tscn" id="2_hrxft"]
 [ext_resource type="AudioStream" uid="uid://du2abe6amib3k" path="res://lib/player/combat_handler/sounds/tempo_warning.ogg" id="3_qg0sw"]
 [ext_resource type="Texture2D" uid="uid://dmn13c17ljexm" path="res://lib/player/combat_handler/textures/range_indicator.jpg" id="5_htq67"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_61r3d"]
-size = Vector3(0.35, 0.7, 2.2)
+size = Vector3(0.1, 1, 2.2)
 
 [node name="CombatHandler" type="Node3D"]
 script = ExtResource("1_61r3d")
-
-[node name="MoltenMetal" parent="." instance=ExtResource("2_hrxft")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
 [node name="AimArea" type="Area3D" parent="."]
 collision_layer = 2
@@ -27,9 +23,12 @@ stream = ExtResource("3_qg0sw")
 volume_db = -4.0
 max_polyphony = 2
 
-[node name="AimWedge" type="Decal" parent="."]
+[node name="RangeIndicator" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 size = Vector3(4.4, 2, 4.4)
 texture_emission = ExtResource("5_htq67")
 modulate = Color(0.65, 0.65, 0.65, 1)
 normal_fade = 0.9
+
+[node name="ProjectileBuffer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)

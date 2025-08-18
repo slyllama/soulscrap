@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://cbs03j84y2d3t"]
 
-[ext_resource type="Script" uid="uid://2gkjfuuvy4mp" path="res://lib/projectiles/molten_shot/molten_metal.gd" id="1_adgnm"]
-[ext_resource type="PackedScene" uid="uid://mkpk8e6rwox2" path="res://lib/projectiles/molten_shot/meshes/molten_metal.glb" id="1_et4gg"]
-[ext_resource type="Material" uid="uid://ncc5ctdnq4k" path="res://lib/projectiles/molten_shot/materials/mat_molten_metal.tres" id="2_y31qt"]
-[ext_resource type="Script" uid="uid://d4mgvogtplgaw" path="res://lib/player/trail_3d/trail_3d.gd" id="3_f08m0"]
-[ext_resource type="PackedScene" uid="uid://fvaxi12kqoqp" path="res://lib/projectiles/molten_shot/meshes/fire_spiral.glb" id="4_7pmjd"]
-[ext_resource type="AudioStream" uid="uid://couxkgi1kwo4o" path="res://lib/projectiles/molten_shot/sounds/projectile.ogg" id="6_vlv1s"]
+[ext_resource type="Script" uid="uid://2gkjfuuvy4mp" path="res://lib/projectiles/molten_shot/molten_shot.gd" id="1_7trbr"]
+[ext_resource type="PackedScene" uid="uid://mkpk8e6rwox2" path="res://lib/projectiles/molten_shot/meshes/molten_metal.glb" id="2_d0taf"]
+[ext_resource type="Script" uid="uid://d4mgvogtplgaw" path="res://lib/player/trail_3d/trail_3d.gd" id="3_xxwhc"]
+[ext_resource type="Material" uid="uid://ncc5ctdnq4k" path="res://lib/projectiles/molten_shot/materials/mat_molten_metal.tres" id="4_21gx2"]
+[ext_resource type="PackedScene" uid="uid://fvaxi12kqoqp" path="res://lib/projectiles/molten_shot/meshes/fire_spiral.glb" id="5_ax6s7"]
+[ext_resource type="AudioStream" uid="uid://couxkgi1kwo4o" path="res://lib/projectiles/molten_shot/sounds/projectile.ogg" id="6_bq3op"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlv1s"]
 transparency = 1
@@ -40,20 +40,21 @@ scale_curve = SubResource("CurveTexture_adgnm")
 color_ramp = SubResource("GradientTexture1D_vlv1s")
 
 [sub_resource type="SphereMesh" id="SphereMesh_75mgc"]
-material = ExtResource("2_y31qt")
+material = ExtResource("4_21gx2")
 radius = 0.15
 height = 0.3
 radial_segments = 4
 rings = 2
 
-[node name="MoltenMetal" type="Node3D"]
-script = ExtResource("1_adgnm")
+[node name="MoltenShot" type="Node3D"]
+script = ExtResource("1_7trbr")
+metadata/_custom_type_script = "uid://y1nunng426xj"
 
-[node name="Mesh" parent="." instance=ExtResource("1_et4gg")]
+[node name="Mesh" parent="." instance=ExtResource("2_d0taf")]
 
 [node name="Trail" type="MeshInstance3D" parent="Mesh"]
 material_override = SubResource("StandardMaterial3D_vlv1s")
-script = ExtResource("3_f08m0")
+script = ExtResource("3_xxwhc")
 trail_width = 0.05
 diffuse_color = Color(0.961091, 0.698743, 0, 1)
 metadata/_custom_type_script = "uid://d4mgvogtplgaw"
@@ -77,14 +78,14 @@ one_shot = true
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="FireSpiral" parent="Pivot" instance=ExtResource("4_7pmjd")]
+[node name="FireSpiral" parent="Pivot" instance=ExtResource("5_ax6s7")]
 transform = Transform3D(-1, 0, -4.52987e-07, 0, 1, 0, 1.50996e-07, 0, -3, 0, 0, 0.7)
 
-[node name="FireSpiral2" parent="Pivot" instance=ExtResource("4_7pmjd")]
+[node name="FireSpiral2" parent="Pivot" instance=ExtResource("5_ax6s7")]
 transform = Transform3D(-0.6, 0, -4.52987e-07, 0, 0.6, 0, 9.05975e-08, 0, -3, 0, 0, -0.204258)
 
 [node name="Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_vlv1s")
+stream = ExtResource("6_bq3op")
 volume_db = -4.0
 
 [connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

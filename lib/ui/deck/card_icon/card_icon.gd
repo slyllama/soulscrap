@@ -1,3 +1,4 @@
+@icon("res://generic/editor_icons/Card.svg")
 class_name CardIcon extends Panel
 # CardIcon
 # These cards display Components - weapons, items, resources, etc
@@ -71,7 +72,7 @@ func use() -> void:
 		$CDTimer.start()
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-	Global.component_used.emit(id)
+	PlayerData.component_used.emit(id)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("left_click"):

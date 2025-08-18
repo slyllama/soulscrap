@@ -19,11 +19,11 @@ func _input(_event: InputEvent) -> void:
 				reset_card_source()
 				Global.clear_dragged_card()
 
-func get_deck() -> Dictionary: # returns dictionary of quantities by ID
-	var _a = {}
+func get_deck() -> Array: # returns dictionary of quantities by ID
+	var _a = []
 	for _n in get_children():
 		if _n is CardIcon:
-			_a[_n.id] = _n.quantity
+			_a.append({ "id": _n.id, "qty": _n.quantity })
 	return(_a)
 
 func reset_card_source() -> void:
@@ -40,13 +40,18 @@ func _ready() -> void:
 		if _card_destination_id:
 			if card_source.id != Global.dragging_card:
 				card_source.update(_card_destination_id)
-				print(get_deck())
+				PlayerData.current_deck = get_deck()
+				PlayerData.deck_changed.emit()
 		else: card_source = null)
 	
 	get_window().focus_exited.connect(func():
 		if Global.dragging_card:
 			reset_card_source()
 			Global.clear_dragged_card())
+	
+	await get_tree().process_frame
+	PlayerData.current_deck = get_deck()
+	PlayerData.deck_changed.emit()
 
 func _on_mouse_entered() -> void: Global.mouse_in_ui = true
 func _on_mouse_exited() -> void: Global.mouse_in_ui = false

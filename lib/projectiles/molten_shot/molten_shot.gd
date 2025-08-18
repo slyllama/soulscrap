@@ -1,4 +1,4 @@
-extends Node3D
+extends Projectile
 
 var _target_speed = 0.8
 @onready var spiral_mesh: MeshInstance3D = get_node("Pivot/FireSpiral/fire_spiral")
@@ -15,6 +15,7 @@ func _set_fire_spiral_exponent(_val) -> void:
 	spiral_mesh_2.get_active_material(0).set_shader_parameter("exponent", _val)
 
 func fire() -> void:
+	super()
 	$Pivot.global_position = global_position
 	$Sound.pitch_scale = randf_range(0.8, 1.2)
 	$Sound.play()

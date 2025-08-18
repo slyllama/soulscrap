@@ -1,27 +1,55 @@
+@icon("res://generic/editor_icons/Handler.svg")
 extends Node3D
 
 const NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
 
+func _play_undertempo_warning() -> void:
+	$TempoWarning.play()
+	var _d = NodeSpatial.instantiate()
+	_d.text = str("Undertempo")
+	_d.font_size = 16
+	_d.position.z = -0.35
+	add_child(_d)
+	_d.float_away()
+
+func _clear_buffer() -> void:
+	for _n in $ProjectileBuffer.get_children():
+		_n.queue_free()
+
 func _ready() -> void:
-	Global.component_used.connect(func(id):
+	PlayerData.deck_changed.connect(func():
+		# Clear out the projectile buffer and replace it with any projectile
+		# specified in the component data
+		var _id = PlayerData.current_deck[0].id
+		var _data = Components.component_library[_id]
+		_clear_buffer()
+		if "projectile" in _data:
+			var _p = _data.projectile.instantiate()
+			$ProjectileBuffer.add_child(_p)
+		
+		# Adjust the range to match
+		if "range" in _data:
+			$RangeIndicator.size.x = _data.range * 2.0
+			$RangeIndicator.size.z = _data.range * 2.0
+			$AimArea/Collision.shape.size.z = _data.range
+			$AimArea/Collision.position.z = -_data.range / 2.0
+		)
+	
+	PlayerData.component_used.connect(func(id):
 		var _data = Components.component_library[id]
 		if "tempo_cost" in _data:
 			if !PlayerData.change_tempo(-_data.tempo_cost):
-				$TempoWarning.play()
-				
-				var _d = NodeSpatial.instantiate()
-				_d.text = str("Undertempo")
-				_d.font_size = 16
-				_d.position.z = -0.35
-				add_child(_d)
-				_d.float_away()
+				_play_undertempo_warning()
 				return
 		
-		var _m = $MoltenMetal.duplicate()
-		add_child(_m)
-		_m.visible = true
-		_m.global_position = global_position
-		_m.fire()
+		if $ProjectileBuffer.get_children():
+			var _p = $ProjectileBuffer.get_children()[0]
+			if _p is Projectile:
+				var _q = _p.duplicate()
+				add_child(_q)
+				_q.visible = true
+				_q.global_position = global_position
+				_q.fire()
 		
 		PlayerData.projectile_fired.emit()
 		

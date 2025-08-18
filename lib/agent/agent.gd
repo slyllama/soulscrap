@@ -1,3 +1,4 @@
+@icon("res://generic/editor_icons/Agent.svg")
 class_name Agent extends CharacterBody3D
 
 const TARGET_THRESHOLD = 0.5

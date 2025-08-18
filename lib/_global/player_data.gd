@@ -1,5 +1,6 @@
 extends Node
 
+signal component_used(id)
 signal deck_changed
 signal projectile_fired
 signal sprint_started
@@ -7,7 +8,7 @@ signal sprint_ended
 
 var tempo = 99
 var integrity = 100
-var current_deck: Array[CardIcon] = []
+var current_deck: Array = []
 
 # Returns true is a change was effected
 func change_tempo(amount: int = -1) -> bool:

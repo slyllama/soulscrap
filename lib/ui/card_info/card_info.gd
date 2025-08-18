@@ -5,7 +5,8 @@ const ICON_PATH = "res://lib/ui/card_info/card_stat/stat_icons/"
 const CardStat = preload("res://lib/ui/card_info/card_stat/card_stat.tscn")
 const StatIcons = {
 	"damage": preload(ICON_PATH + "icon_damage.png"),
-	"tempo": preload(ICON_PATH + "icon_tempo.png") }
+	"tempo_cost": preload(ICON_PATH + "icon_tempo_cost.png"),
+	"range": preload(ICON_PATH + "icon_range.png") }
 
 func add_card_stat(id, parameter: String, component_title: String) -> void:
 	var _data = Components.component_library[id]
@@ -31,6 +32,7 @@ func update(id) -> void:
 	if id in Components.component_library:
 		add_card_stat(id, "damage", "Damage")
 		add_card_stat(id, "tempo_cost", "Tempo")
+		add_card_stat(id, "range", "Range")
 		var _cd = Components.get_cooldown(id)
 		if _cd > 0.0:
 			$VBox/Header/CD.text = str(_cd) + "s"

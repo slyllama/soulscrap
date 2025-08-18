@@ -2,6 +2,7 @@ extends Node
 # Components library - names, etc
 
 const ICON_PATH = "res://lib/ui/deck/card_icon/icons/"
+const PROJECTILE_PATH = "res://lib/projectiles/"
 
 const component_library = {
 	"blank": {
@@ -12,16 +13,18 @@ const component_library = {
 		"title": "Molten Shot",
 		"description": "Fire a super-heated blob of scrap metal.",
 		"texture": preload(ICON_PATH + "molten_shot.png"),
-		"tempo_cost": 1,
+		"projectile": preload(PROJECTILE_PATH + "molten_shot.tscn"),
+		"tempo_cost": 10,
 		"damage": 10,
-		"cooldown": 0.5,
-		"range": 1 # given in meters
+		"cooldown": 0.3,
+		"range": 2.3 # given in meters
 	},
 	"test_item": {
 		"title": "((Test Item))",
 		"description": "((Description))",
 		"texture": preload(ICON_PATH + "test_item.png"),
-		"cooldown": 5.0
+		"cooldown": 5.0,
+		"range": 2.0
 	},
 	"anguished_egg": {
 		"title": "Anguished Egg",
