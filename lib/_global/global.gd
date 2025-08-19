@@ -5,7 +5,7 @@ const GRAVITY = -9.8
 
 # Bus signals
 signal card_drag_started(card_source)
-signal card_drag_ended(card_destination_id)
+signal card_drag_ended(dest_id: String, dest_qty: int)
 signal card_hovered(id)
 signal card_unhovered
 
@@ -19,9 +19,10 @@ var player: CharacterBody3D
 # States
 var mouse_in_ui = false
 var dragging_card = null # should be the ID of the card being dragged when active
+var dragging_card_qty = 1
 
 func clear_dragged_card() -> void:
-	card_drag_ended.emit(null)
+	card_drag_ended.emit(null, 1)
 	dragging_card = null
 
 func _input(_event: InputEvent) -> void:

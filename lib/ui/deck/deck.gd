@@ -28,6 +28,7 @@ func get_deck() -> Array: # returns dictionary of quantities by ID
 
 func reset_card_source() -> void:
 	if card_source is CardIcon:
+		card_source.quantity = Global.dragging_card_qty
 		card_source.update(Global.dragging_card)
 
 func _ready() -> void:
@@ -36,10 +37,11 @@ func _ready() -> void:
 		if card_source is CardIcon:
 			card_source.update("blank"))
 	
-	Global.card_drag_ended.connect(func(_card_destination_id):
-		if _card_destination_id:
+	Global.card_drag_ended.connect(func(_dest_id, _dest_qty):
+		if _dest_id and _dest_qty:
 			if card_source.id != Global.dragging_card:
-				card_source.update(_card_destination_id)
+				card_source.quantity = _dest_qty
+				card_source.update(_dest_id)
 				PlayerData.current_deck = get_deck()
 				PlayerData.deck_changed.emit()
 		else: card_source = null)

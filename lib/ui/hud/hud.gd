@@ -8,10 +8,11 @@ func _ready() -> void:
 		if _n is Control: _n.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	Global.card_drag_started.connect(func(_card_source):
+		$CursorCard.quantity = Global.dragging_card_qty
 		$CursorCard.update(Global.dragging_card)
 		$CursorCard.visible = true)
 	
-	Global.card_drag_ended.connect(func(_card_destination_id):
+	Global.card_drag_ended.connect(func(_dest_id, _dest_qty):
 		$CursorCard.update("blank")
 		$CursorCard.visible = false)
 

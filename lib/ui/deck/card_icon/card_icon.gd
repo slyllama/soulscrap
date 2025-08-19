@@ -27,7 +27,7 @@ func update(new_id = id) -> void:
 	if id == "blank": $Mask.visible = false
 	else: $Mask.visible = true
 	$Mask/Icon.texture = Components.get_texture(id)
-	if quantity > 1:
+	if quantity > 1 and id != "blank":
 		$Qty.text = str(quantity)
 		$Qty.visible = true
 	else: $Qty.visible = false
@@ -78,11 +78,14 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("left_click"):
 		_strayed_in = false
 		if Global.dragging_card and _mouse_in:
+			# DRAG ENDED
 			var _old_id = id
-			
+			var _old_qty = quantity
+			quantity = Global.dragging_card_qty
 			update(Global.dragging_card)
-			Global.card_drag_ended.emit(_old_id)
+			Global.card_drag_ended.emit(_old_id, _old_qty)
 			Global.dragging_card = null
+			Global.dragging_card_qty = 1
 
 func _ready() -> void:
 	get_window().focus_exited.connect(_lose_focus)
@@ -105,9 +108,9 @@ func _process(_delta: float) -> void:
 	
 	if id != "blank" and !Global.dragging_card and !_strayed_in:
 		if _mouse_in and _mouse_delta > 5.0:
+			# DRAG STARTED
 			Global.dragging_card = id
-			# Emit self as a source so that CardBar can clear it (or reset it
-			# if window changes focus, etc)
+			Global.dragging_card_qty = quantity
 			Global.card_drag_started.emit(self)
 
 func _on_mouse_entered() -> void:
