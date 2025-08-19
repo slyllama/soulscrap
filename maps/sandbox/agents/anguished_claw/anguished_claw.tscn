@@ -151,3 +151,9 @@ randomness = 0.35
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_47us5")
 draw_pass_1 = SubResource("QuadMesh_y4ym0")
+
+[node name="AttackCD" type="Timer" parent="." index="12"]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="aggro_range_entered" from="." to="." method="_on_aggro_range_entered"]

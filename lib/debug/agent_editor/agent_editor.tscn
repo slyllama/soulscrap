@@ -14,6 +14,7 @@ shader_parameter/dissolve_texture = ExtResource("3_vjkql")
 shader_parameter/dissolve_state = 0.0
 
 [node name="AgentEditor" instance=ExtResource("1_ar3lt")]
+process_mode = 3
 material = SubResource("ShaderMaterial_0lk26")
 script = ExtResource("4_aym1y")
 title = "Agent Editor"

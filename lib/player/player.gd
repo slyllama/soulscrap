@@ -113,6 +113,8 @@ func _physics_process(delta: float) -> void:
 		$PlayerMesh.rotation_degrees.y = lerp(
 			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(7.0))
 	
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
+	
 	# Orient the combat handler
 	if $CombatPivot.cursor_position > Utils.NULL_VEC3:
 		$CombatPivot.look_at($CombatPivot.cursor_position)

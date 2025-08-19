@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://0yjsss8r2vdv"]
+
+[ext_resource type="Script" uid="uid://y1nunng426xj" path="res://lib/projectiles/projectile.gd" id="1_d7jcd"]
+
+[node name="DesperateGrasp" type="Node3D"]
+script = ExtResource("1_d7jcd")
+metadata/_custom_type_script = "uid://y1nunng426xj"

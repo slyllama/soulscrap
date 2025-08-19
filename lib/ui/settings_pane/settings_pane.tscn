@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://v8uh4tf53js4"]
+[gd_scene load_steps=10 format=3 uid="uid://v8uh4tf53js4"]
 
 [ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="1_cagy3"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="2_ywkbs"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_a0oe6"]
+[ext_resource type="Script" uid="uid://ccubf02far725" path="res://lib/ui/settings_pane/settings_pane.gd" id="4_gfo50"]
 [ext_resource type="PackedScene" uid="uid://dvt8ivg77tlb1" path="res://lib/ui/settings_pane/setting/setting.tscn" id="4_ywkbs"]
 [ext_resource type="Script" uid="uid://ccyoyut212sbr" path="res://lib/ui/settings_pane/setting_alias.gd" id="5_a0oe6"]
 
@@ -27,7 +28,18 @@ metadata/_custom_type_script = "uid://ccyoyut212sbr"
 [node name="SettingsPane" instance=ExtResource("1_cagy3")]
 process_mode = 3
 material = SubResource("ShaderMaterial_gfo50")
-offset_bottom = 430.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -215.0
+offset_right = 150.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_gfo50")
 title = "Settings"
 
 [node name="Title" parent="VBox/Header" index="0"]
@@ -48,3 +60,5 @@ layout_mode = 2
 title = "Depth of Field"
 id = "dof"
 setting_aliases = Array[ExtResource("5_a0oe6")]([SubResource("Resource_gfo50"), SubResource("Resource_hbub8")])
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
