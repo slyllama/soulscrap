@@ -1,5 +1,7 @@
 extends Node
 
+signal aggro_gained
+signal aggro_lost
 signal component_used(id)
 signal deck_changed
 signal projectile_fired

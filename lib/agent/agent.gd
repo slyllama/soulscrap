@@ -156,8 +156,10 @@ func _physics_process(delta: float) -> void:
 func _on_aggro_area_body_entered(body: Node3D) -> void:
 	if body is Player and target_player_on_aggro:
 		aggro_range_entered.emit()
+		PlayerData.aggro_gained.emit()
 		target = Global.player
 
 func _on_aggro_area_body_exited(body: Node3D) -> void:
 	if body is Player:
+		PlayerData.aggro_lost.emit()
 		target = null

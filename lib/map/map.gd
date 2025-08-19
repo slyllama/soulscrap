@@ -20,8 +20,18 @@ func _spawn_ac() -> void:
 func _ready() -> void:
 	SettingsHandler.open()
 	
+	$Layer1.volume_linear = 0.5
+	PlayerData.aggro_gained.connect(func():
+		var _t = create_tween()
+		_t.tween_property($Layer2, "volume_linear", 0.5, 1.5))
+	PlayerData.aggro_lost.connect(func():
+		var _t = create_tween()
+		_t.tween_property($Layer2, "volume_linear", 0.0, 1.5))
+	
 	_spawn_ac()
 	
-	$Ambience.play()
+	#$Ambience.play()
+	$Layer1.play()
+	$Layer2.play()
 	var _v = create_tween()
 	_v.tween_method(set_bus_vol, 0.0, 1.0, 3.0)

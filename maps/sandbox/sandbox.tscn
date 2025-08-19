@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://b0tci4piatfdu" path="res://maps/sandbox/meshes/mire_petrification.glb" id="10_j25ev"]
 [ext_resource type="PackedScene" uid="uid://cx34qwdt1wnko" path="res://lib/debug/agent_editor/agent_editor.tscn" id="11_kaa0c"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="12_40n1j"]
+[ext_resource type="AudioStream" uid="uid://c0005cndrmldp" path="res://maps/sandbox/sounds/layer_1.ogg" id="13_40n1j"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="13_ii18f"]
 [ext_resource type="PackedScene" uid="uid://bim05oeh3ds2y" path="res://maps/sandbox/props/column.tscn" id="13_kaa0c"]
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
-[ext_resource type="AudioStream" uid="uid://bgi5ffx4h5ejc" path="res://maps/sandbox/sounds/mus_scrapper.ogg" id="15_c8n4n"]
-[ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://lib/projectiles/molten_shot.tscn" id="15_ii18f"]
+[ext_resource type="AudioStream" uid="uid://h6mbjokrmne8" path="res://maps/sandbox/sounds/layer_2.ogg" id="14_ii18f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_up8qe"]
 resource_local_to_scene = true
@@ -169,9 +169,13 @@ texture_albedo = ExtResource("10_ii18f")
 albedo_mix = 0.65
 cull_mask = 4
 
-[node name="MoltenMetal" parent="." index="6" instance=ExtResource("15_ii18f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Ambience" parent="." index="7"]
+[node name="Ambience" parent="." index="6"]
 process_mode = 3
-stream = ExtResource("15_c8n4n")
+
+[node name="Layer1" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("13_40n1j")
+volume_db = -80.0
+
+[node name="Layer2" type="AudioStreamPlayer" parent="." index="8"]
+stream = ExtResource("14_ii18f")
+volume_db = -80.0
