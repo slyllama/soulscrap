@@ -8,8 +8,8 @@ const P_FORWARD = "parameters/forward/add_amount"
 @export var acceleration = 9.0
 @export var gravity_damping = 10.0
 
-@export var nitro_impulse_time = 0.34
-@export var nitro_impulse_multiplier = 3.0
+@export var nitro_impulse_time = 0.30
+@export var nitro_impulse_multiplier = 3.7
 
 var target_speed = speed
 var _actual_speed = target_speed

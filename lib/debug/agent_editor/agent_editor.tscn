@@ -33,31 +33,24 @@ layout_mode = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="TogglePlayerTargeting" type="Button" parent="VBox" index="4"]
-use_parent_material = true
-layout_mode = 2
-mouse_filter = 1
-text = "Target Player"
-
-[node name="Stationary" type="Button" parent="VBox" index="5"]
+[node name="Stationary" type="Button" parent="VBox" index="4"]
 use_parent_material = true
 layout_mode = 2
 mouse_filter = 1
 text = "Make Stationary"
 
-[node name="ResetIntegrity" type="Button" parent="VBox" index="6"]
+[node name="ResetIntegrity" type="Button" parent="VBox" index="5"]
 use_parent_material = true
 layout_mode = 2
 mouse_filter = 1
 text = "Restore Integrity"
 
-[node name="Pad2" type="ColorRect" parent="VBox" index="7"]
+[node name="Pad2" type="ColorRect" parent="VBox" index="6"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[connection signal="button_down" from="VBox/TogglePlayerTargeting" to="." method="_on_toggle_player_targeting_button_down"]
 [connection signal="button_down" from="VBox/Stationary" to="." method="_on_stationary_button_down"]
 [connection signal="button_down" from="VBox/ResetIntegrity" to="." method="_on_reset_integrity_button_down"]

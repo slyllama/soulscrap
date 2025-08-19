@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d4i4jjh5re868"]
+[gd_scene load_steps=21 format=3 uid="uid://d4i4jjh5re868"]
 
 [ext_resource type="PackedScene" uid="uid://d0j3ryssexkcj" path="res://lib/map/map.tscn" id="1_8bryw"]
 [ext_resource type="PackedScene" uid="uid://ban0go6y3b25c" path="res://lib/player/player.tscn" id="2_hxxcf"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
 [ext_resource type="AudioStream" uid="uid://bgi5ffx4h5ejc" path="res://maps/sandbox/sounds/mus_scrapper.ogg" id="15_c8n4n"]
 [ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://lib/projectiles/molten_shot.tscn" id="15_ii18f"]
-[ext_resource type="PackedScene" uid="uid://b8ugq7w8i4b1n" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.tscn" id="15_up8qe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_up8qe"]
 resource_local_to_scene = true
@@ -65,19 +64,18 @@ agent_radius = 0.4
 
 [node name="HUD" parent="." index="0" instance=ExtResource("2_ix24m")]
 
-[node name="AgentEditor" parent="HUD" index="10" node_paths=PackedStringArray("target_agent") instance=ExtResource("11_kaa0c")]
+[node name="AgentEditor" parent="HUD" index="10" instance=ExtResource("11_kaa0c")]
 material = SubResource("ShaderMaterial_up8qe")
 custom_minimum_size = Vector2(300, 160)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = -210.0
+offset_top = -176.0
 offset_right = 316.0
 offset_bottom = -16.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_j7h81")
-target_agent = NodePath("../../AnguishedClaw")
 
 [node name="Sky" parent="." index="1"]
 environment = SubResource("Environment_v3xsa")
@@ -174,9 +172,6 @@ cull_mask = 4
 [node name="MoltenMetal" parent="." index="6" instance=ExtResource("15_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="AnguishedClaw" parent="." index="7" instance=ExtResource("15_up8qe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.056, 0.5, -1.146)
-
-[node name="Ambience" parent="." index="8"]
+[node name="Ambience" parent="." index="7"]
 process_mode = 3
 stream = ExtResource("15_c8n4n")

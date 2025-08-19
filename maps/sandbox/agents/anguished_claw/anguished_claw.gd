@@ -6,11 +6,11 @@ func attack() -> void:
 	
 	# TODO: cast
 	print("--- Cast")
-	
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.35).timeout
 	
 	# TODO: attack
 	print("--- Attack")
+	model.get_node("AnimationPlayer").play("take_damage")
 	$DamageSplat.emitting = true
 	
 	stationary = false
@@ -19,6 +19,12 @@ func attack() -> void:
 
 func _ready() -> void:
 	super()
+	
+	model.position.y = -1.0
+	var _t = create_tween() # janky spawn animation, LMAO
+	_t.set_ease(Tween.EASE_IN_OUT)
+	_t.set_trans(Tween.TRANS_EXPO)
+	_t.tween_property(model, "position:y", 0.0, 0.3)
 	
 	Utils.tick.connect(func():
 		if target == Global.player and $AttackCD.is_stopped():

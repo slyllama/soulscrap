@@ -79,7 +79,7 @@ func get_bone_position(skeleton: Skeleton3D, bone_name: String) -> Vector3:
 func lose_integrity(amount: int) -> void:
 	target = Global.player
 	
-	if current_integrity - amount >= 0:
+	if current_integrity - amount > 0:
 		var _d = _NodeSpatial.instantiate()
 		_d.text = str(amount)
 		_d.font_size = 24
@@ -95,6 +95,8 @@ func lose_integrity(amount: int) -> void:
 		model.get_node("AnimationPlayer").play("take_damage")
 		current_integrity -= amount
 		integrity_changed.emit()
+	else:
+		queue_free() # TODO: die
 
 ## Restore the agent to full health.
 func reset_integrity() -> void:
