@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfseihrm3xxa4"]
+
+[ext_resource type="Texture2D" uid="uid://blk3y43njliyc" path="res://lib/cast/textures/cast_progress.png" id="1_il3g6"]
+[ext_resource type="Script" uid="uid://bgltvt34r5x0i" path="res://lib/ui/dissolve_control/dissolve_control.gd" id="1_wgjer"]
+[ext_resource type="Script" uid="uid://qlq7c3fwnkdn" path="res://lib/cast/cast.gd" id="2_cfbvy"]
+[ext_resource type="Texture2D" uid="uid://demperw3k6ld2" path="res://lib/cast/textures/cast_bar_mask.png" id="2_j6ibu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfbvy"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfbvy"]
+texture = ExtResource("1_il3g6")
+axis_stretch_horizontal = 1
+
+[node name="Cast" type="Control"]
+custom_minimum_size = Vector2(200, 12)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 12.0
+mouse_filter = 2
+script = ExtResource("1_wgjer")
+metadata/_custom_type_script = "uid://bgltvt34r5x0i"
+
+[node name="CastTexture" type="TextureRect" parent="."]
+clip_children = 2
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_j6ibu")
+expand_mode = 1
+
+[node name="CastBar" type="ProgressBar" parent="CastTexture"]
+use_parent_material = true
+custom_minimum_size = Vector2(200, 12)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cfbvy")
+theme_override_styles/fill = SubResource("StyleBoxTexture_cfbvy")
+step = 0.0
+value = 50.0
+show_percentage = false
+script = ExtResource("2_cfbvy")
+
+[node name="CastTimer" type="Timer" parent="CastTexture/CastBar"]
+one_shot = true
+
+[connection signal="timeout" from="CastTexture/CastBar/CastTimer" to="CastTexture/CastBar" method="_on_cast_timer_timeout"]

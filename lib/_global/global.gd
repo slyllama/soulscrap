@@ -8,9 +8,11 @@ signal card_drag_started(card_source)
 signal card_drag_ended(dest_id: String, dest_qty: int)
 signal card_hovered(id)
 signal card_unhovered
-
 signal mouse_capture_lost
 signal mouse_capture_gained
+
+signal start_cast(time: float)
+signal cast_stopped(successful: bool)
 
 # Global references
 var camera: Camera3D
