@@ -47,6 +47,13 @@ signal aggro_range_entered
 	set(_val):
 		aggro_radius = _val
 		$AggroArea/Collision.shape.radius = aggro_radius
+## If the player gets further from the agent than this radius, aggro will be
+## deactivated.
+@export var aggro_leave_radius: float = 3.0:
+	get: return(aggro_leave_radius)
+	set(_val):
+		aggro_leave_radius = _val
+		$AggroLeaveArea/Collision.shape.radius = aggro_leave_radius
 ## If this is not null, the agent's navigation target will be this node.
 @export var target: Node3D
 ## If the [param manual_target_position] is null, the agent's navigation
@@ -173,7 +180,7 @@ func _on_aggro_area_body_entered(body: Node3D) -> void:
 		PlayerData.aggro_gained.emit()
 		target = Global.player
 
-func _on_aggro_area_body_exited(body: Node3D) -> void:
+func _on_aggro_leave_area_body_exited(body: Node3D) -> void:
 	if body is Player:
 		PlayerData.aggro_lost.emit()
 		target = null

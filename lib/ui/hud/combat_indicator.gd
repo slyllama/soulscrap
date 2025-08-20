@@ -19,4 +19,4 @@ func _ready() -> void:
 	# Initialise
 	$Motes.emitting = false
 	_update_mote_pos()
-	_set_dissolve(0.0)
+	_set_dissolve(1.0)

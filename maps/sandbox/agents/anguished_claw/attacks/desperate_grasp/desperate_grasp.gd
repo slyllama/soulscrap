@@ -19,9 +19,14 @@ func fire() -> void:
 			else:
 				PlayerData.take_damage(damage)
 	
+	$Splash.emitting = true
+	$Area/Decal.emission_energy = 10.0
 	var _t = create_tween()
-	_t.tween_property($Area/Decal, "emission_energy", 0.0, 0.03)
-	await _t.finished
+	_t.set_trans(Tween.TRANS_EXPO)
+	_t.set_ease(Tween.EASE_OUT)
+	_t.tween_property($Area/Decal, "emission_energy", 0.0, 0.3)
+	await $Splash.finished
+	print("free")
 	super()
 
 func _ready() -> void:
@@ -29,4 +34,4 @@ func _ready() -> void:
 	
 	super()
 	var _t = create_tween()
-	_t.tween_property($Area/Decal, "emission_energy", 1.0, 0.2)
+	_t.tween_property($Area/Decal, "emission_energy", 0.85, 0.2)

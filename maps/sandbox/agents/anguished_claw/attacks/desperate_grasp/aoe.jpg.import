@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqlss7kxj7ebe"
-path="res://.godot/imported/aoe.jpg-008b656a8a2c63a9c7126fe24da6ad0a.ctex"
+uid="uid://dh2bjtbrmh2vm"
+path="res://.godot/imported/aoe.jpg-477fc44f8f861cda8c5294daa38a59db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/textures/aoe.jpg"
-dest_files=["res://.godot/imported/aoe.jpg-008b656a8a2c63a9c7126fe24da6ad0a.ctex"]
+source_file="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/aoe.jpg"
+dest_files=["res://.godot/imported/aoe.jpg-477fc44f8f861cda8c5294daa38a59db.ctex"]
 
 [params]
 

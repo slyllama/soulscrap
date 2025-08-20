@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b8ugq7w8i4b1n"]
+[gd_scene load_steps=27 format=3 uid="uid://b8ugq7w8i4b1n"]
 
 [ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/agent.tscn" id="1_hyjce"]
 [ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="2_svn0r"]
@@ -52,20 +52,20 @@ radius = 2.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.166667, 0.947368), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_bc51q"]
+[sub_resource type="CurveTexture" id="CurveTexture_ek1lu"]
 curve = SubResource("Curve_ek1lu")
 
 [sub_resource type="Gradient" id="Gradient_0hm7p"]
 colors = PackedColorArray(0.206029, 0.298506, 0, 1, 0.1708, 0.61, 0.22204, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_fkkuu"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bc51q"]
 gradient = SubResource("Gradient_0hm7p")
 
 [sub_resource type="Curve" id="Curve_g6n3w"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.202225, 1), 0.0, 0.0, 0, 0, Vector2(0.872382, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_adgnm"]
+[sub_resource type="CurveTexture" id="CurveTexture_0hm7p"]
 curve = SubResource("Curve_g6n3w")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_47us5"]
@@ -78,13 +78,13 @@ spread = 10.0
 initial_velocity_min = 0.97
 initial_velocity_max = 1.03
 gravity = Vector3(0, -6, 0)
-scale_min = 0.1
-scale_max = 0.15
-scale_curve = SubResource("CurveTexture_adgnm")
-color_initial_ramp = SubResource("GradientTexture1D_fkkuu")
-alpha_curve = SubResource("CurveTexture_bc51q")
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_0hm7p")
+color_initial_ramp = SubResource("GradientTexture1D_bc51q")
+alpha_curve = SubResource("CurveTexture_ek1lu")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5c87"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkkuu"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -96,8 +96,12 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_y4ym0"]
-material = SubResource("StandardMaterial3D_t5c87")
+material = SubResource("StandardMaterial3D_fkkuu")
 size = Vector2(0.45, 0.45)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ek1lu"]
+resource_local_to_scene = true
+radius = 3.0
 
 [node name="AnguishedClaw" node_paths=PackedStringArray("model") instance=ExtResource("1_hyjce")]
 script = ExtResource("2_wairi")
@@ -159,5 +163,8 @@ draw_pass_1 = SubResource("QuadMesh_y4ym0")
 [node name="AttackCD" type="Timer" parent="." index="12"]
 wait_time = 3.0
 one_shot = true
+
+[node name="Collision" parent="AggroLeaveArea" index="0"]
+shape = SubResource("CylinderShape3D_ek1lu")
 
 [connection signal="aggro_range_entered" from="." to="." method="_on_aggro_range_entered"]

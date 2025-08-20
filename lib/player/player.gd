@@ -138,8 +138,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle animations
 	var _calc_forward = lerp(
-		$PlayerMesh/Tree.get(P_FORWARD), _dir.z, Utils.clerp(5.0))
+		$PlayerMesh/Tree.get(P_FORWARD), _dir.z * 1.15, Utils.clerp(12.0))
 	$PlayerMesh/Tree.set(P_FORWARD, _calc_forward)
 	var _calc_strafe = lerp(
-		$PlayerMesh/Tree.get(P_STRAFE), _dir.x * 1.2, Utils.clerp(5.0))
+		$PlayerMesh/Tree.get(P_STRAFE), _dir.x * 1.5, Utils.clerp(12.0))
 	$PlayerMesh/Tree.set(P_STRAFE, _calc_strafe)
