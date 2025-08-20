@@ -6,11 +6,11 @@ func _update_mote_pos() -> void: # Keep in center even when using retina scaling
 func _ready() -> void:
 	super()
 	
-	Global.mouse_capture_lost.connect(func():
+	PlayerData.aggro_gained.connect(func():
 		$Motes.emitting = true
 		appear())
 	
-	Global.mouse_capture_gained.connect(func():
+	PlayerData.aggro_lost.connect(func():
 		$Motes.emitting = false
 		disappear())
 	

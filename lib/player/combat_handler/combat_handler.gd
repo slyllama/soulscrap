@@ -53,6 +53,6 @@ func _ready() -> void:
 		
 		PlayerData.projectile_fired.emit()
 		
-		for _b in$AimArea.get_overlapping_bodies():
-			if _b is Agent:
-				_b.lose_integrity(Components.get_damage(id)))
+		for _b in $AimArea.get_overlapping_areas():
+			if _b.name == "Hitbox":
+				_b.get_parent().lose_integrity(Components.get_damage(id)))

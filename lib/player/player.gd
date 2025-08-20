@@ -8,8 +8,9 @@ const P_FORWARD = "parameters/forward/add_amount"
 @export var acceleration = 9.0
 @export var gravity_damping = 10.0
 
-@export var nitro_impulse_time = 0.30
-@export var nitro_impulse_multiplier = 3.7
+@export var nitro_impulse_time = 0.35
+@export var nitro_impulse_multiplier = 7.0
+@export var nitro_tempo_cost = 15
 
 var target_speed = speed
 var _actual_speed = target_speed
@@ -54,6 +55,7 @@ func _process(_delta: float) -> void:
 	$PlayerMesh/Trail3D_Nitro.trail_width = _target_nitro_trail_width
 
 var _c = nitro_impulse_time
+var _e = 0.0
 const MAGIC = 1.70158;
 const MAGIC_ADD = MAGIC + 1.0;
 
@@ -83,14 +85,21 @@ func _physics_process(delta: float) -> void:
 	# Apply a "dodge" impulse if nitro is initiated while moving
 	if _dir.length() > 0:
 		if Input.is_action_just_pressed("nitro"):
-			if PlayerData.change_tempo(-40):
+			if PlayerData.change_tempo(-nitro_tempo_cost):
+				PlayerData.in_dodge = true
 				_c = 0.0
 	if _c < nitro_impulse_time:
+		_e = 0.0
 		_c += delta / nitro_impulse_time
 		var _d = (1.0 + MAGIC_ADD * pow(_c - 1.0, 3)
 			+ MAGIC * pow(_c - 1.0, 2.0));
 		_d = sin(PI * _c) * nitro_impulse_multiplier
 		_target_velocity *= clamp(_d + 1.0, 1.0, INF)
+	elif _e < 0.5: # TODO: additional dodge time
+		_e += delta
+	else:
+		if PlayerData.in_dodge:
+			PlayerData.in_dodge = false
 	
 	velocity = lerp(
 		velocity, _target_velocity, Utils.clerp(acceleration))

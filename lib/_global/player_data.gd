@@ -11,6 +11,7 @@ signal sprint_ended
 
 var tempo = 99
 var integrity = 100
+var in_dodge = false
 var current_deck: Array = []
 
 # Returns true is a change was effected
