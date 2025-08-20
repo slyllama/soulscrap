@@ -61,11 +61,25 @@ signal aggro_range_entered
 ## reached it.
 @export var force_look_at_target = false
 
+@export_category("Attacks")
+@export var attack_library: Dictionary[String, PackedScene]
+
 ## The current "health" of the agent, compared against its maximum health
 ## expressed in [param integrity].
 @onready var current_integrity = integrity
 var _target_bar_value = 100.0
 
+## Emits an attack stored in the [code]attack_library[/code]. This function
+## also returns that attack, so that the agent's child class can recieve
+## its signals.
+func emit_attack(id: String) -> Projectile:
+	if !id in attack_library: return
+	var _p: Projectile = attack_library[id].instantiate()
+	model.add_child(_p)
+	_p.cast()
+	return(_p)
+
+## Returns the distance between the player and the agent.
 func get_distance_to_player() -> float:
 	return(global_position.distance_to(Global.player.global_position))
 

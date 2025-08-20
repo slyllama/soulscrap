@@ -4,14 +4,8 @@ func attack() -> void:
 	stationary = true
 	force_look_at_target = true
 	
-	# TODO: cast
-	print("--- Cast")
-	await get_tree().create_timer(0.35).timeout
-	
-	# TODO: attack
-	print("--- Attack")
-	model.get_node("AnimationPlayer").play("take_damage")
-	$DamageSplat.emitting = true
+	var _a = emit_attack("desperate_grasp")
+	await _a.cast_finished
 	
 	stationary = false
 	force_look_at_target = false

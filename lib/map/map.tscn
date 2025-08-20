@@ -15,7 +15,7 @@ render_priority = 0
 shader = ExtResource("1_4t4lj")
 shader_parameter/albedo_texture = ExtResource("2_xunhb")
 shader_parameter/albedo_color = Color(0.5, 0.5, 0.5, 1)
-shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scale = Vector2(48, 48)
 shader_parameter/normal_strength = 1.0
 shader_parameter/fade_value = 0.0
 
@@ -44,6 +44,7 @@ shape = SubResource("WorldBoundaryShape3D_uw02r")
 debug_fill = false
 
 [node name="Mesh" type="MeshInstance3D" parent="NavRegion/Floor"]
+visible = false
 mesh = SubResource("QuadMesh_c370e")
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]

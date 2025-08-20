@@ -313,6 +313,7 @@ shape = SubResource("CapsuleShape3D_odf55")
 [node name="Orbit" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965925, 0.258819, 0, -0.258819, 0.965925, 0, 0, 0)
 script = ExtResource("3_5lbbh")
+zoom_maximum = 1.9
 
 [node name="Track" type="Marker3D" parent="Orbit"]
 transform = Transform3D(1, 0, 0, 0, 0.965925, 0.258819, 0, -0.258819, 0.965925, 0, 0, 0)

@@ -99,9 +99,6 @@ transform = Transform3D(0.985363, 0, -0.170467, 0, 1, 0, 0.170467, 0, 0.985363, 
 collision_layer = 5
 collision_mask = 5
 
-[node name="Mesh" parent="NavRegion/Floor" index="1"]
-visible = false
-
 [node name="Player" parent="." index="3" instance=ExtResource("2_hxxcf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 2.8)
 

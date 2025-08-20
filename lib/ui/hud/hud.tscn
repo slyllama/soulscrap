@@ -43,7 +43,7 @@ scale_min = 0.09
 scale_max = 0.12
 scale_curve = SubResource("CurveTexture_bly2c")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwuwv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdq5k"]
 resource_local_to_scene = true
 shader = ExtResource("4_n0ge7")
 shader_parameter/dissolve_texture = ExtResource("5_dntma")
@@ -112,7 +112,7 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
-text = "[color=green]145fps[/color]"
+text = "[color=green]127fps[/color]"
 
 [node name="PrimsCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -155,7 +155,7 @@ offset_bottom = 121.0
 grow_horizontal = 2
 flip_h = true
 flipped = true
-variable = null
+variable = "integrity"
 
 [node name="Ornament" type="TextureRect" parent="BarIntegrity"]
 custom_minimum_size = Vector2(31, 33)
@@ -257,7 +257,7 @@ grow_horizontal = 2
 theme_override_constants/separation = -7
 
 [node name="CardIcon" parent="Deck" instance=ExtResource("10_l7ms4")]
-material = SubResource("ShaderMaterial_mwuwv")
+material = SubResource("ShaderMaterial_hdq5k")
 layout_mode = 2
 id = "anguished_egg"
 quantity = 12

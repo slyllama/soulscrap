@@ -82,7 +82,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Apply a "dodge" impulse if nitro is initiated while moving
 	if _dir.length() > 0:
-		if Input.is_action_just_pressed("nitro"): _c = 0.0
+		if Input.is_action_just_pressed("nitro"):
+			if PlayerData.change_tempo(-40):
+				_c = 0.0
 	if _c < nitro_impulse_time:
 		_c += delta / nitro_impulse_time
 		var _d = (1.0 + MAGIC_ADD * pow(_c - 1.0, 3)

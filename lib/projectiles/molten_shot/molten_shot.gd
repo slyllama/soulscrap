@@ -15,7 +15,6 @@ func _set_fire_spiral_exponent(_val) -> void:
 	spiral_mesh_2.get_active_material(0).set_shader_parameter("exponent", _val)
 
 func fire() -> void:
-	super()
 	$Pivot.global_position = global_position
 	$Sound.pitch_scale = randf_range(0.8, 1.2)
 	$Sound.play()
@@ -26,10 +25,13 @@ func fire() -> void:
 	_t.tween_method(_set_fire_spiral_exponent, 1.0, 0.0, 0.1)
 	var _u = create_tween()
 	_u.tween_method(_set_fire_spiral_exponent, 0.0, 1.0, 0.4)
+	
+	await _u.finished
+	super()
 
 func _ready() -> void:
+	super()
 	visible = false
-	top_level = true
 	
 	_duplicate_mat(spiral_mesh)
 	_duplicate_mat(spiral_mesh_2)

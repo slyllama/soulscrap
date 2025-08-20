@@ -1,7 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://0yjsss8r2vdv"]
+[gd_scene load_steps=8 format=3 uid="uid://0yjsss8r2vdv"]
 
-[ext_resource type="Script" uid="uid://y1nunng426xj" path="res://lib/projectiles/projectile.gd" id="1_d7jcd"]
+[ext_resource type="Script" uid="uid://ch18kb87q4koh" path="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/desperate_grasp.gd" id="1_em7f7"]
+[ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="2_ek6dk"]
+[ext_resource type="Texture2D" uid="uid://brx1lj0t583kn" path="res://generic/materials/textures/tile_diff.jpg" id="3_em7f7"]
+[ext_resource type="Texture2D" uid="uid://2o8kt7wsuq05" path="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/textures/aoe.jpg" id="4_em7f7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vt6hs"]
+render_priority = 0
+shader = ExtResource("2_ek6dk")
+shader_parameter/albedo_texture = ExtResource("3_em7f7")
+shader_parameter/albedo_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/uv_scale = Vector2(48, 48)
+shader_parameter/normal_strength = 1.0
+shader_parameter/fade_value = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_pp0ei"]
+material = SubResource("ShaderMaterial_vt6hs")
+size = Vector2(100, 100)
+orientation = 1
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_em7f7"]
+points = PackedVector3Array(3.74733, 5.40259, -3.97314, 3.74733, -1.17388, -3.97314, 1.5887, 5.40259, -5.26511, 0.314886, 5.40259, -0.525874, 1.5887, -1.17388, -5.26511, 0.314886, -1.17388, -0.525874, -1.08709, 5.40259, -4.72605, -0.342088, 5.40259, -0.563914, -1.08709, -1.17388, -4.72605, -0.342088, -1.17388, -0.563914, -2.86513, 5.40259, -3.10239, -2.86513, -1.17388, -3.10239)
 
 [node name="DesperateGrasp" type="Node3D"]
-script = ExtResource("1_d7jcd")
+script = ExtResource("1_em7f7")
 metadata/_custom_type_script = "uid://y1nunng426xj"
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+layers = 5
+mesh = SubResource("QuadMesh_pp0ei")
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+size = Vector3(5, 3, 5)
+texture_emission = ExtResource("4_em7f7")
+normal_fade = 0.5
+cull_mask = 4
+
+[node name="Area" type="Area3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_em7f7")
