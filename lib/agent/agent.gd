@@ -67,6 +67,8 @@ signal aggro_range_entered
 ## If true, the agent will continue to look at its target even after it has
 ## reached it.
 @export var force_look_at_target = false
+## If true, the agent will not update its looking rotation.
+@export var look_at_target_paused = false
 
 @export_category("Attacks")
 @export var attack_library: Dictionary[String, PackedScene]
@@ -164,8 +166,9 @@ func _physics_process(delta: float) -> void:
 		or force_look_at_target):
 		$AnimTarget.look_at($NavAgent.get_next_path_position())
 	$AnimTarget.rotation_degrees.x = 0.0
-	$AnguishedClaw.rotation.y = lerp_angle(
-		$AnguishedClaw.rotation.y, $AnimTarget.rotation.y - 0.01, Utils.clerp(10.0))
+	if !look_at_target_paused:
+		$AnguishedClaw.rotation.y = lerp_angle(
+			$AnguishedClaw.rotation.y, $AnimTarget.rotation.y - 0.01, Utils.clerp(10.0))
 	
 	$Decal.rotation_degrees.y += delta * 10.0
 	$OutlineDecal.rotation_degrees.y -= delta * 10.0

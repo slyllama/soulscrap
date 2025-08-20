@@ -1,18 +1,28 @@
 extends Agent
 
+@onready var _anim: AnimationPlayer = model.get_node("AnimationPlayer")
+
 func attack() -> void:
 	stationary = true
-	force_look_at_target = true
+	look_at_target_paused = true
 	
+	_anim.play("desperate_grasp")
+	#await get_tree().create_timer(0.1).timeout
 	var _a = emit_attack("desperate_grasp")
-	await _a.cast_finished
+	await _anim.animation_finished
 	
 	stationary = false
-	force_look_at_target = false
+	look_at_target_paused = false
 	$AttackCD.start()
 
 func _ready() -> void:
 	super()
+	
+	_anim.set_blend_time("idle", "desperate_grasp", 0.5)
+	_anim.set_blend_time("desperate_grasp", "idle", 0.2)
+	_anim.animation_finished.connect(func(_anim_name):
+		if _anim_name == "desperate_grasp":
+			_anim.play("idle"))
 	
 	model.position.y = -1.0
 	var _t = create_tween() # janky spawn animation, LMAO

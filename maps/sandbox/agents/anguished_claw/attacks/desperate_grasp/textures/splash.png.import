@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh2bjtbrmh2vm"
-path="res://.godot/imported/aoe.jpg-477fc44f8f861cda8c5294daa38a59db.ctex"
+uid="uid://c7iclfm5ha7df"
+path.s3tc="res://.godot/imported/splash.png-94f40852e050c0acf0cb2c7b5bf60bc2.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/aoe.jpg"
-dest_files=["res://.godot/imported/aoe.jpg-477fc44f8f861cda8c5294daa38a59db.ctex"]
+source_file="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/textures/splash.png"
+dest_files=["res://.godot/imported/splash.png-94f40852e050c0acf0cb2c7b5bf60bc2.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

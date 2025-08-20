@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="2_ek6dk"]
 [ext_resource type="Texture2D" uid="uid://brx1lj0t583kn" path="res://generic/materials/textures/tile_diff.jpg" id="3_em7f7"]
 [ext_resource type="Texture2D" uid="uid://dqlss7kxj7ebe" path="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/textures/aoe.jpg" id="4_em7f7"]
-[ext_resource type="Texture2D" uid="uid://cxfqbrey3dgt6" path="res://maps/sandbox/agents/anguished_claw/textures/splash.png" id="5_pp0ei"]
+[ext_resource type="Texture2D" uid="uid://c7iclfm5ha7df" path="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/textures/splash.png" id="4_pp0ei"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vt6hs"]
 render_priority = 0
@@ -42,7 +42,7 @@ curve = SubResource("Curve_pglo2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_um4j3"]
 emission_shape = 3
-emission_box_extents = Vector3(0.5, 0.1, 0.5)
+emission_box_extents = Vector3(0.5, 0.1, 0.1)
 angle_min = -90.0
 angle_max = 90.0
 direction = Vector3(0, 1, 0)
@@ -56,11 +56,11 @@ scale_curve = SubResource("CurveTexture_adgnm")
 color_initial_ramp = SubResource("GradientTexture1D_fkkuu")
 alpha_curve = SubResource("CurveTexture_bc51q")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5c87"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1081"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("5_pp0ei")
+albedo_texture = ExtResource("4_pp0ei")
 disable_receive_shadows = true
 billboard_mode = 3
 billboard_keep_scale = true
@@ -69,7 +69,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_rasug"]
-material = SubResource("StandardMaterial3D_t5c87")
+material = SubResource("StandardMaterial3D_o1081")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_em7f7"]
 points = PackedVector3Array(3.74733, 5.40259, -3.97314, 3.74733, -1.17388, -3.97314, 1.5887, 5.40259, -5.26511, 0.314886, 5.40259, -0.525874, 1.5887, -1.17388, -5.26511, 0.314886, -1.17388, -0.525874, -1.08709, 5.40259, -4.72605, -0.342088, 5.40259, -0.563914, -1.08709, -1.17388, -4.72605, -0.342088, -1.17388, -0.563914, -2.86513, 5.40259, -3.10239, -2.86513, -1.17388, -3.10239)
@@ -83,7 +83,7 @@ layers = 5
 mesh = SubResource("QuadMesh_pp0ei")
 
 [node name="Splash" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.14, -0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267038, -1.40931)
 cast_shadow = 0
 emitting = false
 amount = 17
@@ -91,7 +91,7 @@ lifetime = 0.65
 one_shot = true
 preprocess = 0.2
 speed_scale = 0.75
-explosiveness = 0.5
+explosiveness = 0.75
 randomness = 0.35
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_um4j3")

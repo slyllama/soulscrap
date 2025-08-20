@@ -26,7 +26,6 @@ func fire() -> void:
 	_t.set_ease(Tween.EASE_OUT)
 	_t.tween_property($Area/Decal, "emission_energy", 0.0, 0.3)
 	await $Splash.finished
-	print("free")
 	super()
 
 func _ready() -> void:
