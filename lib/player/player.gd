@@ -121,8 +121,9 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 0.1:
 		$Orbit/Track/Camera.rotation_degrees.z = lerp( # extremely gentle camera rotation
 			$Orbit/Track/Camera.rotation_degrees.z, 0.65 * -_dir.x, Utils.clerp(2.0))
-		$PlayerMesh.rotation_degrees.y = lerp(
-			$PlayerMesh.rotation_degrees.y, $Orbit.rotation_degrees.y, Utils.clerp(7.0))
+		
+		$PlayerMesh.rotation.y = lerp_angle(
+			$PlayerMesh.rotation.y, $Orbit.rotation.y, Utils.clerp(7.0))
 	
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	

@@ -13,6 +13,7 @@ extends Node3D
 @onready var _target_pivot_y = rotation_degrees.y
 @onready var _target_zoom = zoom_minimum
 @onready var _target_fov = fov
+@onready var _v_offset = $Track/Camera.v_offset
 
 var _mouse_delta = Vector2.ZERO
 
@@ -20,8 +21,30 @@ func _is_mouse_captured() -> bool:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: return(true)
 	else: return(false)
 
-func shake_camera() -> void:
-	$Anim.play("shake_camera")
+func shake_camera(v_offset: float = 0.12, z_rotation: float = 1.0) -> void:
+	var _v1 = create_tween()
+	_v1.tween_property(
+		$Track/Camera, "v_offset", _v_offset - v_offset, 0.03)
+	_v1.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	var _r1 = create_tween()
+	_r1.tween_property(
+		$Track/Camera, "rotation_degrees:z", z_rotation, 0.03)
+	_r1.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	_r1.set_parallel()
+	
+	await _v1.finished
+	_v1.stop()
+	_r1.stop()
+	
+	_v1 = create_tween()
+	_v1.tween_property(
+		$Track/Camera, "v_offset", _v_offset, 0.25)
+	_v1.set_trans(Tween.TRANS_BOUNCE)
+	_r1 = create_tween()
+	_r1.tween_property(
+		$Track/Camera, "rotation_degrees:z", 0.0, 0.25)
+	_r1.set_trans(Tween.TRANS_BOUNCE)
+	_r1.set_parallel()
 
 func _input(event: InputEvent) -> void:
 	# Handle orbiting
@@ -51,7 +74,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	PlayerData.projectile_fired.connect(shake_camera)
-	PlayerData.damage_taken.connect(func(_amount): shake_camera())
+	PlayerData.damage_taken.connect(func(_amount): shake_camera(0.4, 2.0))
 	
 	get_window().focus_exited.connect(func():
 		Global.mouse_capture_lost.emit()

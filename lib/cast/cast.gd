@@ -16,6 +16,9 @@ func _input(_event: InputEvent) -> void:
 
 func _ready() -> void:
 	value = 0.0
+	PlayerData.damage_taken.connect(func(_amount):
+		stop_cast(false))
+	
 	Global.start_cast.connect(func(get_time):
 		get_parent().get_parent().appear()
 		running = true

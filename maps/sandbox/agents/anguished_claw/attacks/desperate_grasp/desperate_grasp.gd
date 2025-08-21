@@ -6,10 +6,10 @@ func fire() -> void:
 	for _n in $Area.get_overlapping_bodies():
 		if _n is Player:
 			if PlayerData.in_dodge: # TODO: make more modular (incorporate into projectile.gd)
-				print("Dodge")
+				Utils.pdebug("Dodged!", "Projectile -> DesperateGrasp")
 				PlayerData.change_tempo(20)
 				var _d = _NodeSpatial.instantiate()
-				_d.text = str("Dodge!")
+				_d.text = str("Evaded")
 				_d.font_size = 24
 				_d.text_color = Color.GOLD
 				Global.player.add_child(_d)

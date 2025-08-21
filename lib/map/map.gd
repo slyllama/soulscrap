@@ -22,15 +22,5 @@ func _ready() -> void:
 	
 	_spawn_ac()
 	
-	#$Layer1.volume_linear = 0.5
-	#PlayerData.aggro_gained.connect(func():
-		#var _t = create_tween()
-		#_t.tween_property($Layer2, "volume_linear", 0.5, 1.5))
-	#PlayerData.aggro_lost.connect(func():
-		#var _t = create_tween()
-		#_t.tween_property($Layer2, "volume_linear", 0.0, 1.5))
-	#
-	#$Layer1.play()
-	#$Layer2.play()
 	var _v = create_tween()
 	_v.tween_method(set_bus_vol, 0.0, 1.0, 3.0)

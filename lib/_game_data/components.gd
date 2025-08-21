@@ -14,9 +14,9 @@ const component_library = {
 		"description": "Fire a super-heated blob of scrap metal.",
 		"texture": preload(ICON_PATH + "molten_shot.png"),
 		"projectile": preload(PROJECTILE_PATH + "molten_shot.tscn"),
-		"tempo_cost": 10,
-		"damage": 10,
-		"cooldown": 0.3,
+		"tempo_cost": 20,
+		"damage": 15,
+		"cooldown": 0.4,
 		"range": 2.3 # given in meters
 	},
 	"test_item": {

@@ -76,7 +76,9 @@ signal aggro_range_entered
 ## The current "health" of the agent, compared against its maximum health
 ## expressed in [param integrity].
 @onready var current_integrity = integrity
+
 var _target_bar_value = 100.0
+var _has_damage_animation = true
 
 ## Emits an attack stored in the [code]attack_library[/code]. This function
 ## also returns that attack, so that the agent's child class can recieve
@@ -115,7 +117,8 @@ func lose_integrity(amount: int) -> void:
 		add_child(_d)
 		_d.float_away()
 		
-		model.get_node("AnimationPlayer").play("take_damage")
+		if _has_damage_animation:
+			model.get_node("AnimationPlayer").play("take_damage")
 		current_integrity -= amount
 		integrity_changed.emit()
 	else:
@@ -131,12 +134,16 @@ func _ready() -> void:
 		# Set up animation logic
 		var _anim: AnimationPlayer = model.get_node("AnimationPlayer")
 		_anim.speed_scale = randf_range(0.9, 1.1)
-		_anim.set_blend_time("take_damage", "idle", 0.2)
-		_anim.seek(randf_range(0.0, 0.75))
-		_anim.animation_finished.connect(func(_anim_name):
-			if _anim_name == "take_damage":
-				_anim.play("idle"))
+		if "take_damage" in _anim.get_animation_library_list():
+			_anim.set_blend_time("take_damage", "idle", 0.2)
+			_anim.animation_finished.connect(func(_anim_name):
+				if _anim_name == "take_damage":
+					_anim.play("idle"))
+		else:
+			Utils.pdebug("Missing animation '" + agent_name + "' -> 'take_damage'.", "Agent", "yellow")
+			_has_damage_animation = false
 		
+		_anim.seek(randf_range(0.0, 0.75))
 		_anim.play("idle")
 		
 	$NodeSpatial.text = agent_name

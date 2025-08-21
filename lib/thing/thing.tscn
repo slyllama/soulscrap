@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg5jkpqcpaix3"]
+
+[ext_resource type="Script" uid="uid://b212vh5ynofxf" path="res://lib/thing/thing.gd" id="1_qdhmu"]
+[ext_resource type="PackedScene" uid="uid://b0vqktx3q2d2r" path="res://lib/ui/node_spatial/node_spatial.tscn" id="1_raq71"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xc8mt"]
+resource_local_to_scene = true
+height = 1.0
+radius = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_raq71"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="Thing" type="Area3D"]
+script = ExtResource("1_qdhmu")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_xc8mt")
+
+[node name="NodeSpatial" parent="." instance=ExtResource("1_raq71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+text = "((Thing))"
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_raq71")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

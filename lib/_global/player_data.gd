@@ -25,7 +25,7 @@ func change_tempo(amount: int = -1) -> bool:
 	return(_v)
 
 func take_damage(amount: int) -> bool:
-	if integrity - amount <= 0:
+	if integrity - amount < 0:
 		return(false)
 	else:
 		integrity -= amount

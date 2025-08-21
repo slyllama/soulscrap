@@ -3,6 +3,8 @@ extends Node3D
 
 const NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
 
+var _indicator_emission = 0.0
+
 func _play_undertempo_warning() -> void:
 	$TempoWarning.play()
 	var _d = NodeSpatial.instantiate()
@@ -17,6 +19,12 @@ func _clear_buffer() -> void:
 		_n.queue_free()
 
 func _ready() -> void:
+	PlayerData.aggro_gained.connect(func():
+		_indicator_emission = 1.0)
+	
+	PlayerData.aggro_lost.connect(func():
+		_indicator_emission = 0.0)
+	
 	PlayerData.deck_changed.connect(func():
 		# Clear out the projectile buffer and replace it with any projectile
 		# specified in the component data
@@ -56,3 +64,7 @@ func _ready() -> void:
 		for _b in $AimArea.get_overlapping_areas():
 			if _b.name == "Hitbox":
 				_b.get_parent().lose_integrity(Components.get_damage(id)))
+
+func _process(delta: float) -> void:
+	$RangeIndicator.emission_energy = lerp(
+		$RangeIndicator.emission_energy, _indicator_emission, Utils.clerp(15.0))

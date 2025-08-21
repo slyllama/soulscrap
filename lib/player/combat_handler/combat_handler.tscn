@@ -27,6 +27,7 @@ max_polyphony = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 size = Vector3(4.4, 2, 4.4)
 texture_emission = ExtResource("5_htq67")
+emission_energy = 0.0
 modulate = Color(0.65, 0.65, 0.65, 1)
 normal_fade = 0.9
 

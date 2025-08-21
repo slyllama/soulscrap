@@ -161,7 +161,7 @@ process_material = SubResource("ParticleProcessMaterial_47us5")
 draw_pass_1 = SubResource("QuadMesh_y4ym0")
 
 [node name="AttackCD" type="Timer" parent="." index="12"]
-wait_time = 3.0
+wait_time = 1.5
 one_shot = true
 
 [node name="Collision" parent="AggroLeaveArea" index="0"]

@@ -6,10 +6,11 @@ func attack() -> void:
 	stationary = true
 	look_at_target_paused = true
 	
-	_anim.play("desperate_grasp")
-	#await get_tree().create_timer(0.1).timeout
 	var _a = emit_attack("desperate_grasp")
+	_anim.speed_scale = 1.0 / _a.cast_time
+	_anim.play("desperate_grasp")
 	await _anim.animation_finished
+	_anim.speed_scale = 1.0
 	
 	stationary = false
 	look_at_target_paused = false

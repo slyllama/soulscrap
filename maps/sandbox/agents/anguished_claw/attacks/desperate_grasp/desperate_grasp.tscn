@@ -76,6 +76,8 @@ points = PackedVector3Array(3.74733, 5.40259, -3.97314, 3.74733, -1.17388, -3.97
 
 [node name="DesperateGrasp" type="Node3D"]
 script = ExtResource("1_em7f7")
+cast_time = 0.65
+damage = 25
 metadata/_custom_type_script = "uid://y1nunng426xj"
 
 [node name="Floor" type="MeshInstance3D" parent="."]
