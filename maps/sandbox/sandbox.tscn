@@ -189,11 +189,13 @@ process_mode = 3
 [node name="M" type="Marker3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08589, 0.5, -0.63718)
 
-[node name="Thing" parent="." index="8" instance=ExtResource("15_ii18f")]
+[node name="AnguishedEgg" parent="." index="8" instance=ExtResource("15_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94474, 0, -1.52879)
+component_id = "anguished_egg"
 
-[node name="Thing2" parent="." index="9" instance=ExtResource("15_ii18f")]
+[node name="AnguishedEgg2" parent="." index="9" instance=ExtResource("15_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23404, 2.38419e-07, 3.12229)
+component_id = "anguished_egg"
 
 [node name="AnguishedClaw" parent="." index="10" node_paths=PackedStringArray("target") instance=ExtResource("14_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2.9)

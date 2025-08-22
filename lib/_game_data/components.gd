@@ -4,6 +4,15 @@ extends Node
 const ICON_PATH = "res://lib/ui/deck/card_icon/icons/"
 const PROJECTILE_PATH = "res://lib/projectiles/"
 
+const condition_library = {
+	"blank": {
+		"title": "Blank"
+	},
+	"poisoned": {
+		"title": "Poisoned"
+	}
+}
+
 const component_library = {
 	"blank": {
 		"title": "Blank",
@@ -34,6 +43,14 @@ const component_library = {
 	}
 }
 
+#region Condition data
+func get_cond_title(cond: String) -> String:
+	if cond in condition_library:
+		return(condition_library[cond].title)
+	else: return("")
+#endregion
+
+#region Component data
 func get_title(component: String) -> String:
 	if component in component_library:
 		return(component_library[component].title)
@@ -62,3 +79,4 @@ func get_cooldown(component: String) -> float:
 			return(component_library[component].cooldown)
 		else: return(0.0)
 	else: return(0.0)
+#endregion

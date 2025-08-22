@@ -17,7 +17,7 @@ func get_all_children(in_node, arr := []):
 	return(arr)
 
 func pdebug(text: String, module = "", color = "white") -> void:
-	if module != "": module = "[" + module.capitalize() + "] "
+	if module != "": module = "[color=darkgray][" + module.capitalize() + "][/color] "
 	print_rich(module + "[color=" + color + "]" + text + "[/color]")
 
 var _d = 0.0

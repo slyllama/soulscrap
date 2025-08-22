@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if !running: return
-	value = $CastTimer.time_left / _time * 100.0
+	value = (1.0 - ($CastTimer.time_left / _time)) * 100.0
 	if Global.player.velocity.length() > 1.0:
 		stop_cast(false)
 
