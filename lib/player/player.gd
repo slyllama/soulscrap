@@ -3,6 +3,8 @@ class_name Player extends CharacterBody3D
 const P_STRAFE = "parameters/strafe/add_amount"
 const P_FORWARD = "parameters/forward/add_amount"
 
+@onready var skeleton = get_node("PlayerMesh/BotArmature/Skeleton3D")
+
 @export var speed = 1.9
 @export var nitro_speed = 3.8
 @export var acceleration = 9.0
@@ -18,6 +20,12 @@ var _target_velocity = 0.0
 var _target_nitro_trail_width = 0.0
 
 var nitro_active = false
+
+## Get the position in world space of the specified bone.
+func get_bone_position(skeleton: Skeleton3D, bone_name: String) -> Vector3:
+	var _bone_idx = skeleton.find_bone(bone_name)
+	var _bone_origin = skeleton.get_bone_global_pose(_bone_idx).origin
+	return(skeleton.to_global(_bone_origin))
 
 func _ready() -> void:
 	Global.player = self
@@ -121,7 +129,6 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 0.1:
 		$Orbit/Track/Camera.rotation_degrees.z = lerp( # extremely gentle camera rotation
 			$Orbit/Track/Camera.rotation_degrees.z, 0.65 * -_dir.x, Utils.clerp(2.0))
-		
 		$PlayerMesh.rotation.y = lerp_angle(
 			$PlayerMesh.rotation.y, $Orbit.rotation.y, Utils.clerp(7.0))
 	
@@ -136,6 +143,10 @@ func _physics_process(delta: float) -> void:
 	$CombatPivot.rotation.x = clamp($CombatPivot.rotation.x, 0.0, INF)
 	$CombatPivot.position.x = 0.0
 	$CombatPivot.position.z = 0.0
+	
+	$WeaponMount.global_position = get_bone_position(skeleton, "HeadCap")
+	$WeaponMount.rotation = $PlayerMesh.rotation
+	$WeaponMount/MoltenCannon.rotation = $CombatPivot.rotation - $PlayerMesh.rotation
 	
 	# Handle animations
 	var _calc_forward = lerp(
