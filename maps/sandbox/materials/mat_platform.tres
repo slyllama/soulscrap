@@ -9,6 +9,7 @@ render_priority = 0
 shader = ExtResource("1_wm001")
 shader_parameter/albedo_texture = ExtResource("2_god6p")
 shader_parameter/normal_texture = ExtResource("3_god6p")
+shader_parameter/normal_enabled = true
 shader_parameter/albedo_color = Color(0.5, 0.416667, 0.4, 1)
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/normal_strength = 2.0

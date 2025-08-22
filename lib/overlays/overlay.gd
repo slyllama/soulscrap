@@ -12,6 +12,8 @@ func _on_start_timer_timeout() -> void:
 	_t.tween_callback(func(): layer = -1)
 
 func _ready() -> void:
+	$Debug.queue_free()
+	
 	PlayerData.projectile_fired.connect(func():
 		var _t = create_tween()
 		_t.tween_method(set_highlight_value, 0.0, 1.0, 0.3))

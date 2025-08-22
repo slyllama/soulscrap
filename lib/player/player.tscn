@@ -265,6 +265,7 @@ h_offset = 0.25
 v_offset = 0.25
 current = true
 fov = 37.8493
+near = 0.35
 
 [node name="Motes" type="GPUParticles3D" parent="Orbit/Track/Camera"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
@@ -289,7 +290,7 @@ spring_length = 2.0
 
 [node name="YCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0770358, 0)
-target_position = Vector3(0, -1.5, 0)
+target_position = Vector3(0, -1.2, 0)
 
 [node name="CombatPivot" type="Node3D" parent="."]
 script = ExtResource("9_5x5nn")

@@ -9,10 +9,11 @@ signal projectile_fired
 signal sprint_started
 signal sprint_ended
 
-var tempo = 99
+var aggro_agents: Array[Agent] = []
+var current_deck: Array = []
 var integrity = 100
 var in_dodge = false
-var current_deck: Array = []
+var tempo = 99
 
 # Returns true is a change was effected
 func change_tempo(amount: int = -1) -> bool:

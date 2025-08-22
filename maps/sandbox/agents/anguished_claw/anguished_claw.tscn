@@ -114,10 +114,10 @@ attack_library = Dictionary[String, PackedScene]({
 })
 
 [node name="AnguishedClaw" parent="." index="5" instance=ExtResource("4_svn0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 0.78, 0, -0.2, 0)
 
 [node name="Decal" type="Decal" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.427359, 0)
 sorting_offset = 0.1
 size = Vector3(1, 1, 1)
 texture_albedo = ExtResource("3_qkuix")
@@ -125,6 +125,7 @@ upper_fade = 1e-05
 cull_mask = 4
 
 [node name="OutlineDecal" type="Decal" parent="." index="7"]
+visible = false
 size = Vector3(4, 3, 4)
 texture_albedo = ExtResource("4_wairi")
 modulate = Color(0.545098, 0.827451, 0, 1)

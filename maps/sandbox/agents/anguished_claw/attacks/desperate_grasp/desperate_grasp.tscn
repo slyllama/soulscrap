@@ -6,18 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://dqlss7kxj7ebe" path="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/textures/aoe.jpg" id="4_em7f7"]
 [ext_resource type="Texture2D" uid="uid://c7iclfm5ha7df" path="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/textures/splash.png" id="4_pp0ei"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vt6hs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pp0ei"]
 render_priority = 0
 shader = ExtResource("2_ek6dk")
 shader_parameter/albedo_texture = ExtResource("3_em7f7")
+shader_parameter/normal_enabled = true
 shader_parameter/albedo_color = Color(0.5, 0.5, 0.5, 1)
-shader_parameter/uv_scale = Vector2(48, 48)
+shader_parameter/uv_scale = Vector2(6, 6)
 shader_parameter/normal_strength = 1.0
 shader_parameter/fade_value = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_pp0ei"]
-material = SubResource("ShaderMaterial_vt6hs")
-size = Vector2(100, 100)
+material = SubResource("ShaderMaterial_pp0ei")
+size = Vector2(2, 2)
 orientation = 1
 
 [sub_resource type="Curve" id="Curve_o1081"]
@@ -85,7 +86,7 @@ layers = 5
 mesh = SubResource("QuadMesh_pp0ei")
 
 [node name="Splash" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267038, -1.40931)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267038, -1.32634)
 cast_shadow = 0
 emitting = false
 amount = 17

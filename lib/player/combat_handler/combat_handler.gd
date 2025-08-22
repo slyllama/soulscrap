@@ -65,6 +65,6 @@ func _ready() -> void:
 			if _b.name == "Hitbox":
 				_b.get_parent().lose_integrity(Components.get_damage(id)))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$RangeIndicator.emission_energy = lerp(
 		$RangeIndicator.emission_energy, _indicator_emission, Utils.clerp(15.0))

@@ -130,6 +130,7 @@ func reset_integrity() -> void:
 	integrity_changed.emit()
 
 func _ready() -> void:
+	$Floor.queue_free()
 	if model:
 		# Set up animation logic
 		var _anim: AnimationPlayer = model.get_node("AnimationPlayer")
@@ -187,10 +188,13 @@ func _physics_process(delta: float) -> void:
 func _on_aggro_area_body_entered(body: Node3D) -> void:
 	if body is Player and target_player_on_aggro:
 		aggro_range_entered.emit()
+		PlayerData.aggro_agents.append(self)
 		PlayerData.aggro_gained.emit()
 		target = Global.player
 
 func _on_aggro_leave_area_body_exited(body: Node3D) -> void:
 	if body is Player:
-		PlayerData.aggro_lost.emit()
 		target = null
+		PlayerData.aggro_agents.erase(self)
+		if PlayerData.aggro_agents.size() < 1:
+			PlayerData.aggro_lost.emit()

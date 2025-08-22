@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7kkp37wp3ndo"]
+[gd_scene load_steps=15 format=3 uid="uid://b7kkp37wp3ndo"]
 
 [ext_resource type="Script" uid="uid://c5efta1qqtkn3" path="res://lib/overlays/overlay.gd" id="1_2m328"]
 [ext_resource type="Shader" uid="uid://dfubs0v03468n" path="res://lib/overlays/shaders/smoke.gdshader" id="1_lw2cd"]
 [ext_resource type="Texture2D" uid="uid://brx1lj0t583kn" path="res://generic/materials/textures/tile_diff.jpg" id="2_roggd"]
 [ext_resource type="Texture2D" uid="uid://cjh33d4amtyhc" path="res://generic/textures/graffiti_mask.jpg" id="3_busvx"]
+[ext_resource type="Shader" uid="uid://dciihhmkwe77u" path="res://lib/overlays/shaders/vignette.gdshader" id="3_p0u7n"]
 [ext_resource type="Texture2D" uid="uid://dvi4vh7lcum0r" path="res://lib/ui/hud/textures/damage_taken.png" id="4_3nxxb"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="4_busvx"]
 [ext_resource type="Shader" uid="uid://x308d5tet7an" path="res://lib/overlays/shaders/exposure_smoke.gdshader" id="5_busvx"]
@@ -11,7 +12,13 @@
 [ext_resource type="Script" uid="uid://bgltvt34r5x0i" path="res://lib/ui/dissolve_control/dissolve_control.gd" id="9_rhj2k"]
 [ext_resource type="Texture2D" uid="uid://cpj67ti628o6l" path="res://lib/overlays/textures/anime.png" id="10_l7kf3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3x0gg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7kf3"]
+shader = ExtResource("3_p0u7n")
+shader_parameter/vignette_feather = 0.3
+shader_parameter/vignette_midpoint = 0.45
+shader_parameter/vignette_alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wbtki"]
 shader = ExtResource("1_lw2cd")
 shader_parameter/smoke_effect = ExtResource("3_busvx")
 shader_parameter/wobble_pattern = ExtResource("4_busvx")
@@ -31,7 +38,6 @@ shader_parameter/time_factor = 0.1
 script = ExtResource("1_2m328")
 
 [node name="Debug" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,7 +49,7 @@ expand_mode = 1
 stretch_mode = 1
 
 [node name="Vignette" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_3x0gg")
+material = SubResource("ShaderMaterial_l7kf3")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -53,7 +59,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
 [node name="Smoke" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_3x0gg")
+material = SubResource("ShaderMaterial_wbtki")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

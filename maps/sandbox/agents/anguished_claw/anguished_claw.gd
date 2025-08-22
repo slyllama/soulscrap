@@ -29,7 +29,7 @@ func _ready() -> void:
 	var _t = create_tween() # janky spawn animation, LMAO
 	_t.set_ease(Tween.EASE_IN_OUT)
 	_t.set_trans(Tween.TRANS_EXPO)
-	_t.tween_property(model, "position:y", 0.0, 0.3)
+	_t.tween_property(model, "position:y", -0.2, 0.3)
 	
 	Utils.tick.connect(func():
 		if target == Global.player and $AttackCD.is_stopped():
