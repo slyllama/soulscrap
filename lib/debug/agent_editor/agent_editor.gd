@@ -3,7 +3,12 @@ extends "res://lib/ui/container/container.gd"
 # AgentEditor
 # Tools for testing out agents in realtime
 
-@export var target_agent: Agent
+@export var target_agent: Agent:
+	get: return(target_agent)
+	set(_val):
+		target_agent = _val
+		target_agent.integrity_changed.connect(update_stats)
+		update_stats()
 
 func update_stats() -> void:
 	$VBox/IntegrityStat.description = (

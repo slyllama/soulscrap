@@ -96,24 +96,23 @@ func get_bone_position(skeleton: Skeleton3D, bone_name: String) -> Vector3:
 ## Mainly for taking damage. The amount is displayed as a small floating number.
 func lose_integrity(amount: int) -> void:
 	target = Global.player
+	current_integrity -= amount
+	current_integrity = clamp(current_integrity, 0, 100)
+	integrity_changed.emit()
 	
-	if current_integrity - amount > 0:
+	if current_integrity > 0:
 		var _d = _NodeSpatial.instantiate()
 		_d.text = str(amount)
 		_d.font_size = 24
-		
 		# Add amall amount of variation
 		var _offset = randf_range(-0.25, 0.25)
 		_d.position.x += _offset
 		_d.position.y += _offset
-		
 		add_child(_d)
 		_d.float_away()
 		
 		if _has_damage_animation:
 			model.get_node("AnimationPlayer").play("take_damage")
-		current_integrity -= amount
-		integrity_changed.emit()
 	else:
 		_destroyed = true
 		PlayerData.update_aggro_state(false)

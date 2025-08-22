@@ -22,7 +22,7 @@ var _target_nitro_trail_width = 0.0
 var nitro_active = false
 
 ## Get the position in world space of the specified bone.
-func get_bone_position(skeleton: Skeleton3D, bone_name: String) -> Vector3:
+func get_bone_position(bone_name: String) -> Vector3:
 	var _bone_idx = skeleton.find_bone(bone_name)
 	var _bone_origin = skeleton.get_bone_global_pose(_bone_idx).origin
 	return(skeleton.to_global(_bone_origin))
@@ -144,9 +144,13 @@ func _physics_process(delta: float) -> void:
 	$CombatPivot.position.x = 0.0
 	$CombatPivot.position.z = 0.0
 	
-	$WeaponMount.global_position = get_bone_position(skeleton, "HeadCap")
-	$WeaponMount.rotation = $PlayerMesh.rotation
-	$WeaponMount/MoltenCannon.rotation = $CombatPivot.rotation - $PlayerMesh.rotation
+	# Interpolate attached weapon to make it smoother
+	$WeaponMount.global_position = get_bone_position("HeadCap")
+	$WeaponMount.rotation.y = lerp_angle(
+		$WeaponMount.rotation.y, $PlayerMesh.rotation.y, Utils.clerp(12.0))
+	$WeaponMount/MoltenCannon.rotation.y = lerp_angle(
+		$WeaponMount/MoltenCannon.rotation.y,
+		$CombatPivot.rotation.y - $PlayerMesh.rotation.y, Utils.clerp(12.0))
 	
 	# Handle animations
 	var _calc_forward = lerp(
