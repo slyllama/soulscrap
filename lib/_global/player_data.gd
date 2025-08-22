@@ -15,6 +15,15 @@ var integrity = 100
 var in_dodge = false
 var tempo = 99
 
+func update_aggro_state(change: bool = true) -> void:
+	var _prev_aggro_agents = aggro_agents
+	if change == true: aggro_agents += 1
+	else: aggro_agents -= 1
+	if _prev_aggro_agents == 0 and aggro_agents > 0:
+		aggro_gained.emit()
+	elif _prev_aggro_agents > 0 and aggro_agents == 0:
+		aggro_lost.emit()
+
 # Returns true is a change was effected
 func change_tempo(amount: int = -1) -> bool:
 	var _v = false

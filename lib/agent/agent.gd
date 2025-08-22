@@ -73,11 +73,6 @@ var _target_bar_value = 100.0
 var _has_damage_animation = true
 var _destroyed = false
 
-func _update_aggro_state() -> void:
-	await get_tree().process_frame
-	if PlayerData.aggro_agents < 1:
-		PlayerData.aggro_lost.emit()
-
 ## Emits an attack stored in the [code]attack_library[/code]. This function
 ## also returns that attack, so that the agent's child class can recieve
 ## its signals.
@@ -121,8 +116,7 @@ func lose_integrity(amount: int) -> void:
 		integrity_changed.emit()
 	else:
 		_destroyed = true
-		PlayerData.aggro_agents -= 1
-		_update_aggro_state()
+		PlayerData.update_aggro_state(false)
 		queue_free() # TODO: die
 
 ## Restore the agent to full health.
@@ -135,14 +129,12 @@ func _ready() -> void:
 		if !target_player_on_aggro or _destroyed: return # no aggro checks
 		if target != Global.player:
 			if get_distance_to_player() < aggro_radius:
-				PlayerData.aggro_agents += 1
 				target = Global.player
-				aggro_range_entered.emit()
+				PlayerData.update_aggro_state()
 		else:
 			if get_distance_to_player() > aggro_leave_radius:
-				PlayerData.aggro_agents -= 1
 				target = null
-		_update_aggro_state())
+				PlayerData.update_aggro_state(false))
 	
 	$Floor.queue_free()
 	if model:
