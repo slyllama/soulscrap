@@ -1,17 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://eoe6rexn06fv"]
+[gd_scene load_steps=8 format=3 uid="uid://eoe6rexn06fv"]
 
 [ext_resource type="Script" uid="uid://cb6avdfqm1j3y" path="res://lib/agent/agent.gd" id="1_otbm1"]
 [ext_resource type="Shader" uid="uid://clxof7vqxapor" path="res://generic/materials/shaders/nospec.gdshader" id="3_6xt7c"]
 [ext_resource type="PackedScene" uid="uid://b0vqktx3q2d2r" path="res://lib/ui/node_spatial/node_spatial.tscn" id="3_81wq3"]
 [ext_resource type="Texture2D" uid="uid://brx1lj0t583kn" path="res://generic/materials/textures/tile_diff.jpg" id="4_nqwpp"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_myeo2"]
-resource_local_to_scene = true
-radius = 1.0
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_6xt7c"]
-resource_local_to_scene = true
-radius = 3.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nk0up"]
 
@@ -51,16 +43,6 @@ exclude_parent = false
 
 [node name="AnimTarget" type="Marker3D" parent="."]
 
-[node name="AggroArea" type="Area3D" parent="."]
-
-[node name="Collision" type="CollisionShape3D" parent="AggroArea"]
-shape = SubResource("CylinderShape3D_myeo2")
-
-[node name="AggroLeaveArea" type="Area3D" parent="."]
-
-[node name="Collision" type="CollisionShape3D" parent="AggroLeaveArea"]
-shape = SubResource("CylinderShape3D_6xt7c")
-
 [node name="Hitbox" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 0
@@ -71,6 +53,3 @@ shape = SubResource("CylinderShape3D_nk0up")
 [node name="Floor" type="MeshInstance3D" parent="."]
 layers = 5
 mesh = SubResource("QuadMesh_dev0o")
-
-[connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
-[connection signal="body_exited" from="AggroLeaveArea" to="." method="_on_aggro_leave_area_body_exited"]

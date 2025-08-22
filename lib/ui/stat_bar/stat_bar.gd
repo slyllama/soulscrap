@@ -8,6 +8,8 @@ extends TextureRect
 		if flipped:
 			flip_h = true
 			$Mask.flip_h = true
+			$Number.position.x = 340.0
+			$Number.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 
 @export var variable = ""
 
@@ -16,6 +18,7 @@ extends TextureRect
 	set(_val):
 		bar_modulation = _val
 		$Mask/Progress.self_modulate = bar_modulation
+		$Number.modulate = bar_modulation
 
 var _valid = false
 
@@ -28,5 +31,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if !_valid: return
 	var _c = clamp(float(PlayerData.get(variable)), 0, 100)
+	$Number.text = str(int(_c))
 	$Mask/Progress.value = lerp(
 		$Mask/Progress.value, float(_c), Utils.clerp(15.0))

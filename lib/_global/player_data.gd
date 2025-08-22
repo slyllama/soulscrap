@@ -9,7 +9,7 @@ signal projectile_fired
 signal sprint_started
 signal sprint_ended
 
-var aggro_agents: Array[Agent] = []
+var aggro_agents: int = 0
 var current_deck: Array = []
 var integrity = 100
 var in_dodge = false

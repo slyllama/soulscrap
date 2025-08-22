@@ -24,6 +24,8 @@ func _process(_delta: float) -> void:
 		Performance.RENDER_VIDEO_MEM_USED) / 1048576, 1)) + "MB")
 	$CursorCard.global_position = (get_window().get_mouse_position()
 		- $CursorCard.size * 0.5)
+	
+	$AggroDebug.text = str(PlayerData.aggro_agents)
 
 func _on_settings_button_down() -> void:
 	var _c = SettingsPane.instantiate()

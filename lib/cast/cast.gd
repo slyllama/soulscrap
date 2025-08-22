@@ -19,6 +19,8 @@ func _ready() -> void:
 	PlayerData.damage_taken.connect(func(_amount):
 		stop_cast(false))
 	
+	PlayerData.projectile_fired.connect(func(): stop_cast(false))
+	
 	Global.start_cast.connect(func(get_time):
 		get_parent().get_parent().appear()
 		running = true

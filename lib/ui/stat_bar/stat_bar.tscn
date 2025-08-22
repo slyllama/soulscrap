@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx5rximxjsp5a"]
+[gd_scene load_steps=8 format=3 uid="uid://bx5rximxjsp5a"]
 
 [ext_resource type="Texture2D" uid="uid://ctothhpuvqee0" path="res://lib/ui/stat_bar/textures/stat_bar_base.png" id="1_5sfdn"]
 [ext_resource type="Texture2D" uid="uid://dr7672mcepb6l" path="res://lib/ui/stat_bar/textures/stat_bar_mask.png" id="2_kx8si"]
 [ext_resource type="Script" uid="uid://bt60vy1b1e3gb" path="res://lib/ui/stat_bar/stat_bar.gd" id="2_u36x8"]
 [ext_resource type="Texture2D" uid="uid://ddunckadgjohn" path="res://lib/ui/stat_bar/textures/star_bar_full.png" id="4_jj2si"]
+[ext_resource type="FontFile" uid="uid://2mojdir7ucxy" path="res://generic/fonts/exo_italic.ttf" id="5_bkq3n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u36x8"]
 
@@ -44,3 +45,23 @@ theme_override_styles/fill = SubResource("StyleBoxTexture_bkq3n")
 step = 0.0
 value = 50.0
 show_percentage = false
+
+[node name="Number" type="RichTextLabel" parent="."]
+layout_mode = 1
+offset_left = -34.0
+offset_top = -1.0
+offset_right = 10.0
+offset_bottom = 21.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/normal_font = ExtResource("5_bkq3n")
+theme_override_font_sizes/normal_font_size = 17
+text = "XXXX"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+vertical_alignment = 1

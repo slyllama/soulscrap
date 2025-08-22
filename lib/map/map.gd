@@ -20,7 +20,25 @@ func _spawn_ac() -> void:
 func _ready() -> void:
 	SettingsHandler.open()
 	
+	PlayerData.aggro_gained.connect(func():
+		var _t2 = create_tween()
+		_t2.tween_property($Track1, "volume_linear", 0.75, 0.95)
+		var _t3 = create_tween()
+		_t3.set_parallel()
+		_t3.tween_property($Track2, "volume_linear", 0.75, 0.45))
+	
+	PlayerData.aggro_lost.connect(func():
+		var _t2 = create_tween()
+		_t2.tween_property($Track1, "volume_linear", 0.0, 0.95)
+		var _t3 = create_tween()
+		_t3.set_parallel()
+		_t3.tween_property($Track2, "volume_linear", 0.0, 0.45))
+	
 	_spawn_ac()
+	$Track3.volume_linear = 0.75
+	$Track1.play()
+	$Track2.play()
+	$Track3.play()
 	
 	var _v = create_tween()
 	_v.tween_method(set_bus_vol, 0.0, 1.0, 3.0)

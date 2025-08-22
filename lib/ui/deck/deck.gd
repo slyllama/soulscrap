@@ -50,7 +50,7 @@ func _ready() -> void:
 		else: card_source = null)
 	
 	get_window().focus_exited.connect(func():
-		_clicks = 0
+		_clicks = 1
 		if Global.dragging_card:
 			reset_card_source()
 			Global.clear_dragged_card())

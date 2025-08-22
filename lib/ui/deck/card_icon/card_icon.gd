@@ -70,7 +70,6 @@ func use() -> void:
 		$Mask/CDText.visible = true
 		$CDTimer.wait_time = _cd
 		$CDTimer.start()
-		mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	PlayerData.component_used.emit(id)
 
@@ -90,6 +89,14 @@ func _input(_event: InputEvent) -> void:
 func _ready() -> void:
 	get_window().focus_exited.connect(_lose_focus)
 	update()
+	
+	# Prevent dropping on the card when it is in cooldown. The mouse filter is
+	# set to PASS where possible so that the user can hover over it
+	Global.card_drag_started.connect(func(_i):
+		if !$CDTimer.is_stopped():
+			mouse_filter = Control.MOUSE_FILTER_IGNORE)
+	Global.card_drag_ended.connect(func(_i, _j):
+		if enabled: mouse_filter = Control.MOUSE_FILTER_PASS)
 
 func _process(_delta: float) -> void:
 	if !$CDTimer.is_stopped() and _cd > 0.0:
@@ -101,7 +108,8 @@ func _process(_delta: float) -> void:
 		if _tl > 1.9: $Mask/CDText.text = str(snapped(_tl, 1))
 		else: $Mask/CDText.text = str(snapped(_tl, 0.1))
 	
-	if Input.is_action_pressed("left_click"):
+	# Only check for dragging if the cooldown timer is stopped
+	if Input.is_action_pressed("left_click") and $CDTimer.is_stopped():
 		_mouse_delta = (Vector2(get_global_mouse_position()
 			- _last_mouse_pos).length())
 	else: _mouse_delta = 0.0

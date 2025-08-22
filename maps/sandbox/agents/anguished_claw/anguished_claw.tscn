@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b8ugq7w8i4b1n"]
+[gd_scene load_steps=24 format=3 uid="uid://b8ugq7w8i4b1n"]
 
 [ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/agent.tscn" id="1_hyjce"]
 [ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="2_svn0r"]
@@ -40,13 +40,6 @@ radial_segments = 32
 rings = 0
 cap_top = false
 cap_bottom = false
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_wairi"]
-height = 1.0
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_yskyh"]
-resource_local_to_scene = true
-radius = 2.0
 
 [sub_resource type="Curve" id="Curve_ek1lu"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.166667, 0.947368), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -99,15 +92,12 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_fkkuu")
 size = Vector2(0.45, 0.45)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ek1lu"]
-resource_local_to_scene = true
-radius = 3.0
-
 [node name="AnguishedClaw" node_paths=PackedStringArray("model") instance=ExtResource("1_hyjce")]
 script = ExtResource("2_wairi")
 agent_name = "Anguished Claw"
 integrity = 50
 speed = 0.6
+aggro_radius = 2.0
 model = NodePath("AnguishedClaw")
 attack_library = Dictionary[String, PackedScene]({
 "desperate_grasp": ExtResource("3_ek1lu")
@@ -139,14 +129,7 @@ mesh = SubResource("CylinderMesh_bc51q")
 radius = 0.47
 albedo_color = Color(0.543667, 0.826524, 3.85046e-07, 1)
 
-[node name="Collision" type="CollisionShape3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-shape = SubResource("CylinderShape3D_wairi")
-
-[node name="Collision" parent="AggroArea" index="0"]
-shape = SubResource("CylinderShape3D_yskyh")
-
-[node name="DamageSplat" type="GPUParticles3D" parent="." index="11"]
+[node name="DamageSplat" type="GPUParticles3D" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.172122, 0)
 cast_shadow = 0
 emitting = false
@@ -161,11 +144,8 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_47us5")
 draw_pass_1 = SubResource("QuadMesh_y4ym0")
 
-[node name="AttackCD" type="Timer" parent="." index="12"]
+[node name="AttackCD" type="Timer" parent="." index="11"]
 wait_time = 1.5
 one_shot = true
-
-[node name="Collision" parent="AggroLeaveArea" index="0"]
-shape = SubResource("CylinderShape3D_ek1lu")
 
 [connection signal="aggro_range_entered" from="." to="." method="_on_aggro_range_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d4i4jjh5re868"]
+[gd_scene load_steps=27 format=3 uid="uid://d4i4jjh5re868"]
 
 [ext_resource type="PackedScene" uid="uid://d0j3ryssexkcj" path="res://lib/map/map.tscn" id="1_8bryw"]
 [ext_resource type="PackedScene" uid="uid://ban0go6y3b25c" path="res://lib/player/player.tscn" id="2_hxxcf"]
@@ -10,12 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://cx34qwdt1wnko" path="res://lib/debug/agent_editor/agent_editor.tscn" id="11_kaa0c"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="12_40n1j"]
 [ext_resource type="PackedScene" uid="uid://dk03asc8qsxha" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant_climbing.glb" id="12_up8qe"]
+[ext_resource type="PackedScene" uid="uid://d3o8l0uy0v7rx" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant_small.glb" id="13_2qgpl"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="13_ii18f"]
 [ext_resource type="PackedScene" uid="uid://bim05oeh3ds2y" path="res://maps/sandbox/props/column.tscn" id="13_kaa0c"]
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
 [ext_resource type="PackedScene" uid="uid://b8ugq7w8i4b1n" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.tscn" id="14_ii18f"]
 [ext_resource type="PackedScene" uid="uid://bg5jkpqcpaix3" path="res://lib/thing/thing.tscn" id="15_ii18f"]
 [ext_resource type="PackedScene" uid="uid://c24hbuegyef4o" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant.glb" id="15_up8qe"]
+[ext_resource type="AudioStream" uid="uid://b01jbxe5fsfly" path="res://maps/sandbox/sounds/test_surmantals.ogg" id="17_c8n4n"]
+[ext_resource type="AudioStream" uid="uid://c4v8ay1f7xuu3" path="res://maps/sandbox/sounds/test_guitar.ogg" id="18_bjcs8"]
+[ext_resource type="AudioStream" uid="uid://cb0xrsj1h6rmv" path="res://maps/sandbox/sounds/test_fulldrum.ogg" id="19_jmsth"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_up8qe"]
 resource_local_to_scene = true
@@ -151,20 +155,35 @@ transform = Transform3D(-0.691584, -0.144047, 1.96699, -0.575402, 2.00847, -0.05
 [node name="SorrowPlant" parent="Decorations" index="14" instance=ExtResource("15_up8qe")]
 transform = Transform3D(0.916957, 0.0130141, -0.398773, 0.0269462, 0.995166, 0.0944391, 0.398074, -0.0973421, 0.912174, -1.82848, -0.190184, 1.17064)
 
-[node name="SorrowPlant2" parent="Decorations" index="15" instance=ExtResource("15_up8qe")]
+[node name="SorrowPlant5" parent="Decorations" index="15" instance=ExtResource("15_up8qe")]
+transform = Transform3D(1.12786, 0.0160074, -0.490491, 0.0331438, 1.22405, 0.11616, 0.489631, -0.119731, 1.12197, 1.93742, -0.190184, -1.17174)
+
+[node name="SorrowPlant2" parent="Decorations" index="16" instance=ExtResource("15_up8qe")]
 transform = Transform3D(-0.337818, 0, 0.893255, 0, 0.955, 0, -0.893255, 0, -0.337818, -2.94368, -0.129782, 2.13222)
 
-[node name="SorrowPlant3" parent="Decorations" index="16" instance=ExtResource("15_up8qe")]
+[node name="SorrowPlant3" parent="Decorations" index="17" instance=ExtResource("15_up8qe")]
 transform = Transform3D(-0.737552, 0, -1.02774, -0.11996, 1.25635, 0.0860891, 1.02071, 0.147654, -0.732511, -2.4938, -0.0964504, 3.32859)
 
-[node name="SorrowPlant4" parent="Decorations" index="17" instance=ExtResource("15_up8qe")]
+[node name="SorrowPlant4" parent="Decorations" index="18" instance=ExtResource("15_up8qe")]
 transform = Transform3D(0.599754, 0, -0.910162, 0, 1.09, 0, 0.910162, 0, 0.599754, -1.0645, -0.129782, -2.67292)
 
-[node name="SorrowPlantClimbing" parent="Decorations" index="18" instance=ExtResource("12_up8qe")]
+[node name="SorrowPlant6" parent="Decorations" index="19" instance=ExtResource("15_up8qe")]
+transform = Transform3D(-1.35771, 0, 0.183063, 0, 1.37, 0, -0.183063, 0, -1.35771, 4.11961, -0.230789, -0.0458601)
+
+[node name="SorrowPlantClimbing" parent="Decorations" index="20" instance=ExtResource("12_up8qe")]
 transform = Transform3D(0.840453, 0, 0.541884, 0, 1, 0, -0.541884, 0, 0.840453, -1.44257, 1.98661, -2.0338)
 
-[node name="SorrowPlantClimbing2" parent="Decorations" index="19" instance=ExtResource("12_up8qe")]
-transform = Transform3D(0.93383, 0, 1.34817, 0, 1.64, 0, -1.34817, 0, 0.93383, -0.581281, 2.62296, -3.10497)
+[node name="SorrowPlantClimbing3" parent="Decorations" index="21" instance=ExtResource("12_up8qe")]
+transform = Transform3D(0.654246, 0, -0.288421, 0, 0.715, 0, 0.288421, 0, 0.654246, 2.46238, 1.00397, -4.1304)
+
+[node name="SorrowPlantClimbing2" parent="Decorations" index="22" instance=ExtResource("12_up8qe")]
+transform = Transform3D(0.405827, 0, 1.589, 0, 1.64, 0, -1.589, 0, 0.405827, -0.581281, 2.62296, -3.10497)
+
+[node name="sorrow_plant_small" parent="Decorations" index="23" instance=ExtResource("13_2qgpl")]
+transform = Transform3D(0.855563, 0, -0.517699, 0, 1, 0, 0.517699, 0, 0.855563, 3.4213, -0.13369, 0.402687)
+
+[node name="sorrow_plant_small2" parent="Decorations" index="24" instance=ExtResource("13_2qgpl")]
+transform = Transform3D(-0.0300433, 0, -1.14961, 0, 1.15, 0, 1.14961, 0, -0.0300433, 2.11121, -0.160723, 1.72561)
 
 [node name="MireLandscape" parent="." index="5" instance=ExtResource("14_40n1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.640544, 0)
@@ -200,3 +219,15 @@ component_id = "anguished_egg"
 [node name="AnguishedClaw" parent="." index="10" node_paths=PackedStringArray("target") instance=ExtResource("14_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2.9)
 target = NodePath("../M")
+
+[node name="Track1" type="AudioStreamPlayer" parent="." index="11"]
+stream = ExtResource("17_c8n4n")
+volume_db = -80.0
+
+[node name="Track2" type="AudioStreamPlayer" parent="." index="12"]
+stream = ExtResource("18_bjcs8")
+volume_db = -80.0
+
+[node name="Track3" type="AudioStreamPlayer" parent="." index="13"]
+stream = ExtResource("19_jmsth")
+volume_db = -80.0

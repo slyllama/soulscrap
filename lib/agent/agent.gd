@@ -42,18 +42,10 @@ signal aggro_range_entered
 @export var target_player_on_aggro: bool = true
 ## If the player gets closer to the agent than this radius, aggro will be
 ## activated.
-@export var aggro_radius: float = 1.0:
-	get: return(aggro_radius)
-	set(_val):
-		aggro_radius = _val
-		$AggroArea/Collision.shape.radius = aggro_radius
+@export var aggro_radius: float = 1.0
 ## If the player gets further from the agent than this radius, aggro will be
 ## deactivated.
-@export var aggro_leave_radius: float = 3.0:
-	get: return(aggro_leave_radius)
-	set(_val):
-		aggro_leave_radius = _val
-		$AggroLeaveArea/Collision.shape.radius = aggro_leave_radius
+@export var aggro_leave_radius: float = 3.0
 ## If this is not null, the agent's navigation target will be this node.
 @export var target: Node3D
 ## If the [param manual_target_position] is null, the agent's navigation
@@ -79,6 +71,12 @@ signal aggro_range_entered
 
 var _target_bar_value = 100.0
 var _has_damage_animation = true
+var _destroyed = false
+
+func _update_aggro_state() -> void:
+	await get_tree().process_frame
+	if PlayerData.aggro_agents < 1:
+		PlayerData.aggro_lost.emit()
 
 ## Emits an attack stored in the [code]attack_library[/code]. This function
 ## also returns that attack, so that the agent's child class can recieve
@@ -122,6 +120,9 @@ func lose_integrity(amount: int) -> void:
 		current_integrity -= amount
 		integrity_changed.emit()
 	else:
+		_destroyed = true
+		PlayerData.aggro_agents -= 1
+		_update_aggro_state()
 		queue_free() # TODO: die
 
 ## Restore the agent to full health.
@@ -130,6 +131,19 @@ func reset_integrity() -> void:
 	integrity_changed.emit()
 
 func _ready() -> void:
+	Utils.tick.connect(func():
+		if !target_player_on_aggro or _destroyed: return # no aggro checks
+		if target != Global.player:
+			if get_distance_to_player() < aggro_radius:
+				PlayerData.aggro_agents += 1
+				target = Global.player
+				aggro_range_entered.emit()
+		else:
+			if get_distance_to_player() > aggro_leave_radius:
+				PlayerData.aggro_agents -= 1
+				target = null
+		_update_aggro_state())
+	
 	$Floor.queue_free()
 	if model:
 		# Set up animation logic
@@ -184,17 +198,3 @@ func _physics_process(delta: float) -> void:
 		$BoundingCircle.global_position.y = lerp(
 			$BoundingCircle.global_position.y, 
 			$YCast.get_collision_point().y, Utils.clerp(10.0))
-
-func _on_aggro_area_body_entered(body: Node3D) -> void:
-	if body is Player and target_player_on_aggro:
-		aggro_range_entered.emit()
-		PlayerData.aggro_agents.append(self)
-		PlayerData.aggro_gained.emit()
-		target = Global.player
-
-func _on_aggro_leave_area_body_exited(body: Node3D) -> void:
-	if body is Player:
-		target = null
-		PlayerData.aggro_agents.erase(self)
-		if PlayerData.aggro_agents.size() < 1:
-			PlayerData.aggro_lost.emit()
