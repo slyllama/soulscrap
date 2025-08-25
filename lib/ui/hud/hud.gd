@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+const DEBUG_MSEC = 0.25 # debug only updates on this period
 const SettingsPane = preload("res://lib/ui/settings_pane/settings_pane.tscn")
 
 func _ready() -> void:
@@ -17,15 +18,22 @@ func _ready() -> void:
 		$CursorCard.update("blank")
 		$CursorCard.visible = false)
 
-func _process(_delta: float) -> void:
+var _d = 0.0
+
+func _process(delta: float) -> void:
+	$CursorCard.global_position = (get_window().get_mouse_position()
+		- $CursorCard.size * 0.5)
+	
+	# Debug
+	if _d < DEBUG_MSEC:
+		_d += delta
+		return
+	else: _d = 0.0
 	$PrimsCounter.text = (str(snapped(Performance.get_monitor(
 		Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME), 1)))
 	$PrimsCounter.text += ("/" + str(snapped(Performance.get_monitor(
 		Performance.RENDER_VIDEO_MEM_USED) / 1048576, 1)) + "MB")
-	$CursorCard.global_position = (get_window().get_mouse_position()
-		- $CursorCard.size * 0.5)
-	
-	$AggroDebug.text = str(PlayerData.aggro_agents)
+	$AggroDebug.text = "Aggro state: " + str(PlayerData.aggro_agent_count)
 
 func _on_settings_button_down() -> void:
 	var _c = SettingsPane.instantiate()

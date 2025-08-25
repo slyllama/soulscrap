@@ -45,3 +45,8 @@ func _process(_delta: float) -> void:
 		for _n: Control in $Canvas/Root2D.get_children():
 			_n.position.x = -_n.size.x / 2.0
 	else: $Canvas/Root2D.visible = false
+	
+	if visible:
+		$Canvas/Root2D.modulate.a = 1.0 - clamp(
+			global_position.distance_to(Global.player.global_position) - 3.0, 0.0, 1.0)
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://ban0go6y3b25c"]
+[gd_scene load_steps=45 format=4 uid="uid://ban0go6y3b25c"]
 
 [ext_resource type="Script" uid="uid://ckhdif2cde65" path="res://lib/player/player.gd" id="1_al4t3"]
 [ext_resource type="PackedScene" uid="uid://m0o8woonsvva" path="res://lib/player/meshes/player.glb" id="2_2ocui"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b8iv1n1t2q8um" path="res://lib/player/combat_handler/combat_handler.tscn" id="9_jyhpi"]
 [ext_resource type="PackedScene" uid="uid://dxshj7bqivdlb" path="res://lib/projectiles/molten_cannon.glb" id="11_g61qk"]
 [ext_resource type="AudioStream" uid="uid://cs6fjphwgvtii" path="res://lib/player/sounds/engine.ogg" id="12_r1bse"]
+[ext_resource type="AudioStream" uid="uid://1ivq5q7yt5st" path="res://lib/player/sounds/dodge.ogg" id="14_jlw2j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lbbh"]
 transparency = 1
@@ -305,6 +306,10 @@ transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
 [node name="Engine" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_r1bse")
 autoplay = true
+
+[node name="Dodge" type="AudioStreamPlayer" parent="Engine"]
+stream = ExtResource("14_jlw2j")
+volume_db = -7.0
 
 [node name="WeaponMount" type="Marker3D" parent="."]
 top_level = true

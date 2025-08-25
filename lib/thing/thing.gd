@@ -14,7 +14,7 @@ func _ready() -> void:
 	$NodeSpatial.update_appearance()
 	
 	Global.cast_stopped.connect(func(_success):
-		if _success: queue_free())
+		if _success and in_range: queue_free())
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:

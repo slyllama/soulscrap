@@ -6,6 +6,7 @@ extends "res://lib/ui/container/container.gd"
 @export var target_agent: Agent:
 	get: return(target_agent)
 	set(_val):
+		if Engine.is_editor_hint(): return
 		target_agent = _val
 		target_agent.integrity_changed.connect(update_stats)
 		update_stats()
@@ -18,10 +19,20 @@ func update_stats() -> void:
 func _ready() -> void:
 	if !target_agent or Engine.is_editor_hint(): return
 	$VBox/Header/Title.text = str(target_agent.agent_name)
-	target_agent.integrity_changed.connect(update_stats)
+	#target_agent.integrity_changed.connect(update_stats)
 	
 	await get_tree().process_frame
 	update_stats()
+
+var _d = 0.0
+
+func _process(delta: float) -> void:
+	if !target_agent: return
+	if _d < 0.5:
+		_d += delta
+		return
+	else: _d = 0.0
+	$VBox/TargetStat.description = "Target: " + target_agent.target.name
 
 func _on_stationary_button_down() -> void:
 	if !target_agent: return

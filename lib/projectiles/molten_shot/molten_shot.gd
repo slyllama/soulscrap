@@ -26,7 +26,7 @@ func fire() -> void:
 	var _u = create_tween()
 	_u.tween_method(_set_fire_spiral_exponent, 0.0, 1.0, 0.4)
 	
-	await _u.finished
+	await $Sound.finished
 	super()
 
 func _ready() -> void:
@@ -51,6 +51,3 @@ func _physics_process(_delta: float) -> void:
 		metal_mesh.get_active_material(0).set_shader_parameter("dissolve_state", _adj_ratio)
 	
 	if position_delta: position -= position_delta
-
-func _on_lifetime_timeout() -> void:
-	queue_free()

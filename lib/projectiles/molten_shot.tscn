@@ -87,5 +87,3 @@ transform = Transform3D(-0.6, 0, -4.52987e-07, 0, 0.6, 0, 9.05975e-08, 0, -3, 0,
 [node name="Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_bq3op")
 volume_db = -4.0
-
-[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

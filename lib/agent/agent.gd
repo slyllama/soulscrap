@@ -18,6 +18,9 @@ const _NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
 signal integrity_changed
 ## Emitted when the player enters the aggro range of the agent.
 signal aggro_range_entered
+## Emitted when the player is in within the [code]TARGET_THRESHOLD[/code]
+## distance to their current target.
+signal target_reached
 
 ## The name of the agent, which will appear above them it mob titles are
 ## enabled.
@@ -47,7 +50,12 @@ signal aggro_range_entered
 ## deactivated.
 @export var aggro_leave_radius: float = 3.0
 ## If this is not null, the agent's navigation target will be this node.
-@export var target: Node3D
+@export var target: Node3D:
+	get: return(target)
+	set(_val):
+		_last_target = target
+		target = _val
+		_in_range_of_target = false
 ## If the [param manual_target_position] is null, the agent's navigation
 ## target will be this point.
 @export var manual_target_position: Vector3 = Vector3.ZERO
@@ -72,6 +80,9 @@ signal aggro_range_entered
 var _target_bar_value = 100.0
 var _has_damage_animation = true
 var _destroyed = false
+var _in_range_of_target = false
+var _last_target = target
+var _is_aggroed = false
 
 ## Emits an attack stored in the [code]attack_library[/code]. This function
 ## also returns that attack, so that the agent's child class can recieve
@@ -115,7 +126,8 @@ func lose_integrity(amount: int) -> void:
 			model.get_node("AnimationPlayer").play("take_damage")
 	else:
 		_destroyed = true
-		PlayerData.update_aggro_state(false)
+		if _is_aggroed:
+			PlayerData.update_aggro_state(false)
 		queue_free() # TODO: die
 
 ## Restore the agent to full health.
@@ -129,11 +141,15 @@ func _ready() -> void:
 		if target != Global.player:
 			if get_distance_to_player() < aggro_radius:
 				target = Global.player
-				PlayerData.update_aggro_state()
+				if !_is_aggroed:
+					_is_aggroed = true
+					PlayerData.update_aggro_state()
 		else:
 			if get_distance_to_player() > aggro_leave_radius:
-				target = null
-				PlayerData.update_aggro_state(false))
+				target = _last_target
+				if _is_aggroed:
+					_is_aggroed = false
+					PlayerData.update_aggro_state(false))
 	
 	$Floor.queue_free()
 	if model:
@@ -168,8 +184,13 @@ func _physics_process(delta: float) -> void:
 	var _dir = Vector3.ZERO
 	$NavAgent.target_position = $NavTarget.global_position
 	if global_position.distance_to($NavTarget.global_position) > TARGET_THRESHOLD:
+		_in_range_of_target = false
 		_dir = $NavAgent.get_next_path_position() - global_position
 		_dir = _dir.normalized()
+	else: 
+		if !_in_range_of_target:
+			target_reached.emit()
+			_in_range_of_target = true
 	
 	velocity = lerp(velocity, _dir * speed, Utils.clerp(acceleration))
 	if !stationary:

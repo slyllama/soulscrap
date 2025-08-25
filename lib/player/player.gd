@@ -94,6 +94,7 @@ func _physics_process(delta: float) -> void:
 	if _dir.length() > 0:
 		if Input.is_action_just_pressed("nitro"):
 			if PlayerData.change_tempo(-nitro_tempo_cost):
+				$Engine/Dodge.play()
 				PlayerData.in_dodge = true
 				_c = 0.0
 	if _c < nitro_impulse_time:

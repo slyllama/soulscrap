@@ -98,6 +98,7 @@ agent_name = "Anguished Claw"
 integrity = 50
 speed = 0.6
 aggro_radius = 2.0
+aggro_leave_radius = 4.5
 model = NodePath("AnguishedClaw")
 attack_library = Dictionary[String, PackedScene]({
 "desperate_grasp": ExtResource("3_ek1lu")
@@ -108,7 +109,7 @@ transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 0.78, 0, -0.2, 0)
 
 [node name="Decal" type="Decal" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.427359, 0)
-sorting_offset = 0.1
+sorting_offset = 0.25
 size = Vector3(1, 1, 1)
 texture_albedo = ExtResource("3_qkuix")
 upper_fade = 1e-05

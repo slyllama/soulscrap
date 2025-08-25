@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl4mdm7k7pas1"]
+
+[ext_resource type="PackedScene" uid="uid://c24hbuegyef4o" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant.glb" id="1_og52y"]
+[ext_resource type="Texture2D" uid="uid://cfo7qoyplpomu" path="res://maps/sandbox/meshes/sorrow_plant/materials/textures/sorrow_decal.png" id="2_gem24"]
+
+[node name="SorrowPlant" type="Node3D"]
+
+[node name="SorrowPlant" parent="." instance=ExtResource("1_og52y")]
+
+[node name="SorrowDecal" type="Decal" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+layers = 4
+size = Vector3(0.9, 1.2, 0.9)
+texture_albedo = ExtResource("2_gem24")
+distance_fade_enabled = true
+distance_fade_begin = 7.0
+distance_fade_length = 1.0
+cull_mask = 4
+
+[node name="Glow" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.414, 0.9, 0.6732, 1)
+light_energy = 5.0
+distance_fade_enabled = true
+distance_fade_begin = 2.75
+distance_fade_length = 1.25
+omni_range = 2.0
+omni_attenuation = 0.75

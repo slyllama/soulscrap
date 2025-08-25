@@ -9,19 +9,22 @@ signal projectile_fired
 signal sprint_started
 signal sprint_ended
 
-var aggro_agents: int = 0
+var aggro_agent_count: int = 0
 var current_deck: Array = []
 var integrity = 100
 var in_dodge = false
 var tempo = 99
 
 func update_aggro_state(change: bool = true) -> void:
-	var _prev_aggro_agents = aggro_agents
-	if change == true: aggro_agents += 1
-	else: aggro_agents -= 1
-	if _prev_aggro_agents == 0 and aggro_agents > 0:
+	var _prev_aggro_agent_count = aggro_agent_count
+	if change == true: aggro_agent_count += 1
+	else: aggro_agent_count -= 1
+	
+	aggro_agent_count = clamp(aggro_agent_count, 0, INF)
+	
+	if _prev_aggro_agent_count == 0 and aggro_agent_count > 0:
 		aggro_gained.emit()
-	elif _prev_aggro_agents > 0 and aggro_agents == 0:
+	elif _prev_aggro_agent_count > 0 and aggro_agent_count == 0:
 		aggro_lost.emit()
 
 # Returns true is a change was effected

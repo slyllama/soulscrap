@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d4i4jjh5re868"]
+[gd_scene load_steps=26 format=3 uid="uid://d4i4jjh5re868"]
 
 [ext_resource type="PackedScene" uid="uid://d0j3ryssexkcj" path="res://lib/map/map.tscn" id="1_8bryw"]
 [ext_resource type="PackedScene" uid="uid://ban0go6y3b25c" path="res://lib/player/player.tscn" id="2_hxxcf"]
@@ -16,10 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
 [ext_resource type="PackedScene" uid="uid://b8ugq7w8i4b1n" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.tscn" id="14_ii18f"]
 [ext_resource type="PackedScene" uid="uid://bg5jkpqcpaix3" path="res://lib/thing/thing.tscn" id="15_ii18f"]
-[ext_resource type="PackedScene" uid="uid://c24hbuegyef4o" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant.glb" id="15_up8qe"]
-[ext_resource type="AudioStream" uid="uid://b01jbxe5fsfly" path="res://maps/sandbox/sounds/test_surmantals.ogg" id="17_c8n4n"]
-[ext_resource type="AudioStream" uid="uid://c4v8ay1f7xuu3" path="res://maps/sandbox/sounds/test_guitar.ogg" id="18_bjcs8"]
-[ext_resource type="AudioStream" uid="uid://cb0xrsj1h6rmv" path="res://maps/sandbox/sounds/test_fulldrum.ogg" id="19_jmsth"]
+[ext_resource type="PackedScene" uid="uid://cl4mdm7k7pas1" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant.tscn" id="17_e6eky"]
+[ext_resource type="AudioStream" uid="uid://cm5iiqcl5quov" path="res://maps/sandbox/sounds/mus_man_fish.ogg" id="17_jmsth"]
+[ext_resource type="AudioStream" uid="uid://c0saod4riyqeq" path="res://maps/sandbox/sounds/fx_lava.ogg" id="21_2djwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_up8qe"]
 resource_local_to_scene = true
@@ -52,6 +51,8 @@ sky = SubResource("Sky_j25ev")
 ambient_light_source = 2
 ambient_light_color = Color(0.15, 0.15, 0.15, 1)
 tonemap_mode = 2
+glow_intensity = 1.0
+glow_bloom = 1.0
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.02519, 0.03, 0.0078, 1)
@@ -77,7 +78,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = -176.0
+offset_top = -225.0
 offset_right = 316.0
 offset_bottom = -16.0
 grow_vertical = 0
@@ -92,16 +93,19 @@ navigation_mesh = SubResource("NavigationMesh_htsly")
 [node name="Column" parent="NavRegion" index="0" instance=ExtResource("13_kaa0c")]
 transform = Transform3D(0.985363, 0, -0.170467, 0, 1, 0, 0.170467, 0, 0.985363, 2.31166, 0, -1.62979)
 
-[node name="Column2" parent="NavRegion" index="1" instance=ExtResource("13_kaa0c")]
+[node name="Column5" parent="NavRegion" index="1" instance=ExtResource("13_kaa0c")]
+transform = Transform3D(0.985363, 0, -0.170467, 0, 1, 0, 0.170467, 0, 0.985363, 2.31166, 0, -1.62979)
+
+[node name="Column2" parent="NavRegion" index="2" instance=ExtResource("13_kaa0c")]
 transform = Transform3D(0.985363, 0, -0.170467, 0, 1, 0, 0.170467, 0, 0.985363, 1.62979, 0, 2.31166)
 
-[node name="Column3" parent="NavRegion" index="2" instance=ExtResource("13_kaa0c")]
+[node name="Column3" parent="NavRegion" index="3" instance=ExtResource("13_kaa0c")]
 transform = Transform3D(0.985363, 0, -0.170467, 0, 1, 0, 0.170467, 0, 0.985363, -2.31166, 0, 1.62979)
 
-[node name="Column4" parent="NavRegion" index="3" instance=ExtResource("13_kaa0c")]
+[node name="Column4" parent="NavRegion" index="4" instance=ExtResource("13_kaa0c")]
 transform = Transform3D(0.985363, 0, -0.170467, 0, 1, 0, 0.170467, 0, 0.985363, -1.62979, 0, -2.31166)
 
-[node name="Floor" parent="NavRegion" index="4"]
+[node name="Floor" parent="NavRegion" index="5"]
 collision_layer = 5
 collision_mask = 5
 
@@ -110,124 +114,136 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 2.8)
 
 [node name="Decorations" type="Node3D" parent="." index="4"]
 
-[node name="Column" parent="Decorations" index="0" instance=ExtResource("13_kaa0c")]
-transform = Transform3D(3.90446, 0.372072, -0.785349, -4.75974e-08, 3.61484, 1.71259, 0.869028, -1.67168, 3.52849, 3.48424, -2.21371, 9.62558)
-
-[node name="Column2" parent="Decorations" index="1" instance=ExtResource("13_kaa0c")]
-transform = Transform3D(-1.50718, -0.472274, 4.20837, 0.484251, 4.41844, 0.669278, -4.20701, 0.677782, -1.43063, -5.42611, -3.39624, -6.23519)
-
-[node name="Column5" parent="Decorations" index="2" instance=ExtResource("13_kaa0c")]
-transform = Transform3D(-4.3328, -2.36377, 3.41166, -1.33371, 5.46326, 2.09142, -3.93041, 0.751922, -4.47063, -7.6293, -1.30526, 10.2503)
-
-[node name="Column4" parent="Decorations" index="3" instance=ExtResource("13_kaa0c")]
-transform = Transform3D(-4.50827, 0.496456, -1.04789, 0.163781, 4.43723, 1.39758, 1.14792, 1.31666, -4.31483, 2.2473, -0.942484, -8.47777)
-
-[node name="Column6" parent="Decorations" index="4" instance=ExtResource("13_kaa0c")]
-transform = Transform3D(3.13988, 2.06213, -4.24708, -0.111311, 5.13148, 2.40924, 4.71993, -1.25079, 2.88214, 9.35551, -0.942484, -0.814238)
-
-[node name="BigRockOutgrowth" parent="Decorations" index="5" instance=ExtResource("10_j25ev")]
-transform = Transform3D(-1.96018, 0.245079, -3.47816, 3.48667, 0.17027, -1.95298, 0.0283987, -3.98886, -0.297065, -12.4451, 0.905349, 4.5312)
-
-[node name="BigRockOutgrowth2" parent="Decorations" index="6" instance=ExtResource("10_j25ev")]
-transform = Transform3D(1.75496, 4.39545, 1.05957, 3.99408, -0.97446, -2.57298, -2.11894, 1.8036, -3.97235, -10.3542, 4.38534, -15.3248)
-
-[node name="BigRockOutgrowth3" parent="Decorations" index="7" instance=ExtResource("10_j25ev")]
-transform = Transform3D(-3.38357, 1.85116, 1.06051, 1.52202, 3.48787, -1.23216, -1.49496, -0.638744, -3.65473, -3.95401, -1.28345, 10.8295)
-
-[node name="BigRockOutgrowth4" parent="Decorations" index="8" instance=ExtResource("10_j25ev")]
-transform = Transform3D(3.9699, 1.24967, -0.484042, 1.22308, -2.75997, 2.90564, 0.547768, -2.8943, -2.97978, -15.2406, 9.47031, 6.43387)
-
-[node name="RockOutgrowth" parent="Decorations" index="9" instance=ExtResource("10_j25ev")]
-transform = Transform3D(-1.22859, 0, -0.691854, 0, 1.41, 0, 0.691854, 0, -1.22859, -6.47006, -0.742956, 0.0997247)
-
-[node name="RockOutgrowth2" parent="Decorations" index="10" instance=ExtResource("10_j25ev")]
-transform = Transform3D(0.365339, 9.06561e-09, 1.6193, 0.80622, 1.43963, -0.181896, -1.40433, 0.826485, 0.316838, -1.04831, -0.989268, -6.0174)
-
-[node name="RockOutgrowth3" parent="Decorations" index="11" instance=ExtResource("10_j25ev")]
-transform = Transform3D(-0.576898, 0, 2.0244, -0.730855, 1.96303, -0.208273, -1.88787, -0.759952, -0.53799, 7.36206, -0.830009, -4.77861)
-
-[node name="RockOutgrowth4" parent="Decorations" index="12" instance=ExtResource("10_j25ev")]
-transform = Transform3D(-0.673022, 0, -2.53208, 0, 2.62, 0, 2.53208, 0, -0.673022, 8.17047, -0.787663, 5.90085)
-
-[node name="RockOutgrowth5" parent="Decorations" index="13" instance=ExtResource("10_j25ev")]
-transform = Transform3D(-0.691584, -0.144047, 1.96699, -0.575402, 2.00847, -0.0552231, -1.88646, -0.55981, -0.704264, 9.20147, -0.787663, 4.67493)
-
-[node name="SorrowPlant" parent="Decorations" index="14" instance=ExtResource("15_up8qe")]
-transform = Transform3D(0.916957, 0.0130141, -0.398773, 0.0269462, 0.995166, 0.0944391, 0.398074, -0.0973421, 0.912174, -1.82848, -0.190184, 1.17064)
-
-[node name="SorrowPlant5" parent="Decorations" index="15" instance=ExtResource("15_up8qe")]
-transform = Transform3D(1.12786, 0.0160074, -0.490491, 0.0331438, 1.22405, 0.11616, 0.489631, -0.119731, 1.12197, 1.93742, -0.190184, -1.17174)
-
-[node name="SorrowPlant2" parent="Decorations" index="16" instance=ExtResource("15_up8qe")]
-transform = Transform3D(-0.337818, 0, 0.893255, 0, 0.955, 0, -0.893255, 0, -0.337818, -2.94368, -0.129782, 2.13222)
-
-[node name="SorrowPlant3" parent="Decorations" index="17" instance=ExtResource("15_up8qe")]
-transform = Transform3D(-0.737552, 0, -1.02774, -0.11996, 1.25635, 0.0860891, 1.02071, 0.147654, -0.732511, -2.4938, -0.0964504, 3.32859)
-
-[node name="SorrowPlant4" parent="Decorations" index="18" instance=ExtResource("15_up8qe")]
-transform = Transform3D(0.599754, 0, -0.910162, 0, 1.09, 0, 0.910162, 0, 0.599754, -1.0645, -0.129782, -2.67292)
-
-[node name="SorrowPlant6" parent="Decorations" index="19" instance=ExtResource("15_up8qe")]
-transform = Transform3D(-1.35771, 0, 0.183063, 0, 1.37, 0, -0.183063, 0, -1.35771, 4.11961, -0.230789, -0.0458601)
-
-[node name="SorrowPlantClimbing" parent="Decorations" index="20" instance=ExtResource("12_up8qe")]
-transform = Transform3D(0.840453, 0, 0.541884, 0, 1, 0, -0.541884, 0, 0.840453, -1.44257, 1.98661, -2.0338)
-
-[node name="SorrowPlantClimbing3" parent="Decorations" index="21" instance=ExtResource("12_up8qe")]
-transform = Transform3D(0.654246, 0, -0.288421, 0, 0.715, 0, 0.288421, 0, 0.654246, 2.46238, 1.00397, -4.1304)
-
-[node name="SorrowPlantClimbing2" parent="Decorations" index="22" instance=ExtResource("12_up8qe")]
-transform = Transform3D(0.405827, 0, 1.589, 0, 1.64, 0, -1.589, 0, 0.405827, -0.581281, 2.62296, -3.10497)
-
-[node name="sorrow_plant_small" parent="Decorations" index="23" instance=ExtResource("13_2qgpl")]
-transform = Transform3D(0.855563, 0, -0.517699, 0, 1, 0, 0.517699, 0, 0.855563, 3.4213, -0.13369, 0.402687)
-
-[node name="sorrow_plant_small2" parent="Decorations" index="24" instance=ExtResource("13_2qgpl")]
-transform = Transform3D(-0.0300433, 0, -1.14961, 0, 1.15, 0, 1.14961, 0, -0.0300433, 2.11121, -0.160723, 1.72561)
-
-[node name="MireLandscape" parent="." index="5" instance=ExtResource("14_40n1j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.640544, 0)
-
-[node name="Decal" type="Decal" parent="MireLandscape" index="7"]
-transform = Transform3D(1.37428, 0, 0.267133, 0, 1.4, 0, -0.267133, 0, 1.37428, -3.36269, 0.63851, 0.892808)
+[node name="Decal" type="Decal" parent="Decorations" index="0"]
+transform = Transform3D(1.37428, 0, 0.267133, 0, 1.4, 0, -0.267133, 0, 1.37428, -3.07729, -0.00203401, -0.946278)
 size = Vector3(3, 0.5, 3)
 texture_albedo = ExtResource("10_ii18f")
 albedo_mix = 0.75
 cull_mask = 4
 
-[node name="Decal2" type="Decal" parent="MireLandscape" index="8"]
-transform = Transform3D(0.950215, 0, -1.02815, 0, 1.4, 0, 1.02815, 0, 0.950215, 3.08162, 0.638509, 2.31603)
+[node name="Decal2" type="Decal" parent="Decorations" index="1"]
+transform = Transform3D(0.950215, 0, -1.02815, 0, 1.4, 0, 1.02815, 0, 0.950215, 2.16882, -0.00203502, 1.34065)
 size = Vector3(4, 0.5, 4)
 texture_albedo = ExtResource("10_ii18f")
 albedo_mix = 0.65
+distance_fade_begin = 7.0
+distance_fade_length = 1.0
 cull_mask = 4
+
+[node name="Column" parent="Decorations" index="2" instance=ExtResource("13_kaa0c")]
+transform = Transform3D(3.90446, 0.372072, -0.785349, -4.75974e-08, 3.61484, 1.71259, 0.869028, -1.67168, 3.52849, 3.48424, -2.21371, 9.62558)
+
+[node name="Column2" parent="Decorations" index="3" instance=ExtResource("13_kaa0c")]
+transform = Transform3D(-1.50718, -0.472274, 4.20837, 0.484251, 4.41844, 0.669278, -4.20701, 0.677782, -1.43063, -5.42611, -3.39624, -6.23519)
+
+[node name="Column5" parent="Decorations" index="4" instance=ExtResource("13_kaa0c")]
+transform = Transform3D(-4.3328, -2.36377, 3.41166, -1.33371, 5.46326, 2.09142, -3.93041, 0.751922, -4.47063, -7.6293, -1.30526, 10.2503)
+
+[node name="Column4" parent="Decorations" index="5" instance=ExtResource("13_kaa0c")]
+transform = Transform3D(-4.50827, 0.496456, -1.04789, 0.163781, 4.43723, 1.39758, 1.14792, 1.31666, -4.31483, 2.2473, -0.942484, -8.47777)
+
+[node name="Column6" parent="Decorations" index="6" instance=ExtResource("13_kaa0c")]
+transform = Transform3D(3.13988, 2.06213, -4.24708, -0.111311, 5.13148, 2.40924, 4.71993, -1.25079, 2.88214, 9.35551, -0.942484, -0.814238)
+
+[node name="BigRockOutgrowth" parent="Decorations" index="7" instance=ExtResource("10_j25ev")]
+transform = Transform3D(-1.96018, 0.245079, -3.47816, 3.48667, 0.17027, -1.95298, 0.0283987, -3.98886, -0.297065, -12.4451, 0.905349, 4.5312)
+
+[node name="BigRockOutgrowth2" parent="Decorations" index="8" instance=ExtResource("10_j25ev")]
+transform = Transform3D(1.75496, 4.39545, 1.05957, 3.99408, -0.97446, -2.57298, -2.11894, 1.8036, -3.97235, -10.3542, 4.38534, -15.3248)
+
+[node name="BigRockOutgrowth3" parent="Decorations" index="9" instance=ExtResource("10_j25ev")]
+transform = Transform3D(-3.38357, 1.85116, 1.06051, 1.52202, 3.48787, -1.23216, -1.49496, -0.638744, -3.65473, -3.95401, -1.28345, 10.8295)
+
+[node name="BigRockOutgrowth4" parent="Decorations" index="10" instance=ExtResource("10_j25ev")]
+transform = Transform3D(3.9699, 1.24967, -0.484042, 1.22308, -2.75997, 2.90564, 0.547768, -2.8943, -2.97978, -15.2406, 9.47031, 6.43387)
+
+[node name="RockOutgrowth" parent="Decorations" index="11" instance=ExtResource("10_j25ev")]
+transform = Transform3D(-1.22859, 0, -0.691854, 0, 1.41, 0, 0.691854, 0, -1.22859, -6.47006, -0.742956, 0.0997247)
+
+[node name="RockOutgrowth2" parent="Decorations" index="12" instance=ExtResource("10_j25ev")]
+transform = Transform3D(0.365339, 9.06561e-09, 1.6193, 0.80622, 1.43963, -0.181896, -1.40433, 0.826485, 0.316838, -1.04831, -0.989268, -6.0174)
+
+[node name="RockOutgrowth3" parent="Decorations" index="13" instance=ExtResource("10_j25ev")]
+transform = Transform3D(-0.576898, 0, 2.0244, -0.730855, 1.96303, -0.208273, -1.88787, -0.759952, -0.53799, 7.36206, -0.830009, -4.77861)
+
+[node name="RockOutgrowth4" parent="Decorations" index="14" instance=ExtResource("10_j25ev")]
+transform = Transform3D(-0.673022, 0, -2.53208, 0, 2.62, 0, 2.53208, 0, -0.673022, 8.17047, -0.787663, 5.90085)
+
+[node name="RockOutgrowth5" parent="Decorations" index="15" instance=ExtResource("10_j25ev")]
+transform = Transform3D(-0.691584, -0.144047, 1.96699, -0.575402, 2.00847, -0.0552231, -1.88646, -0.55981, -0.704264, 9.20147, -0.787663, 4.67493)
+
+[node name="SorrowPlantClimbing2" parent="Decorations" index="16" instance=ExtResource("12_up8qe")]
+transform = Transform3D(0.405827, 0, 1.589, 0, 1.64, 0, -1.589, 0, 0.405827, -0.581281, 2.62296, -3.10497)
+
+[node name="SorrowPlantClimbing3" parent="Decorations" index="17" instance=ExtResource("12_up8qe")]
+transform = Transform3D(1.62419, 0, -0.91664, 0, 1.865, 0, 0.91664, 0, 1.62419, -1.04325, 2.83781, -3.0352)
+
+[node name="SorrowPlantSmall2" parent="Decorations" index="18" instance=ExtResource("13_2qgpl")]
+transform = Transform3D(0.855563, 0, -0.517699, 0, 1, 0, 0.517699, 0, 0.855563, 3.4213, -0.13369, 0.402687)
+
+[node name="SorrowPlantSmall" parent="Decorations" index="19" instance=ExtResource("13_2qgpl")]
+transform = Transform3D(-0.0300433, 0, -1.14961, 0, 1.15, 0, 1.14961, 0, -0.0300433, 2.11901, -0.160723, 2.87656)
+
+[node name="SorrowPlant5" parent="Decorations" index="20" instance=ExtResource("17_e6eky")]
+transform = Transform3D(1.08359, 0, -0.718218, 0, 1.3, 0, 0.718218, 0, 1.08359, 4.16239, -0.172093, 1.26219)
+
+[node name="SorrowPlant" parent="Decorations" index="21" instance=ExtResource("17_e6eky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85326, -0.0257316, 1.10201)
+
+[node name="SorrowPlant2" parent="Decorations" index="22" instance=ExtResource("17_e6eky")]
+transform = Transform3D(0.98888, 0, -0.679791, 0, 1.2, 0, 0.679791, 0, 0.98888, -2.60555, -0.0257316, 3.05685)
+
+[node name="SorrowPlant3" parent="Decorations" index="23" instance=ExtResource("17_e6eky")]
+transform = Transform3D(0.85987, 0, 0.510513, 0, 1, 0, -0.510513, 0, 0.85987, -0.981679, -0.0257317, -2.35492)
+
+[node name="SorrowPlant4" parent="Decorations" index="24" instance=ExtResource("17_e6eky")]
+transform = Transform3D(1.09996, 0, 0.00961837, 0, 1.1, 0, -0.00961837, 0, 1.09996, 2.43915, -0.0257317, -0.922824)
+
+[node name="MireLandscape" parent="." index="5" instance=ExtResource("14_40n1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.640544, 0)
 
 [node name="Ambience" parent="." index="6"]
 process_mode = 3
+stream = ExtResource("21_2djwa")
+volume_db = -4.0
 
-[node name="M" type="Marker3D" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08589, 0.5, -0.63718)
+[node name="Music" type="AudioStreamPlayer" parent="Ambience" index="0"]
+stream = ExtResource("17_jmsth")
+volume_db = -6.5
+autoplay = true
 
-[node name="AnguishedEgg" parent="." index="8" instance=ExtResource("15_ii18f")]
+[node name="AnguishedEgg" parent="." index="7" instance=ExtResource("15_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94474, 0, -1.52879)
 component_id = "anguished_egg"
 
-[node name="AnguishedEgg2" parent="." index="9" instance=ExtResource("15_ii18f")]
+[node name="AnguishedEgg2" parent="." index="8" instance=ExtResource("15_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23404, 2.38419e-07, 3.12229)
 component_id = "anguished_egg"
 
-[node name="AnguishedClaw" parent="." index="10" node_paths=PackedStringArray("target") instance=ExtResource("14_ii18f")]
+[node name="AnguishedClaw" parent="." index="9" node_paths=PackedStringArray("target") instance=ExtResource("14_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2.9)
-target = NodePath("../M")
+target = NodePath("../ClawCandidates/ClawCandidate")
 
-[node name="Track1" type="AudioStreamPlayer" parent="." index="11"]
-stream = ExtResource("17_c8n4n")
-volume_db = -80.0
+[node name="AnguishedClaw2" parent="." index="10" node_paths=PackedStringArray("target") instance=ExtResource("14_ii18f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.131, 0, 1.63032)
+target = NodePath("../ClawCandidates/ClawCandidate")
 
-[node name="Track2" type="AudioStreamPlayer" parent="." index="12"]
-stream = ExtResource("18_bjcs8")
-volume_db = -80.0
+[node name="ClawCandidates" type="Node" parent="." index="11"]
 
-[node name="Track3" type="AudioStreamPlayer" parent="." index="13"]
-stream = ExtResource("19_jmsth")
-volume_db = -80.0
+[node name="ClawCandidate" type="Marker3D" parent="ClawCandidates" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.71685, 0.5, -1.58288)
+
+[node name="ClawCandidate2" type="Marker3D" parent="ClawCandidates" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7596, 0.5, 1.81486)
+
+[node name="ClawCandidate3" type="Marker3D" parent="ClawCandidates" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0368, 0.5, -4.48612)
+
+[node name="ClawCandidate4" type="Marker3D" parent="ClawCandidates" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30812, 0.5, 4.73404)
+
+[node name="ClawCandidate5" type="Marker3D" parent="ClawCandidates" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41959, 0.5, -1.38601)
+
+[connection signal="target_reached" from="AnguishedClaw" to="." method="_on_anguished_claw_target_reached"]
+[connection signal="target_reached" from="AnguishedClaw2" to="." method="_on_anguished_claw_2_target_reached"]
