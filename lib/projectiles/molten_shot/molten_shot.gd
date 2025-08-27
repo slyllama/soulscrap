@@ -1,10 +1,11 @@
 extends Projectile
 
-var _target_speed = 0.8
+var _target_speed = 0.2
 @onready var spiral_mesh: MeshInstance3D = get_node("Pivot/FireSpiral/fire_spiral")
 @onready var spiral_mesh_2: MeshInstance3D = get_node("Pivot/FireSpiral2/fire_spiral")
 @onready var metal_mesh: MeshInstance3D = get_node("Mesh/Sphere")
 @onready var position_delta = get_parent().global_transform.basis.z * _target_speed
+@onready var original_parent_position = get_parent().global_position
 
 func _duplicate_mat(mesh: MeshInstance3D) -> void:
 	var _mat = mesh.get_active_material(0).duplicate(true)
@@ -15,6 +16,7 @@ func _set_fire_spiral_exponent(_val) -> void:
 	spiral_mesh_2.get_active_material(0).set_shader_parameter("exponent", _val)
 
 func fire() -> void:
+	super()
 	$Pivot.global_position = global_position
 	$Sound.pitch_scale = randf_range(0.8, 1.2)
 	$Sound.play()
@@ -27,11 +29,10 @@ func fire() -> void:
 	_u.tween_method(_set_fire_spiral_exponent, 0.0, 1.0, 0.4)
 	
 	await $Sound.finished
-	super()
+	destroy()
 
 func _ready() -> void:
 	super()
-	visible = false
 	
 	_duplicate_mat(spiral_mesh)
 	_duplicate_mat(spiral_mesh_2)
@@ -45,9 +46,14 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	var _time_ratio = $Lifetime.time_left / $Lifetime.wait_time
 	var _adj_ratio = pow((1.0 - _time_ratio), 1.5)
-	_target_speed = lerp(_target_speed, 0.25, Utils.clerp(10.0))
+	_target_speed = lerp(_target_speed, 0.1, Utils.clerp(10.0))
 	$Mesh/Trail.trail_width = 0.05 * _time_ratio
 	if _time_ratio > 0.0:
 		metal_mesh.get_active_material(0).set_shader_parameter("dissolve_state", _adj_ratio)
-	
 	if position_delta: position -= position_delta
+	
+	if active:
+		var _d = global_position.distance_to(original_parent_position)
+		if _d > Components.get_range(id):
+			active = false
+	super(_delta)

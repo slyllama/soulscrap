@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody3D
 
+const _NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
 const P_STRAFE = "parameters/strafe/add_amount"
 const P_FORWARD = "parameters/forward/add_amount"
 
@@ -27,8 +28,19 @@ func get_bone_position(bone_name: String) -> Vector3:
 	var _bone_origin = skeleton.get_bone_global_pose(_bone_idx).origin
 	return(skeleton.to_global(_bone_origin))
 
+func _emit_evaded() -> void:
+	var _d = _NodeSpatial.instantiate()
+	_d.text = str("Evaded")
+	_d.font_size = 24
+	_d.text_color = Color.GOLD
+	Global.player.add_child(_d)
+	_d.position.y += 1.0
+	_d.float_away()
+
 func _ready() -> void:
 	Global.player = self
+	
+	PlayerData.evaded.connect(_emit_evaded)
 	
 	SettingsHandler.propogated.connect(func(_param):
 		if _param == "dof":

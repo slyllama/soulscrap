@@ -32,6 +32,7 @@ const component_library = {
 		"title": "((Test Item))",
 		"description": "((Description))",
 		"texture": preload(ICON_PATH + "test_item.png"),
+		"projectile": preload("res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/desperate_grasp.tscn"),
 		"cooldown": 5.0,
 		"range": 2.0
 	},
@@ -40,6 +41,11 @@ const component_library = {
 		"description": "((Description))",
 		"texture": preload(ICON_PATH + "anguished_egg.png"),
 		"cooldown": 5.0
+	},
+	"desperate_grasp": {
+		"title": "Desperate Grasp",
+		"damage": 25,
+		"tempo_cost": 20
 	}
 }
 
@@ -65,6 +71,11 @@ func get_texture(component: String) -> Texture2D:
 	if component in component_library:
 		return(component_library[component].texture)
 	else: return(component_library["blank"].texture)
+
+func get_range(component: String) -> float:
+	if component in component_library:
+		return(component_library[component].range)
+	else: return(0.0)
 
 func get_damage(component: String) -> int:
 	if component in component_library:

@@ -2,7 +2,6 @@
 extends Node3D
 
 const NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
-
 var _indicator_emission = 0.0
 
 func _play_undertempo_warning() -> void:
@@ -21,7 +20,6 @@ func _clear_buffer() -> void:
 func _ready() -> void:
 	PlayerData.aggro_gained.connect(func():
 		_indicator_emission = 1.0)
-	
 	PlayerData.aggro_lost.connect(func():
 		_indicator_emission = 0.0)
 	
@@ -39,8 +37,6 @@ func _ready() -> void:
 		if "range" in _data:
 			$RangeIndicator.size.x = _data.range * 2.0
 			$RangeIndicator.size.z = _data.range * 2.0
-			$AimArea/Collision.shape.size.z = _data.range
-			$AimArea/Collision.position.z = -_data.range / 2.0
 		)
 	
 	PlayerData.component_used.connect(func(id):
@@ -54,16 +50,12 @@ func _ready() -> void:
 			var _p = $ProjectileBuffer.get_children()[0]
 			if _p is Projectile:
 				var _q = _p.duplicate()
+				_q.damages_player = false
+				_q.damages_enemy = true
 				add_child(_q)
 				_q.visible = true
 				_q.global_position = global_position
-				_q.fire()
-		
-		PlayerData.projectile_fired.emit()
-		
-		for _b in $AimArea.get_overlapping_areas():
-			if _b.name == "Hitbox":
-				_b.get_parent().lose_integrity(Components.get_damage(id)))
+				_q.cast())
 
 func _process(_delta: float) -> void:
 	$RangeIndicator.emission_energy = lerp(

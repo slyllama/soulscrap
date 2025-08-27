@@ -7,8 +7,8 @@ func attack() -> void:
 	stationary = true
 	look_at_target_paused = true
 	
-	var _a = emit_attack("desperate_grasp")
-	_anim.speed_scale = 1.0 / _a.cast_time
+	var _a = emit_attack("molten_shot")
+	_anim.speed_scale = clamp(1.0 / _a.cast_time, 0.5, 1.5)
 	_anim.play("desperate_grasp")
 	await _anim.animation_finished
 	_anim.speed_scale = 1.0

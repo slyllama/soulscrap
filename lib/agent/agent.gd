@@ -90,6 +90,8 @@ var _is_aggroed = false
 func emit_attack(id: String) -> Projectile:
 	if !id in attack_library: return
 	var _p: Projectile = attack_library[id].instantiate()
+	_p.damages_enemy = false
+	_p.damages_player = true
 	model.add_child(_p)
 	_p.cast()
 	return(_p)
@@ -192,9 +194,9 @@ func _physics_process(delta: float) -> void:
 			target_reached.emit()
 			_in_range_of_target = true
 	
-	velocity = lerp(velocity, _dir * speed, Utils.clerp(acceleration))
 	if !stationary:
-		move_and_slide()
+		velocity = lerp(velocity, _dir * speed, Utils.clerp(acceleration))
+	move_and_slide()
 	
 	if (!global_position.is_equal_approx($NavAgent.get_next_path_position())
 		or force_look_at_target):

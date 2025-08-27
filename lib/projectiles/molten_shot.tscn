@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbs03j84y2d3t"]
+[gd_scene load_steps=15 format=3 uid="uid://cbs03j84y2d3t"]
 
 [ext_resource type="Script" uid="uid://2gkjfuuvy4mp" path="res://lib/projectiles/molten_shot/molten_shot.gd" id="1_7trbr"]
 [ext_resource type="PackedScene" uid="uid://mkpk8e6rwox2" path="res://lib/projectiles/molten_shot/meshes/molten_metal.glb" id="2_d0taf"]
@@ -6,6 +6,9 @@
 [ext_resource type="Material" uid="uid://ncc5ctdnq4k" path="res://lib/projectiles/molten_shot/materials/mat_molten_metal.tres" id="4_21gx2"]
 [ext_resource type="PackedScene" uid="uid://fvaxi12kqoqp" path="res://lib/projectiles/molten_shot/meshes/fire_spiral.glb" id="5_ax6s7"]
 [ext_resource type="AudioStream" uid="uid://couxkgi1kwo4o" path="res://lib/projectiles/molten_shot/sounds/projectile.ogg" id="6_bq3op"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7trbr"]
+radius = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlv1s"]
 transparency = 1
@@ -46,11 +49,21 @@ height = 0.3
 radial_segments = 4
 rings = 2
 
-[node name="MoltenShot" type="Node3D"]
+[node name="MoltenShot" type="Node3D" node_paths=PackedStringArray("collision_area")]
 script = ExtResource("1_7trbr")
+cast_time = 0.1
+id = "molten_shot"
+collision_area = NodePath("Mesh/Collision")
 metadata/_custom_type_script = "uid://y1nunng426xj"
 
 [node name="Mesh" parent="." instance=ExtResource("2_d0taf")]
+
+[node name="Collision" type="Area3D" parent="Mesh"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="Shape" type="CollisionShape3D" parent="Mesh/Collision"]
+shape = SubResource("SphereShape3D_7trbr")
 
 [node name="Trail" type="MeshInstance3D" parent="Mesh"]
 material_override = SubResource("StandardMaterial3D_vlv1s")

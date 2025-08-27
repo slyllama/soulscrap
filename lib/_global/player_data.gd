@@ -5,6 +5,7 @@ signal aggro_lost
 signal component_used(id: String)
 signal damage_taken(amount: int)
 signal deck_changed
+signal evaded # projectile was successfully dodged
 signal projectile_fired
 signal sprint_started
 signal sprint_ended

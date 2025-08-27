@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b8ugq7w8i4b1n"]
+[gd_scene load_steps=25 format=3 uid="uid://b8ugq7w8i4b1n"]
 
 [ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/agent.tscn" id="1_hyjce"]
 [ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="2_svn0r"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0yjsss8r2vdv" path="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/desperate_grasp.tscn" id="3_ek1lu"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_j4ioo"]
 [ext_resource type="Texture2D" uid="uid://cwrah8d446ok5" path="res://maps/sandbox/agents/anguished_claw/textures/test_decal.png" id="3_qkuix"]
+[ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://lib/projectiles/molten_shot.tscn" id="4_bc51q"]
 [ext_resource type="PackedScene" uid="uid://bt4weraukcdam" path="res://maps/sandbox/agents/anguished_claw/meshes/anguished_claw.glb" id="4_svn0r"]
 [ext_resource type="Texture2D" uid="uid://dgriptbp6d5jr" path="res://maps/sandbox/agents/anguished_claw/textures/outline.png" id="4_wairi"]
 [ext_resource type="PackedScene" uid="uid://c1uh4fv3t7swu" path="res://lib/bounding_circle/bounding_circle.tscn" id="5_yskyh"]
@@ -102,7 +103,8 @@ aggro_radius = 2.0
 aggro_leave_radius = 4.5
 model = NodePath("AnguishedClaw")
 attack_library = Dictionary[String, PackedScene]({
-"desperate_grasp": ExtResource("3_ek1lu")
+"desperate_grasp": ExtResource("3_ek1lu"),
+"molten_shot": ExtResource("4_bc51q")
 })
 
 [node name="AnguishedClaw" parent="." index="5" instance=ExtResource("4_svn0r")]

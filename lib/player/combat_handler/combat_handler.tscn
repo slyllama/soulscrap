@@ -1,22 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8iv1n1t2q8um"]
+[gd_scene load_steps=4 format=3 uid="uid://b8iv1n1t2q8um"]
 
 [ext_resource type="Script" uid="uid://dev8the4gr6be" path="res://lib/player/combat_handler/combat_handler.gd" id="1_61r3d"]
 [ext_resource type="AudioStream" uid="uid://du2abe6amib3k" path="res://lib/player/combat_handler/sounds/tempo_warning.ogg" id="3_qg0sw"]
 [ext_resource type="Texture2D" uid="uid://dmn13c17ljexm" path="res://lib/player/combat_handler/textures/range_indicator.jpg" id="5_htq67"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_61r3d"]
-size = Vector3(0.1, 1, 2.2)
-
 [node name="CombatHandler" type="Node3D"]
 script = ExtResource("1_61r3d")
-
-[node name="AimArea" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="Collision" type="CollisionShape3D" parent="AimArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1)
-shape = SubResource("BoxShape3D_61r3d")
 
 [node name="TempoWarning" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qg0sw")
