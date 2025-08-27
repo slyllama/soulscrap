@@ -10,7 +10,7 @@ class_name Agent extends CharacterBody3D
 
 ## The agent is counted as having reached the navigation target if the distance
 ## between that target and itself is less than the [param TARGET_THRESHOLD].
-const TARGET_THRESHOLD = 0.5
+const TARGET_THRESHOLD = 1.0
 const _NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
 
 ## Emitted when the [param current_integrity] of the agent has changed e.g.,
@@ -186,7 +186,8 @@ func _physics_process(delta: float) -> void:
 	var _dir = Vector3.ZERO
 	$NavAgent.target_position = $NavTarget.global_position
 	if global_position.distance_to($NavTarget.global_position) > TARGET_THRESHOLD:
-		_in_range_of_target = false
+		if _in_range_of_target:
+			_in_range_of_target = false
 		_dir = $NavAgent.get_next_path_position() - global_position
 		_dir = _dir.normalized()
 	else: 
@@ -194,8 +195,7 @@ func _physics_process(delta: float) -> void:
 			target_reached.emit()
 			_in_range_of_target = true
 	
-	if !stationary:
-		velocity = lerp(velocity, _dir * speed, Utils.clerp(acceleration))
+	velocity = lerp(velocity, _dir * speed, Utils.clerp(acceleration))
 	move_and_slide()
 	
 	if (!global_position.is_equal_approx($NavAgent.get_next_path_position())

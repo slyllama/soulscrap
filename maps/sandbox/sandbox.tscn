@@ -192,13 +192,7 @@ wander_targets = [NodePath("../ClawCandidates/ClawCandidate"), NodePath("../Claw
 aggro_radius = 3.0
 target = NodePath("../Player")
 
-[node name="AnguishedClaw2" parent="." index="10" node_paths=PackedStringArray("wander_targets", "target") instance=ExtResource("14_ii18f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.131, 0, 1.63032)
-wander_targets = [NodePath("../ClawCandidates/ClawCandidate"), NodePath("../ClawCandidates/ClawCandidate2"), NodePath("../ClawCandidates/ClawCandidate3"), NodePath("../ClawCandidates/ClawCandidate4"), NodePath("../ClawCandidates/ClawCandidate5")]
-aggro_radius = 3.0
-target = NodePath("../Player")
-
-[node name="ClawCandidates" type="Node" parent="." index="11"]
+[node name="ClawCandidates" type="Node" parent="." index="10"]
 
 [node name="ClawCandidate" type="Marker3D" parent="ClawCandidates" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.71685, 0.5, -1.58288)

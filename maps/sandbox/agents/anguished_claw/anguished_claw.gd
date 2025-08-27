@@ -3,11 +3,17 @@ extends Agent
 @onready var _anim: AnimationPlayer = model.get_node("AnimationPlayer")
 @export var wander_targets: Array[Marker3D] = []
 
+var _s = true
+
 func attack() -> void:
 	stationary = true
 	look_at_target_paused = true
+	_s = !_s
 	
-	var _a = emit_attack("molten_shot")
+	var _a
+	if _s: _a = emit_attack("molten_shot")
+	else: _a = emit_attack("desperate_grasp")
+	
 	_anim.speed_scale = clamp(1.0 / _a.cast_time, 0.5, 1.5)
 	_anim.play("desperate_grasp")
 	await _anim.animation_finished
@@ -46,9 +52,10 @@ func _physics_process(delta: float) -> void:
 		$AnguishedClaw/Skeleton3D, "Hand") + Vector3(0, 0.35, 0)
 
 func _on_target_reached() -> void:
-	target = null
-	# Spare frame to reset target, in case the elected target is the same
-	await get_tree().process_frame
-	if wander_targets.size() == 0: return # no valid wandering targets
-	var _t = randi_range(0, wander_targets.size() - 1)
-	target = wander_targets[_t]
+	return
+	#target = null
+	## Spare frame to reset target, in case the elected target is the same
+	#await get_tree().process_frame
+	#if wander_targets.size() == 0: return # no valid wandering targets
+	#var _t = randi_range(0, wander_targets.size() - 1)
+	#target = wander_targets[_t]

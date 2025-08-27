@@ -42,7 +42,26 @@ func destroy() -> void:
 func fire() -> void:
 	_cast_timer.stop()
 	active = true
+	for _i in 5: await get_tree().process_frame
+	
+	# Check players - single check on fire
+	if damages_player:
+		var _bodies = collision_area.get_overlapping_bodies()
+		for _b in _bodies:
+			if _b is Player:
+				if destroy_on_hit:
+					destroy()
+					PlayerData.take_damage(Components.get_damage(id))
+	# Check enemies - single check on fire
 	if damages_enemy:
+		var _areas = collision_area.get_overlapping_areas()
+		print(_areas)
+		for _a in _areas:
+			if _a.name == "Hitbox":
+				if _a.get_parent() is Agent:
+					if destroy_on_hit:
+						destroy()
+					_a.get_parent().lose_integrity(Components.get_damage(id))
 		PlayerData.projectile_fired.emit()
 
 func _ready() -> void:
@@ -58,24 +77,3 @@ func _ready() -> void:
 	await get_tree().process_frame
 	if static_position:
 		top_level = true
-
-func _physics_process(_delta: float) -> void:
-	if !collision_area: return
-	if !active: return
-	# Check bodies
-	if damages_player:
-		var _bodies = collision_area.get_overlapping_bodies()
-		for _b in _bodies:
-			if _b is Player:
-				if destroy_on_hit:
-					destroy()
-					PlayerData.take_damage(Components.get_damage(id))
-	# Check enemies
-	if damages_enemy:
-		var _areas = collision_area.get_overlapping_areas()
-		for _a in _areas:
-			if _a.name == "Hitbox":
-				if _a.get_parent() is Agent:
-					if destroy_on_hit:
-						destroy()
-					_a.get_parent().lose_integrity(Components.get_damage(id))

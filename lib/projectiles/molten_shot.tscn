@@ -7,9 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://fvaxi12kqoqp" path="res://lib/projectiles/molten_shot/meshes/fire_spiral.glb" id="5_ax6s7"]
 [ext_resource type="AudioStream" uid="uid://couxkgi1kwo4o" path="res://lib/projectiles/molten_shot/sounds/projectile.ogg" id="6_bq3op"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_7trbr"]
-radius = 0.2
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlv1s"]
 transparency = 1
 cull_mode = 2
@@ -49,21 +46,19 @@ height = 0.3
 radial_segments = 4
 rings = 2
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7trbr"]
+height = 4.0
+radius = 0.2
+
 [node name="MoltenShot" type="Node3D" node_paths=PackedStringArray("collision_area")]
 script = ExtResource("1_7trbr")
-cast_time = 0.1
+cast_time = 0.01
 id = "molten_shot"
-collision_area = NodePath("Mesh/Collision")
+collision_area = NodePath("Pivot/Collision")
+destroy_on_hit = false
 metadata/_custom_type_script = "uid://y1nunng426xj"
 
 [node name="Mesh" parent="." instance=ExtResource("2_d0taf")]
-
-[node name="Collision" type="Area3D" parent="Mesh"]
-collision_layer = 5
-collision_mask = 5
-
-[node name="Shape" type="CollisionShape3D" parent="Mesh/Collision"]
-shape = SubResource("SphereShape3D_7trbr")
 
 [node name="Trail" type="MeshInstance3D" parent="Mesh"]
 material_override = SubResource("StandardMaterial3D_vlv1s")
@@ -85,11 +80,15 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_fs1ld")
 draw_pass_1 = SubResource("SphereMesh_75mgc")
 
-[node name="Lifetime" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="Pivot" type="Node3D" parent="."]
+
+[node name="Collision" type="Area3D" parent="Pivot"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="Shape" type="CollisionShape3D" parent="Pivot/Collision"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -2)
+shape = SubResource("CylinderShape3D_7trbr")
 
 [node name="FireSpiral" parent="Pivot" instance=ExtResource("5_ax6s7")]
 transform = Transform3D(-1, 0, -4.52987e-07, 0, 1, 0, 1.50996e-07, 0, -3, 0, 0, 0.7)
@@ -100,3 +99,8 @@ transform = Transform3D(-0.6, 0, -4.52987e-07, 0, 0.6, 0, 9.05975e-08, 0, -3, 0,
 [node name="Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_bq3op")
 volume_db = -4.0
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true

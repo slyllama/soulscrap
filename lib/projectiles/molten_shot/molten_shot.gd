@@ -20,7 +20,6 @@ func fire() -> void:
 	$Pivot.global_position = global_position
 	$Sound.pitch_scale = randf_range(0.8, 1.2)
 	$Sound.play()
-	$Lifetime.start()
 	
 	_set_fire_spiral_exponent(1.0)
 	var _t = create_tween()
@@ -44,6 +43,7 @@ func _ready() -> void:
 	$Pivot.global_rotation.x = clamp($Pivot.global_rotation.x, 0.0, INF)
 
 func _physics_process(_delta: float) -> void:
+	if !active: return
 	var _time_ratio = $Lifetime.time_left / $Lifetime.wait_time
 	var _adj_ratio = pow((1.0 - _time_ratio), 1.5)
 	_target_speed = lerp(_target_speed, 0.1, Utils.clerp(10.0))
@@ -51,9 +51,3 @@ func _physics_process(_delta: float) -> void:
 	if _time_ratio > 0.0:
 		metal_mesh.get_active_material(0).set_shader_parameter("dissolve_state", _adj_ratio)
 	if position_delta: position -= position_delta
-	
-	if active:
-		var _d = global_position.distance_to(original_parent_position)
-		if _d > Components.get_range(id):
-			active = false
-	super(_delta)
