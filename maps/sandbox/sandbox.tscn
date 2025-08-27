@@ -1,17 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://d4i4jjh5re868"]
+[gd_scene load_steps=21 format=3 uid="uid://d4i4jjh5re868"]
 
 [ext_resource type="PackedScene" uid="uid://d0j3ryssexkcj" path="res://lib/map/map.tscn" id="1_8bryw"]
 [ext_resource type="PackedScene" uid="uid://ban0go6y3b25c" path="res://lib/player/player.tscn" id="2_hxxcf"]
 [ext_resource type="PackedScene" uid="uid://c22mmoiy3jofj" path="res://lib/ui/hud/hud.tscn" id="2_ix24m"]
+[ext_resource type="Script" uid="uid://bic3p2j6rr3m5" path="res://maps/sandbox/sandbox.gd" id="2_up8qe"]
 [ext_resource type="Texture2D" uid="uid://rxiyen87ib0n" path="res://generic/textures/nasa_stars.jpg" id="4_pxktp"]
-[ext_resource type="Texture2D" uid="uid://bw2ra7yhv6bvi" path="res://lib/ui/textures/ui_bg.jpg" id="7_40n1j"]
 [ext_resource type="Texture2D" uid="uid://b1apf47becvow" path="res://maps/sandbox/materials/textures/dirt_decal.png" id="10_ii18f"]
 [ext_resource type="PackedScene" uid="uid://b0tci4piatfdu" path="res://maps/sandbox/meshes/mire_petrification.glb" id="10_j25ev"]
-[ext_resource type="PackedScene" uid="uid://cx34qwdt1wnko" path="res://lib/debug/agent_editor/agent_editor.tscn" id="11_kaa0c"]
-[ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="12_40n1j"]
 [ext_resource type="PackedScene" uid="uid://dk03asc8qsxha" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant_climbing.glb" id="12_up8qe"]
 [ext_resource type="PackedScene" uid="uid://d3o8l0uy0v7rx" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant_small.glb" id="13_2qgpl"]
-[ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="13_ii18f"]
 [ext_resource type="PackedScene" uid="uid://bim05oeh3ds2y" path="res://maps/sandbox/props/column.tscn" id="13_kaa0c"]
 [ext_resource type="PackedScene" uid="uid://es3egce4h18b" path="res://maps/sandbox/meshes/mire_landscape.glb" id="14_40n1j"]
 [ext_resource type="PackedScene" uid="uid://b8ugq7w8i4b1n" path="res://maps/sandbox/agents/anguished_claw/anguished_claw.tscn" id="14_ii18f"]
@@ -19,25 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cl4mdm7k7pas1" path="res://maps/sandbox/meshes/sorrow_plant/sorrow_plant.tscn" id="17_e6eky"]
 [ext_resource type="AudioStream" uid="uid://cm5iiqcl5quov" path="res://maps/sandbox/sounds/mus_man_fish.ogg" id="17_jmsth"]
 [ext_resource type="AudioStream" uid="uid://c0saod4riyqeq" path="res://maps/sandbox/sounds/fx_lava.ogg" id="21_2djwa"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_up8qe"]
-resource_local_to_scene = true
-shader = ExtResource("12_40n1j")
-shader_parameter/dissolve_texture = ExtResource("13_ii18f")
-shader_parameter/dissolve_state = 0.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7h81"]
-content_margin_left = 16.0
-content_margin_top = 16.0
-content_margin_right = 16.0
-content_margin_bottom = 16.0
-texture = ExtResource("7_40n1j")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_17ttx"]
 panorama = ExtResource("4_pxktp")
@@ -68,21 +46,9 @@ agent_height = 0.5
 agent_radius = 0.4
 
 [node name="Sandbox" instance=ExtResource("1_8bryw")]
+script = ExtResource("2_up8qe")
 
 [node name="HUD" parent="." index="0" instance=ExtResource("2_ix24m")]
-
-[node name="AgentEditor" parent="HUD" index="10" instance=ExtResource("11_kaa0c")]
-material = SubResource("ShaderMaterial_up8qe")
-custom_minimum_size = Vector2(300, 160)
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -225.0
-offset_right = 316.0
-offset_bottom = -16.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_j7h81")
 
 [node name="Sky" parent="." index="1"]
 environment = SubResource("Environment_v3xsa")
@@ -220,12 +186,14 @@ component_id = "anguished_egg"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23404, 2.38419e-07, 3.12229)
 component_id = "anguished_egg"
 
-[node name="AnguishedClaw" parent="." index="9" node_paths=PackedStringArray("target") instance=ExtResource("14_ii18f")]
+[node name="AnguishedClaw" parent="." index="9" node_paths=PackedStringArray("wander_targets", "target") instance=ExtResource("14_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2.9)
+wander_targets = [NodePath("../ClawCandidates/ClawCandidate"), NodePath("../ClawCandidates/ClawCandidate2"), NodePath("../ClawCandidates/ClawCandidate3"), NodePath("../ClawCandidates/ClawCandidate4"), NodePath("../ClawCandidates/ClawCandidate5")]
 target = NodePath("../ClawCandidates/ClawCandidate")
 
-[node name="AnguishedClaw2" parent="." index="10" node_paths=PackedStringArray("target") instance=ExtResource("14_ii18f")]
+[node name="AnguishedClaw2" parent="." index="10" node_paths=PackedStringArray("wander_targets", "target") instance=ExtResource("14_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.131, 0, 1.63032)
+wander_targets = [NodePath("../ClawCandidates/ClawCandidate"), NodePath("../ClawCandidates/ClawCandidate2"), NodePath("../ClawCandidates/ClawCandidate3"), NodePath("../ClawCandidates/ClawCandidate4"), NodePath("../ClawCandidates/ClawCandidate5")]
 target = NodePath("../ClawCandidates/ClawCandidate")
 
 [node name="ClawCandidates" type="Node" parent="." index="11"]
@@ -244,6 +212,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30812, 0.5, 4.73404)
 
 [node name="ClawCandidate5" type="Marker3D" parent="ClawCandidates" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41959, 0.5, -1.38601)
-
-[connection signal="target_reached" from="AnguishedClaw" to="." method="_on_anguished_claw_target_reached"]
-[connection signal="target_reached" from="AnguishedClaw2" to="." method="_on_anguished_claw_2_target_reached"]

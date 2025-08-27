@@ -92,8 +92,9 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_fkkuu")
 size = Vector2(0.45, 0.45)
 
-[node name="AnguishedClaw" node_paths=PackedStringArray("model") instance=ExtResource("1_hyjce")]
+[node name="AnguishedClaw" node_paths=PackedStringArray("wander_targets", "model") instance=ExtResource("1_hyjce")]
 script = ExtResource("2_wairi")
+wander_targets = []
 agent_name = "Anguished Claw"
 integrity = 50
 speed = 0.6
@@ -150,3 +151,4 @@ wait_time = 1.5
 one_shot = true
 
 [connection signal="aggro_range_entered" from="." to="." method="_on_aggro_range_entered"]
+[connection signal="target_reached" from="." to="." method="_on_target_reached"]

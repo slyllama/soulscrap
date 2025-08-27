@@ -1,6 +1,7 @@
 extends Agent
 
 @onready var _anim: AnimationPlayer = model.get_node("AnimationPlayer")
+@export var wander_targets: Array[Marker3D] = []
 
 func attack() -> void:
 	stationary = true
@@ -43,3 +44,11 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	$NodeSpatial.global_position = get_bone_position(
 		$AnguishedClaw/Skeleton3D, "Hand") + Vector3(0, 0.35, 0)
+
+func _on_target_reached() -> void:
+	target = null
+	# Spare frame to reset target, in case the elected target is the same
+	await get_tree().process_frame
+	if wander_targets.size() == 0: return # no valid wandering targets
+	var _t = randi_range(0, wander_targets.size() - 1)
+	target = wander_targets[_t]
