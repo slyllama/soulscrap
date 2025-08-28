@@ -23,9 +23,11 @@ func fire() -> void:
 	
 	_set_fire_spiral_exponent(1.0)
 	var _t = create_tween()
-	_t.tween_method(_set_fire_spiral_exponent, 1.0, 0.0, 0.1)
+	_t.tween_method(
+		_set_fire_spiral_exponent, 1.0, 0.0, 0.1)
 	var _u = create_tween()
-	_u.tween_method(_set_fire_spiral_exponent, 0.0, 1.0, 0.4)
+	_u.tween_method(
+		_set_fire_spiral_exponent, 0.0, 1.0, 0.4)
 	
 	await $Sound.finished
 	destroy()
@@ -43,7 +45,6 @@ func _ready() -> void:
 	$Pivot.global_rotation.x = clamp($Pivot.global_rotation.x, 0.0, INF)
 
 func _physics_process(_delta: float) -> void:
-	if !active: return
 	var _time_ratio = $Lifetime.time_left / $Lifetime.wait_time
 	var _adj_ratio = pow((1.0 - _time_ratio), 1.5)
 	_target_speed = lerp(_target_speed, 0.1, Utils.clerp(10.0))

@@ -26,7 +26,7 @@ func get_deck() -> Array: # returns dictionary of quantities by ID
 	var _a = []
 	for _n in get_children():
 		if _n is CardIcon:
-			_a.append({ "id": _n.id, "qty": _n.quantity })
+			_a.append({ "id": _n.id, "qty": _n.quantity, "node": _n })
 	return(_a)
 
 func reset_card_source() -> void:

@@ -16,6 +16,20 @@ var integrity = 100
 var in_dodge = false
 var tempo = 99
 
+func add_to_deck(id) -> bool:
+	for _card_data in current_deck:
+		var _card: CardIcon = _card_data.node
+		if _card_data.id == id:
+			_card.quantity += 1
+			_card.update()
+			return(true)
+		elif _card_data.id == "blank":
+			print("doing this")
+			print(id)
+			_card.update(id)
+			return(true)
+	return(false)
+
 func update_aggro_state(change: bool = true) -> void:
 	var _prev_aggro_agent_count = aggro_agent_count
 	if change == true: aggro_agent_count += 1
@@ -45,3 +59,7 @@ func take_damage(amount: int) -> bool:
 		integrity -= amount
 		damage_taken.emit(amount)
 		return(true)
+
+func _ready() -> void:
+	deck_changed.connect(func():
+		print(current_deck))

@@ -178,9 +178,9 @@ stream = ExtResource("17_jmsth")
 volume_db = -6.5
 autoplay = true
 
-[node name="AnguishedEgg" parent="." index="7" instance=ExtResource("15_ii18f")]
+[node name="DesperateGrasp" parent="." index="7" instance=ExtResource("15_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94474, 0, -1.52879)
-component_id = "anguished_egg"
+component_id = "desperate_grasp"
 
 [node name="AnguishedEgg2" parent="." index="8" instance=ExtResource("15_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23404, 2.38419e-07, 3.12229)

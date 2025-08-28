@@ -114,7 +114,7 @@ offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
 mouse_filter = 2
-text = "[color=green]145fps[/color]"
+text = "[color=green]143fps[/color]"
 
 [node name="PrimsCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -278,6 +278,10 @@ material = SubResource("ShaderMaterial_mwuwv")
 layout_mode = 2
 id = "anguished_egg"
 quantity = 12
+
+[node name="CardIcon2" parent="Deck" instance=ExtResource("10_l7ms4")]
+material = SubResource("ShaderMaterial_mwuwv")
+layout_mode = 2
 
 [node name="CursorCard" parent="." instance=ExtResource("10_l7ms4")]
 visible = false

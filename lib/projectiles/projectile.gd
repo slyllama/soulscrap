@@ -32,8 +32,6 @@ func cast() -> void:
 	_cast_timer.start()
 
 func destroy() -> void:
-	if !active and _cast_timer.is_stopped(): return
-	active = false
 	await get_tree().process_frame
 	queue_free()
 
@@ -49,18 +47,21 @@ func fire() -> void:
 		var _bodies = collision_area.get_overlapping_bodies()
 		for _b in _bodies:
 			if _b is Player:
+				if active:
+					PlayerData.take_damage(Components.get_damage(id))
 				if destroy_on_hit:
-					destroy()
-				PlayerData.take_damage(Components.get_damage(id))
+					active = false
+				
 	# Check enemies - single check on fire
 	if damages_enemy:
 		var _areas = collision_area.get_overlapping_areas()
 		for _a in _areas:
 			if _a.name == "Hitbox":
 				if _a.get_parent() is Agent:
+					if active:
+						_a.get_parent().lose_integrity(Components.get_damage(id))
 					if destroy_on_hit:
-						destroy()
-					_a.get_parent().lose_integrity(Components.get_damage(id))
+						active = false
 		PlayerData.projectile_fired.emit()
 
 func _ready() -> void:

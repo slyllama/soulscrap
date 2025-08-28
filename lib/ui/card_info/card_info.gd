@@ -35,7 +35,12 @@ func update(id) -> void:
 		add_card_stat(id, "range", "Range")
 		var _cd = Components.get_cooldown(id)
 		if _cd > 0.0:
+			$VBox/Header/CD.visible = true
+			$VBox/Header/CDIcon.visible = true
 			$VBox/Header/CD.text = str(_cd) + "s"
+		else:
+			$VBox/Header/CD.visible = false
+			$VBox/Header/CDIcon.visible = false
 		
 	if $VBox/ActiveStats.get_child_count() > 0:
 		$VBox/ActiveSubtitle.visible = true

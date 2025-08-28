@@ -39,11 +39,11 @@ const component_library = {
 	"anguished_egg": {
 		"title": "Anguished Egg",
 		"description": "((Description))",
-		"texture": preload(ICON_PATH + "anguished_egg.png"),
-		"cooldown": 5.0
+		"texture": preload(ICON_PATH + "anguished_egg.png")
 	},
 	"desperate_grasp": {
 		"title": "Desperate Grasp",
+		"projectile": preload("res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/desperate_grasp.tscn"),
 		"damage": 25,
 		"tempo_cost": 20
 	}
@@ -64,17 +64,23 @@ func get_title(component: String) -> String:
 
 func get_description(component: String) -> String:
 	if component in component_library:
-		return(component_library[component].description)
+		if "description" in component_library[component]:
+			return(component_library[component].description)
+		else: return("")
 	else: return("")
 
 func get_texture(component: String) -> Texture2D:
 	if component in component_library:
-		return(component_library[component].texture)
+		if "texture" in component_library[component]:
+			return(component_library[component].texture)
+		else: return(component_library["blank"].texture)
 	else: return(component_library["blank"].texture)
 
 func get_range(component: String) -> float:
 	if component in component_library:
-		return(component_library[component].range)
+		if "range" in component_library[component]:
+			return(component_library[component].range)
+		else: return(0.0)
 	else: return(0.0)
 
 func get_damage(component: String) -> int:
