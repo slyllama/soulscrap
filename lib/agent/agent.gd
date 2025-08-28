@@ -18,6 +18,8 @@ const _NodeSpatial = preload("res://lib/ui/node_spatial/node_spatial.tscn")
 signal integrity_changed
 ## Emitted when the player enters the aggro range of the agent.
 signal aggro_range_entered
+## Emitted when the player leaves the aggro range of the agent.
+signal aggro_range_left
 ## Emitted when the player is in within the [code]TARGET_THRESHOLD[/code]
 ## distance to their current target.
 signal target_reached
@@ -151,6 +153,7 @@ func _ready() -> void:
 				target = _last_target
 				if _is_aggroed:
 					_is_aggroed = false
+					aggro_range_left.emit()
 					PlayerData.update_aggro_state(false))
 	
 	$Floor.queue_free()
@@ -196,15 +199,16 @@ func _physics_process(delta: float) -> void:
 			_in_range_of_target = true
 	
 	velocity = lerp(velocity, _dir * speed, Utils.clerp(acceleration))
-	move_and_slide()
+	if !stationary:
+		move_and_slide()
 	
 	if (!global_position.is_equal_approx($NavAgent.get_next_path_position())
 		or force_look_at_target):
 		$AnimTarget.look_at($NavAgent.get_next_path_position())
 	$AnimTarget.rotation_degrees.x = 0.0
 	if !look_at_target_paused:
-		$AnguishedClaw.rotation.y = lerp_angle(
-			$AnguishedClaw.rotation.y, $AnimTarget.rotation.y - 0.01, Utils.clerp(10.0))
+		model.rotation.y = lerp_angle(
+			model.rotation.y, $AnimTarget.rotation.y - 0.01, Utils.clerp(10.0))
 	
 	$Decal.rotation_degrees.y += delta * 10.0
 	$OutlineDecal.rotation_degrees.y -= delta * 10.0

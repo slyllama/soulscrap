@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://0yjsss8r2vdv" path="res://maps/sandbox/agents/anguished_claw/attacks/desperate_grasp/desperate_grasp.tscn" id="3_ek1lu"]
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="3_j4ioo"]
 [ext_resource type="Texture2D" uid="uid://cwrah8d446ok5" path="res://maps/sandbox/agents/anguished_claw/textures/test_decal.png" id="3_qkuix"]
-[ext_resource type="PackedScene" uid="uid://cbs03j84y2d3t" path="res://lib/projectiles/molten_shot.tscn" id="4_bc51q"]
 [ext_resource type="PackedScene" uid="uid://bt4weraukcdam" path="res://maps/sandbox/agents/anguished_claw/meshes/anguished_claw.glb" id="4_svn0r"]
 [ext_resource type="Texture2D" uid="uid://dgriptbp6d5jr" path="res://maps/sandbox/agents/anguished_claw/textures/outline.png" id="4_wairi"]
 [ext_resource type="PackedScene" uid="uid://c1uh4fv3t7swu" path="res://lib/bounding_circle/bounding_circle.tscn" id="5_yskyh"]
 [ext_resource type="Texture2D" uid="uid://cxfqbrey3dgt6" path="res://maps/sandbox/agents/anguished_claw/textures/splash.png" id="9_yskyh"]
+[ext_resource type="AudioStream" uid="uid://d1qlu56ye6beh" path="res://maps/sandbox/agents/anguished_claw/sounds/claw_ambience.ogg" id="12_0hm7p"]
 
 [sub_resource type="Gradient" id="Gradient_d7cpf"]
 interpolation_mode = 2
@@ -103,12 +103,21 @@ aggro_radius = 2.0
 aggro_leave_radius = 4.5
 model = NodePath("AnguishedClaw")
 attack_library = Dictionary[String, PackedScene]({
-"desperate_grasp": ExtResource("3_ek1lu"),
-"molten_shot": ExtResource("4_bc51q")
+"desperate_grasp": ExtResource("3_ek1lu")
 })
 
 [node name="AnguishedClaw" parent="." index="5" instance=ExtResource("4_svn0r")]
 transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 0.78, 0, -0.2, 0)
+
+[node name="Ambient" type="AudioStreamPlayer3D" parent="AnguishedClaw" index="2"]
+transform = Transform3D(1.28205, 0, 0, 0, 1.28205, 0, 0, 0, 1.28205, 0, 0.25641, 0)
+stream = ExtResource("12_0hm7p")
+unit_size = 3.0
+max_db = 0.0
+autoplay = true
+max_distance = 5.0
+panning_strength = 1.5
+attenuation_filter_cutoff_hz = 20500.0
 
 [node name="Decal" type="Decal" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.427359, 0)
@@ -133,9 +142,6 @@ mesh = SubResource("CylinderMesh_bc51q")
 radius = 0.47
 albedo_color = Color(0.543667, 0.826524, 3.85046e-07, 1)
 
-[node name="Hitbox" parent="." index="9"]
-collision_mask = 4
-
 [node name="DamageSplat" type="GPUParticles3D" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.172122, 0)
 cast_shadow = 0
@@ -155,5 +161,5 @@ draw_pass_1 = SubResource("QuadMesh_y4ym0")
 wait_time = 1.5
 one_shot = true
 
-[connection signal="aggro_range_entered" from="." to="." method="_on_aggro_range_entered"]
+[connection signal="aggro_range_left" from="." to="." method="_on_aggro_range_left"]
 [connection signal="target_reached" from="." to="." method="_on_target_reached"]

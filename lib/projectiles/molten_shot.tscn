@@ -48,7 +48,7 @@ rings = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7trbr"]
 height = 4.0
-radius = 0.2
+radius = 0.1
 
 [node name="MoltenShot" type="Node3D" node_paths=PackedStringArray("collision_area")]
 script = ExtResource("1_7trbr")

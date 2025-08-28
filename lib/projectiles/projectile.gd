@@ -51,11 +51,10 @@ func fire() -> void:
 			if _b is Player:
 				if destroy_on_hit:
 					destroy()
-					PlayerData.take_damage(Components.get_damage(id))
+				PlayerData.take_damage(Components.get_damage(id))
 	# Check enemies - single check on fire
 	if damages_enemy:
 		var _areas = collision_area.get_overlapping_areas()
-		print(_areas)
 		for _a in _areas:
 			if _a.name == "Hitbox":
 				if _a.get_parent() is Agent:

@@ -51,8 +51,8 @@ spread = 10.0
 initial_velocity_min = 0.97
 initial_velocity_max = 1.03
 gravity = Vector3(0, -6, 0)
-scale_min = 0.4
-scale_max = 0.7
+scale_min = 0.3
+scale_max = 0.5
 scale_curve = SubResource("CurveTexture_adgnm")
 color_initial_ramp = SubResource("GradientTexture1D_fkkuu")
 alpha_curve = SubResource("CurveTexture_bc51q")
@@ -82,6 +82,7 @@ id = "desperate_grasp"
 damages_player = true
 damages_enemy = false
 collision_area = NodePath("Area")
+destroy_on_hit = false
 metadata/_custom_type_script = "uid://y1nunng426xj"
 
 [node name="Floor" type="MeshInstance3D" parent="."]
@@ -92,7 +93,7 @@ mesh = SubResource("QuadMesh_pp0ei")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267038, -1.32634)
 cast_shadow = 0
 emitting = false
-amount = 17
+amount = 23
 lifetime = 0.65
 one_shot = true
 preprocess = 0.2

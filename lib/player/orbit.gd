@@ -71,7 +71,8 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	Global.camera = $Track/Camera
 	Global.mouse_capture_gained.emit()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if get_window().has_focus():
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	PlayerData.projectile_fired.connect(shake_camera)
 	PlayerData.damage_taken.connect(func(_amount): shake_camera(0.4, 2.0))
