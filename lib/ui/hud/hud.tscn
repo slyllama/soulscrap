@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c22mmoiy3jofj"]
+[gd_scene load_steps=31 format=3 uid="uid://c22mmoiy3jofj"]
 
 [ext_resource type="PackedScene" uid="uid://by0uvskvsqnmj" path="res://lib/ui/fps_counter/fps_counter.tscn" id="1_6ca3a"]
 [ext_resource type="Script" uid="uid://cb0y3yvxw8uqh" path="res://lib/ui/hud/hud.gd" id="1_dntma"]
@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://qsuf24mw318g" path="res://lib/ui/settings_pane/textures/icon_settings.png" id="20_6u16q"]
 [ext_resource type="Texture2D" uid="uid://bbaoenoyvl6i1" path="res://lib/ui/settings_pane/textures/icon_settings_hover.png" id="21_nfgqh"]
 [ext_resource type="PackedScene" uid="uid://cfseihrm3xxa4" path="res://lib/cast/cast.tscn" id="22_hdq5k"]
-[ext_resource type="PackedScene" uid="uid://cfbn54leau13" path="res://lib/ui/conditions/cond_indicator.tscn" id="23_mwuwv"]
+[ext_resource type="Script" uid="uid://bedwend748rx2" path="res://lib/ui/conditions/cond_ui.gd" id="23_6fyc5"]
 
 [sub_resource type="Curve" id="Curve_6rdt5"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253165, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -45,6 +45,12 @@ scale_max = 0.12
 scale_curve = SubResource("CurveTexture_bly2c")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mwuwv"]
+resource_local_to_scene = true
+shader = ExtResource("4_n0ge7")
+shader_parameter/dissolve_texture = ExtResource("5_dntma")
+shader_parameter/dissolve_state = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6fyc5"]
 resource_local_to_scene = true
 shader = ExtResource("4_n0ge7")
 shader_parameter/dissolve_texture = ExtResource("5_dntma")
@@ -114,7 +120,7 @@ offset_right = -16.0
 offset_bottom = 38.0
 grow_horizontal = 0
 mouse_filter = 2
-text = "[color=green]143fps[/color]"
+text = "[color=green]94fps[/color]"
 
 [node name="PrimsCounter" parent="." instance=ExtResource("1_6ca3a")]
 anchors_preset = 1
@@ -280,7 +286,7 @@ id = "anguished_egg"
 quantity = 12
 
 [node name="CardIcon2" parent="Deck" instance=ExtResource("10_l7ms4")]
-material = SubResource("ShaderMaterial_mwuwv")
+material = SubResource("ShaderMaterial_6fyc5")
 layout_mode = 2
 
 [node name="CursorCard" parent="." instance=ExtResource("10_l7ms4")]
@@ -343,7 +349,7 @@ offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CondContainer" type="VBoxContainer" parent="."]
+[node name="CondUI" type="VBoxContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -355,13 +361,6 @@ grow_horizontal = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 theme_override_constants/separation = 2
-
-[node name="CondIndicator" parent="CondContainer" instance=ExtResource("23_mwuwv")]
-layout_mode = 2
-cond_id = "blank"
-
-[node name="CondIndicator2" parent="CondContainer" instance=ExtResource("23_mwuwv")]
-layout_mode = 2
-cond_id = "poisoned"
+script = ExtResource("23_6fyc5")
 
 [connection signal="button_down" from="SideButtons/Settings" to="." method="_on_settings_button_down"]

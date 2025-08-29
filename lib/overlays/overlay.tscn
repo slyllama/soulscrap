@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b7kkp37wp3ndo"]
+[gd_scene load_steps=17 format=3 uid="uid://b7kkp37wp3ndo"]
 
 [ext_resource type="Script" uid="uid://c5efta1qqtkn3" path="res://lib/overlays/overlay.gd" id="1_2m328"]
 [ext_resource type="Shader" uid="uid://dfubs0v03468n" path="res://lib/overlays/shaders/smoke.gdshader" id="1_lw2cd"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://c4412kr3w6toy" path="res://generic/materials/textures/paint_mask.jpg" id="4_busvx"]
 [ext_resource type="Shader" uid="uid://x308d5tet7an" path="res://lib/overlays/shaders/exposure_smoke.gdshader" id="5_busvx"]
 [ext_resource type="Texture2D" uid="uid://da0xt0w34hnyb" path="res://lib/overlays/textures/smoke_noise.tres" id="7_764qm"]
+[ext_resource type="Texture2D" uid="uid://cjmybxc8ppltc" path="res://lib/overlays/textures/poisoned.png" id="8_wbtki"]
+[ext_resource type="Texture2D" uid="uid://t6itydh8ksc5" path="res://lib/overlays/textures/take_damage.png" id="9_qf02y"]
 [ext_resource type="Script" uid="uid://bgltvt34r5x0i" path="res://lib/ui/dissolve_control/dissolve_control.gd" id="9_rhj2k"]
 [ext_resource type="Texture2D" uid="uid://cpj67ti628o6l" path="res://lib/overlays/textures/anime.png" id="10_l7kf3"]
 
@@ -72,6 +74,121 @@ color = Color(0, 0, 0, 0)
 wait_time = 0.65
 one_shot = true
 autostart = true
+
+[node name="Poison" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_rhj2k")
+metadata/_custom_type_script = "uid://bgltvt34r5x0i"
+
+[node name="TextureR" type="TextureRect" parent="Poison"]
+use_parent_material = true
+custom_minimum_size = Vector2(117, 720)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -360.0
+offset_bottom = 360.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_wbtki")
+expand_mode = 1
+
+[node name="TextureL" type="TextureRect" parent="Poison"]
+use_parent_material = true
+custom_minimum_size = Vector2(117, 720)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -360.0
+offset_right = 117.0
+offset_bottom = 360.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_wbtki")
+expand_mode = 1
+flip_h = true
+
+[node name="TakeDamage" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_rhj2k")
+metadata/_custom_type_script = "uid://bgltvt34r5x0i"
+
+[node name="TextureNW" type="TextureRect" parent="TakeDamage"]
+use_parent_material = true
+custom_minimum_size = Vector2(435, 370)
+layout_mode = 1
+offset_right = 435.0
+offset_bottom = 370.0
+mouse_filter = 2
+texture = ExtResource("9_qf02y")
+expand_mode = 1
+
+[node name="TextureNE" type="TextureRect" parent="TakeDamage"]
+use_parent_material = true
+custom_minimum_size = Vector2(435, 370)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -435.0
+offset_bottom = 370.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("9_qf02y")
+expand_mode = 1
+flip_h = true
+
+[node name="TextureSE" type="TextureRect" parent="TakeDamage"]
+use_parent_material = true
+custom_minimum_size = Vector2(435, 370)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -435.0
+offset_top = -370.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("9_qf02y")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="TextureSW" type="TextureRect" parent="TakeDamage"]
+use_parent_material = true
+custom_minimum_size = Vector2(435, 370)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -370.0
+offset_right = 435.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("9_qf02y")
+expand_mode = 1
+flip_v = true
 
 [node name="Highlight" type="Control" parent="."]
 material = SubResource("ShaderMaterial_roggd")

@@ -17,6 +17,14 @@ func _ready() -> void:
 	PlayerData.projectile_fired.connect(func():
 		var _t = create_tween()
 		_t.tween_method(set_highlight_value, 0.0, 1.0, 0.3))
-	
+	PlayerData.damage_taken.connect(func(_amount):
+		$TakeDamage.dissolve_scale = 0.0
+		$TakeDamage.disappear(0.75))
 	PlayerData.sprint_started.connect(func(): $Anime.appear(0.2))
 	PlayerData.sprint_ended.connect(func(): $Anime.disappear(0.4))
+	
+	# Conditions
+	PlayerData.condition_added.connect(func(_id):
+		if _id == "poisoned": $Poison.appear())
+	PlayerData.condition_ended.connect(func(_id):
+		if _id == "poisoned": $Poison.disappear())

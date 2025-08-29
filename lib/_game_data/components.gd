@@ -9,7 +9,8 @@ const condition_library = {
 		"title": "Blank"
 	},
 	"poisoned": {
-		"title": "Poisoned"
+		"title": "Poisoned",
+		"ticks": 100
 	}
 }
 

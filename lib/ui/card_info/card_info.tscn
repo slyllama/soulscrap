@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://s8awyrwv1tmb"]
+[gd_scene load_steps=12 format=3 uid="uid://s8awyrwv1tmb"]
 
 [ext_resource type="PackedScene" uid="uid://dss8jsi1q5yco" path="res://lib/ui/container/container.tscn" id="1_ciqje"]
 [ext_resource type="Shader" uid="uid://cjnhp3n2aq26o" path="res://generic/materials/shaders/dissolve.gdshader" id="2_g33b8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cdbdelgj23c0p" path="res://lib/ui/textures/separator.png" id="7_e5o6l"]
 [ext_resource type="FontFile" uid="uid://2mojdir7ucxy" path="res://generic/fonts/exo_italic.ttf" id="8_wdgc0"]
 [ext_resource type="Texture2D" uid="uid://1jmthe57m6ap" path="res://lib/ui/card_info/card_stat/stat_icons/icon_cd.png" id="9_wdgc0"]
+[ext_resource type="Texture2D" uid="uid://dgiy8bmgkj1s7" path="res://lib/ui/card_info/textures/type_headings/heading_attack.png" id="10_yfdkn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnbcw"]
 resource_local_to_scene = true
@@ -143,5 +144,17 @@ scroll_active = false
 [node name="Timer" type="Timer" parent="." index="3"]
 wait_time = 0.27
 one_shot = true
+
+[node name="TypeHeading" type="TextureRect" parent="." index="4"]
+use_parent_material = true
+custom_minimum_size = Vector2(180, 90)
+layout_mode = 0
+offset_left = -78.0
+offset_top = -88.0
+offset_right = 142.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = ExtResource("10_yfdkn")
+expand_mode = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

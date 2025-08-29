@@ -1,16 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfbn54leau13"]
+[gd_scene load_steps=11 format=3 uid="uid://cfbn54leau13"]
 
 [ext_resource type="Texture2D" uid="uid://li4r2t5rwo18" path="res://lib/ui/conditions/textures/cond_icon_base.png" id="1_eaac3"]
 [ext_resource type="Script" uid="uid://bk7dhsftetqne" path="res://lib/ui/conditions/cond_indicator.gd" id="1_s4ylo"]
 [ext_resource type="Texture2D" uid="uid://cxeqre62yne77" path="res://lib/ui/conditions/textures/cond_icon_mask.png" id="2_s4ylo"]
 [ext_resource type="Texture2D" uid="uid://j8hie2pud5a7" path="res://lib/ui/card_info/card_stat/textures/card_stat_bg.png" id="3_s4ylo"]
 [ext_resource type="Texture2D" uid="uid://s7x4w4xtu0sv" path="res://lib/ui/deck/card_icon/icons/unknown.png" id="4_7s372"]
+[ext_resource type="Texture2D" uid="uid://demperw3k6ld2" path="res://lib/cast/textures/cast_bar_mask.png" id="6_fhn7w"]
+[ext_resource type="Texture2D" uid="uid://blk3y43njliyc" path="res://lib/cast/textures/cast_progress.png" id="7_man5o"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4ylo"]
 content_margin_left = 4.0
 content_margin_right = 12.0
 texture = ExtResource("3_s4ylo")
 modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f84wf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kiye0"]
+texture = ExtResource("7_man5o")
+axis_stretch_horizontal = 1
 
 [node name="CondIndicator" type="HBoxContainer"]
 offset_right = 160.0
@@ -56,7 +65,13 @@ mouse_filter = 2
 texture = ExtResource("4_7s372")
 expand_mode = 1
 
-[node name="Text" type="RichTextLabel" parent="."]
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="Text" type="RichTextLabel" parent="VBox"]
 use_parent_material = true
 layout_mode = 2
 mouse_filter = 2
@@ -71,3 +86,26 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 vertical_alignment = 1
+
+[node name="CastTexture" type="TextureRect" parent="VBox"]
+clip_children = 2
+use_parent_material = true
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+texture = ExtResource("6_fhn7w")
+expand_mode = 1
+
+[node name="CastBar" type="ProgressBar" parent="VBox/CastTexture"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_f84wf")
+theme_override_styles/fill = SubResource("StyleBoxTexture_kiye0")
+step = 0.0
+value = 50.0
+show_percentage = false

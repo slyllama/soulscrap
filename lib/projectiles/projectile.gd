@@ -20,8 +20,9 @@ var active = false
 ## [code]damages_player[/code] and [code]damages_enemy[/code] enter this shape.
 ## This shape must be named "Hitbox" and be on layer 3.
 @export var collision_area: Area3D
-## Clear the projectile if it comes into contact with a player or enemy agent,
-## depending on [code]damages_player[/code] and [code]damages_enemy[/code].
+## Disable projectile damage and conditions if it comes into contact with a
+## player or enemy agent, depending on [code]damages_player[/code] and
+## [code]damages_enemy[/code].
 @export var destroy_on_hit = true
 
 @onready var _cast_timer = Timer.new()
@@ -48,6 +49,7 @@ func fire() -> void:
 		for _b in _bodies:
 			if _b is Player:
 				if active:
+					PlayerData.add_condition("poisoned") # TODO: conditions testing
 					PlayerData.take_damage(Components.get_damage(id))
 				if destroy_on_hit:
 					active = false
@@ -71,7 +73,6 @@ func _ready() -> void:
 	_cast_timer.timeout.connect(func():
 		cast_finished.emit()
 		fire())
-	
 	if get_node_or_null("Floor"): # remove debugging floor
 		get_node("Floor").queue_free()
 	await get_tree().process_frame

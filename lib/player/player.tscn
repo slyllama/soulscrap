@@ -195,6 +195,7 @@ radius = 0.15
 [node name="Player" type="CharacterBody3D"]
 floor_constant_speed = true
 script = ExtResource("1_al4t3")
+speed = 2.2
 acceleration = 15.0
 nitro_tempo_cost = 30
 

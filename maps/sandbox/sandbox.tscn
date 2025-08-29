@@ -189,13 +189,11 @@ component_id = "anguished_egg"
 [node name="AnguishedClaw" parent="." index="9" node_paths=PackedStringArray("wander_targets", "target") instance=ExtResource("14_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2.9)
 wander_targets = [NodePath("../ClawCandidates/ClawCandidate"), NodePath("../ClawCandidates/ClawCandidate2"), NodePath("../ClawCandidates/ClawCandidate3"), NodePath("../ClawCandidates/ClawCandidate4"), NodePath("../ClawCandidates/ClawCandidate5")]
-aggro_radius = 3.0
 target = NodePath("../Player")
 
 [node name="AnguishedClaw2" parent="." index="10" node_paths=PackedStringArray("wander_targets", "target") instance=ExtResource("14_ii18f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93675, 0, -0.553782)
 wander_targets = [NodePath("../ClawCandidates/ClawCandidate"), NodePath("../ClawCandidates/ClawCandidate2"), NodePath("../ClawCandidates/ClawCandidate3"), NodePath("../ClawCandidates/ClawCandidate4"), NodePath("../ClawCandidates/ClawCandidate5")]
-aggro_radius = 3.0
 target = NodePath("../Player")
 
 [node name="ClawCandidates" type="Node" parent="." index="11"]

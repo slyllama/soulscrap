@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b8ugq7w8i4b1n"]
+[gd_scene load_steps=26 format=3 uid="uid://b8ugq7w8i4b1n"]
 
 [ext_resource type="PackedScene" uid="uid://eoe6rexn06fv" path="res://lib/agent/agent.tscn" id="1_hyjce"]
 [ext_resource type="Shader" uid="uid://cayj7qxys80jb" path="res://lib/bounding_circle/shaders/bounding_circle.gdshader" id="2_svn0r"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dgriptbp6d5jr" path="res://maps/sandbox/agents/anguished_claw/textures/outline.png" id="4_wairi"]
 [ext_resource type="PackedScene" uid="uid://c1uh4fv3t7swu" path="res://lib/bounding_circle/bounding_circle.tscn" id="5_yskyh"]
 [ext_resource type="Texture2D" uid="uid://cxfqbrey3dgt6" path="res://maps/sandbox/agents/anguished_claw/textures/splash.png" id="9_yskyh"]
-[ext_resource type="AudioStream" uid="uid://d1qlu56ye6beh" path="res://maps/sandbox/agents/anguished_claw/sounds/claw_ambience.ogg" id="12_0hm7p"]
+[ext_resource type="Script" uid="uid://d4mgvogtplgaw" path="res://lib/player/trail_3d/trail_3d.gd" id="11_bc51q"]
 
 [sub_resource type="Gradient" id="Gradient_d7cpf"]
 interpolation_mode = 2
@@ -93,6 +93,12 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_fkkuu")
 size = Vector2(0.45, 0.45)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hm7p"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
 [node name="AnguishedClaw" node_paths=PackedStringArray("wander_targets", "model") instance=ExtResource("1_hyjce")]
 script = ExtResource("2_wairi")
 wander_targets = []
@@ -111,7 +117,6 @@ transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 0.78, 0, -0.2, 0)
 
 [node name="Ambient" type="AudioStreamPlayer3D" parent="AnguishedClaw" index="2"]
 transform = Transform3D(1.28205, 0, 0, 0, 1.28205, 0, 0, 0, 1.28205, 0, 0.25641, 0)
-stream = ExtResource("12_0hm7p")
 unit_size = 3.0
 max_db = 0.0
 autoplay = true
@@ -128,8 +133,7 @@ upper_fade = 1e-05
 cull_mask = 4
 
 [node name="OutlineDecal" type="Decal" parent="." index="7"]
-visible = false
-size = Vector3(4, 3, 4)
+size = Vector3(3, 3, 3)
 texture_albedo = ExtResource("4_wairi")
 modulate = Color(0.545098, 0.827451, 0, 1)
 normal_fade = 0.5
@@ -160,6 +164,14 @@ draw_pass_1 = SubResource("QuadMesh_y4ym0")
 [node name="AttackCD" type="Timer" parent="." index="11"]
 wait_time = 1.5
 one_shot = true
+
+[node name="Trail" type="MeshInstance3D" parent="." index="13"]
+material_override = SubResource("StandardMaterial3D_0hm7p")
+script = ExtResource("11_bc51q")
+trail_width = 0.0
+start_alpha = 0.5
+diffuse_color = Color(0.551755, 0.918219, 0, 1)
+metadata/_custom_type_script = "uid://d4mgvogtplgaw"
 
 [connection signal="aggro_range_left" from="." to="." method="_on_aggro_range_left"]
 [connection signal="target_reached" from="." to="." method="_on_target_reached"]

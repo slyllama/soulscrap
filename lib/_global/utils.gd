@@ -5,6 +5,7 @@ const NULL_VEC3 = Vector3(-999, -999, -999)
 const PCOLOR_DEBUG = "fA684d"
 
 signal tick
+var tick_running = false
 var _delta = 0.0
 
 func clerp(speed: float) -> float: # critical lerp (doesn't rubber-band at low frame rates)
@@ -22,7 +23,12 @@ func pdebug(text: String, module = "", color = "white") -> void:
 
 var _d = 0.0
 
+func _ready() -> void:
+	await get_tree().create_timer(0.5).timeout
+	tick_running = true
+
 func _process(delta: float) -> void:
+	if !tick_running: return
 	_delta = delta
 	_d += delta
 	if _d >= TICK_SIZE * 0.001:

@@ -7,10 +7,15 @@ func attack() -> void:
 	stationary = true
 	look_at_target_paused = true
 	
+	
 	var _a = emit_attack("desperate_grasp")
 	_anim.speed_scale = clamp(1.0 / _a.cast_time, 0.5, 1.5)
 	_anim.play("desperate_grasp")
+	
+	$Trail.trail_width = 0.01
 	await _anim.animation_finished
+	$Trail.trail_width = 0.0
+	
 	_anim.speed_scale = 1.0
 	
 	stationary = false
@@ -19,6 +24,9 @@ func attack() -> void:
 
 func _ready() -> void:
 	super()
+	
+	$OutlineDecal.size.x = aggro_radius * 2.0
+	$OutlineDecal.size.z = aggro_radius * 2.0
 	
 	_anim.set_blend_time("idle", "desperate_grasp", 0.5)
 	_anim.set_blend_time("desperate_grasp", "idle", 0.2)
@@ -42,6 +50,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super(delta)
+	$Trail.global_position = get_bone_position($AnguishedClaw/Skeleton3D, "Hand")
 	$NodeSpatial.global_position = get_bone_position(
 		$AnguishedClaw/Skeleton3D, "Hand") + Vector3(0, 0.35, 0)
 
